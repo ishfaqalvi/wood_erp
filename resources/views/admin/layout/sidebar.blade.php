@@ -31,6 +31,42 @@
     </a>
 </li>
 @endcan
+@canany(['purchaseItems-list'])
+<li class="nav-item-header">
+    <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Items Management</div>
+    <i class="ph-dots-three sidebar-resize-show"></i>
+</li>
+@endcanany
+@can('purchaseItems-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('purchase-items*') ? 'active' : ''}}" href="{{ route('purchase-items.index') }}">
+        <i class="ph-shopping-cart"></i>
+        <span>Purchase</span>
+    </a>
+</li>
+@endcan
+@canany(['vendors-list'])
+<li class="nav-item-header">
+    <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Purchase Management</div>
+    <i class="ph-dots-three sidebar-resize-show"></i>
+</li>
+@endcanany
+@can('vendors-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('vendors*') ? 'active' : ''}}" href="{{ route('vendors.index') }}">
+        <i class="ph-address-book"></i>
+        <span>Vendors</span>
+    </a>
+</li>
+@endcan
+@can('bills-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('bills*') ? 'active' : ''}}" href="{{ route('bills.index') }}">
+        <i class="ph-notepad"></i>
+        <span>Bills</span>
+    </a>
+</li>
+@endcan
 @canany(['banks-list'])
 <li class="nav-item-header">
     <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Catalog Management</div>

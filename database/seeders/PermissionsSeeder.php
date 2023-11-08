@@ -28,11 +28,24 @@ class PermissionsSeeder extends Seeder
             'users-edit',
             'users-delete',
 
-            'banks-list',
-            'banks-view',
-            'banks-create',
-            'banks-edit',
-            'banks-delete',
+            'purchaseItems-list',
+            'purchaseItems-view',
+            'purchaseItems-create',
+            'purchaseItems-edit',
+            'purchaseItems-delete',
+
+            'vendors-list',
+            'vendors-view',
+            'vendors-create',
+            'vendors-edit',
+            'vendors-delete',
+
+            'bills-list',
+            'bills-view',
+            'bills-create',
+            'bills-edit',
+            'bills-publish',
+            'bills-delete',
 
             'accounts-list',
             'accounts-view',
@@ -51,6 +64,12 @@ class PermissionsSeeder extends Seeder
             'transactions-create',
             'transactions-edit',
             'transactions-delete',
+
+            'banks-list',
+            'banks-view',
+            'banks-create',
+            'banks-edit',
+            'banks-delete',
 
             'notifications-list',
             'notifications-view',

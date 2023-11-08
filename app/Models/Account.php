@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 use Wildside\Userstamps\Userstamps;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
 /**
  * Class Account
  *
@@ -33,7 +32,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Account extends Model implements Auditable
 {
     use \OwenIt\Auditing\Auditable;
-
     use SoftDeletes, Userstamps;
 
 
