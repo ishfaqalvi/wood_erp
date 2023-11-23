@@ -16,7 +16,7 @@ trait BankingTransactions {
      */
     public function updateBalance($account, $amount, $transactionType, $category)
     {
-    	Transaction::create([
+    	$transaction = Transaction::create([
     		'date' 		=> Carbon::now(),
     		'type' 		=> $transactionType,
     		'category' 	=> $category,
@@ -35,5 +35,6 @@ trait BankingTransactions {
                 break;
         }
         $account->save();
+        return $transaction;
     }
 }

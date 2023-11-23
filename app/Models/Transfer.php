@@ -35,9 +35,6 @@ class Transfer extends Model implements Auditable
 
     use SoftDeletes, Userstamps, BankingTransactions;
 
-
-    protected $perPage = 20;
-
     /**
      * Attributes that should be mass-assignable.
      *

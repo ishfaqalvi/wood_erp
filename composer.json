@@ -40,7 +40,8 @@
         "files": [
             "app/Libraries/helpers.php",
             "app/Libraries/dropdowns.php",
-            "app/Traits/BankingTransactions.php"
+            "app/Traits/BankingTransactions.php",
+            "app/Traits/StockTransactions.php"
         ]
     },
     "autoload-dev": {

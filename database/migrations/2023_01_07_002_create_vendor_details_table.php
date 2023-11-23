@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('reference');
             $table->string('detail');
             $table->bigInteger('date');
-            $table->enum('type',['Paid','Recieved']);
+            $table->enum('type',['Paid','Received']);
             $table->decimal('amount',10,2);
             $table->decimal('balance',10,2);
             $table->timestamps();

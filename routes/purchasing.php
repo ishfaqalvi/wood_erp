@@ -35,3 +35,19 @@ Route::controller(BillItemController::class)->prefix('bill/items')->group(functi
 	Route::patch('update/{item}',	'update' )->name('bill.items.update'	);
 	Route::delete('delete/{id}',	'destroy')->name('bill.items.destroy'	);
 });
+
+/*
+|--------------------------------------------------------------------------
+| Payments Route
+|--------------------------------------------------------------------------
+*/
+Route::controller(PurchasePaymentController::class)->prefix('purchase-payments')->as('purchase-payments.')->group(function () {
+	Route::get('index',				 'index'  )->name('index'	);
+	Route::get('create',			 'create' )->name('create'	);
+	Route::post('store',			 'store'  )->name('store'	);
+	Route::get('show/{id}',			 'show'	  )->name('show'	);
+	Route::get('edit/{id}',			 'edit'	  )->name('edit'	);
+	Route::patch('update/{payment}', 'update' )->name('update'	);
+	Route::patch('approve/{payment}','approve')->name('approve'	);
+	Route::delete('delete/{id}',	 'destroy')->name('destroy'	);
+});

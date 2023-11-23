@@ -42,3 +42,14 @@ function getAmount($item , $qty, $rate)
     $result = ($item->length /1000) * ($item->width/1000) * ($item->thikness/1000);
     return $result * 35.3147 * $qty * $rate;
 }
+
+/**
+ * Get listing of a resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
+function getMeasurement($item , $qty)
+{
+    $result = ($item->length /1000) * ($item->width/1000) * ($item->thikness/1000);
+    return $result * 35.3147 * $qty * 12;
+}

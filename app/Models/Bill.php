@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 use Wildside\Userstamps\Userstamps;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\StockTransactions;
 
 /**
  * Class Bill
@@ -33,7 +34,7 @@ class Bill extends Model implements Auditable
 {
     use \OwenIt\Auditing\Auditable;
 
-    use SoftDeletes, Userstamps;
+    use SoftDeletes, Userstamps, StockTransactions;
 
 
     protected $perPage = 20;

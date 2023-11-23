@@ -34,4 +34,20 @@ class PurchaseItem extends Model implements Auditable
      * @var array
      */
     protected $fillable = ['name','length','width','thikness'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function stock()
+    {
+        return $this->hasOne('App\Models\PurchaseStock', 'id', 'purchase_item_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function details()
+    {
+        return $this->hasMany('App\Models\PurchaseDetail', 'purchase_item_id', 'id');
+    }
 }

@@ -44,13 +44,12 @@ class VendorDetail extends Model implements Auditable
     {
         parent::boot();
         self::creating(function ($model) { 
-            $lastBalance = DB::table('vendor_details')->where('vendor_id', $model->vendor_id)->latest('date')->value('balance');
+            $lastBalance = DB::table('vendor_details')->where('vendor_id', $model->vendor_id)->latest('id')->value('balance');
             $lastBalance = $lastBalance ?? 0;
-
             if ($model->type == 'Paid') {
                 $model->balance = $lastBalance - $model->amount;
             }
-            if ($model->type == 'Recieved') {
+            if ($model->type == 'Received') {
                 $model->balance = $lastBalance + $model->amount;
             }
         });

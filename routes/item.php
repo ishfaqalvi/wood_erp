@@ -4,7 +4,14 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Accounts Route
+| Purchase Itmes Route
 |--------------------------------------------------------------------------
 */
 Route::resource('purchase-items', 'PurchaseItemController')->names('purchase-items');
+
+/*
+|--------------------------------------------------------------------------
+| Sale Items Route
+|--------------------------------------------------------------------------
+*/
+Route::resource('sale-items', 'SaleItemController')->names('sale-items');

@@ -50,13 +50,6 @@
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary w-100">Sign in</button>
             </div>
-            <div class="text-center text-muted content-divider mb-3">
-                <span class="px-2">Don't have an account?</span>
-            </div>
-
-            <div class="mb-3">
-                <a href="#" class="btn btn-light w-100">Sign up</a>
-            </div>
         </div>
     </div>
 </form>

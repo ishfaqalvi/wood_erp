@@ -16,18 +16,38 @@ class PurchaseItemSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 5; $i++) {
-            $items[] = [
-                'name'      => "Item $i",
-                'length'    => rand(1, 100),
-                'width'     => rand(1, 100),
-                'thikness'  => rand(1, 100),
+        $items =[
+            [
+                'name'      => "Item 1",
+                'length'    => 2500,
+                'width'     => 113,
+                'thikness'  => 25,
                 'created_by'=> 1,
                 'updated_by'=> 1,
                 'created_at'=> Carbon::now(),
                 'updated_at'=> Carbon::now(),
-            ];
-        }
+            ],
+            [
+                'name'      => "Item 2",
+                'length'    => 2985,
+                'width'     => 113,
+                'thikness'  => 25,
+                'created_by'=> 1,
+                'updated_by'=> 1,
+                'created_at'=> Carbon::now(),
+                'updated_at'=> Carbon::now(),
+            ],
+            [
+                'name'      => "Item 3",
+                'length'    => 2700,
+                'width'     => 113,
+                'thikness'  => 25,
+                'created_by'=> 1,
+                'updated_by'=> 1,
+                'created_at'=> Carbon::now(),
+                'updated_at'=> Carbon::now(),
+            ]
+        ];
         DB::table('purchase_items')->insert($items);
     }
 }
