@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    Purchase Payment
+    خریداری کی ادائیگی
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Purchase Payment Managment</span>
+            <span class="fw-normal">خریداری کی ادائیگی</span>
         </h4>
     </div>
     @can('purchasePayments-create')
@@ -18,7 +18,7 @@
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                     <i class="ph-plus"></i>
                 </span>
-                Create New
+                نیا بنائیں
             </a>
         </div>
     </div>
@@ -30,19 +30,19 @@
 <div class="col-sm-12">
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">Purchase Payment</h5>
+            <h5 class="mb-0">خریداری کی ادائیگی</h5>
         </div>
         <table class="table datatable-basic">
             <thead class="thead">
                 <tr>
-                    <th>No</th>
-					<th>Vendor</th>
-					<th>Date</th>
-					<th>Amount</th>
-                    <th>Created By</th>
-                    <th>Updated By</th>
-                    <th>Status</th>
-                    <th class="text-center">Actions</th>
+                    <th>نمبر</th>
+					<th>فروش</th>
+					<th>تاریخ</th>
+					<th>رقم</th>
+                    <th>پیدا کیا</th>
+                    <th>ترمیم</th>
+                    <th>حالت</th>
+                    <th class="text-center">اعمال</th>
                 </tr>
             </thead>
             <tbody>
@@ -81,12 +81,12 @@
         $(".sa-confirm").click(function (event) {
             event.preventDefault();
             swalInit.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'کیا تمہیں یقین ہے؟',
+                text: "آپ اسے واپس نہیں کر سکیں گے!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
+                confirmButtonText: 'جی ہاں، اسے حذف کریں!',
+                cancelButtonText: 'نہیں، منسوخ کریں!',
                 buttonsStyling: false,
                 customClass: {
                     confirmButton: 'btn btn-success',
@@ -99,12 +99,12 @@
         $(".sa-approve").click(function (event) {
             event.preventDefault();
             swalInit.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'کیا تمہیں یقین ہے؟',
+                text: "آپ اسے واپس نہیں کر سکیں گے!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, approve it!',
-                cancelButtonText: 'No, cancel!',
+                confirmButtonText: 'ہاں، اسے منظور کرو!',
+                cancelButtonText: 'نہیں، منسوخ کریں!',
                 buttonsStyling: false,
                 customClass: {
                     confirmButton: 'btn btn-success',

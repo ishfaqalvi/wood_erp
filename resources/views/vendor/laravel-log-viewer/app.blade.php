@@ -75,7 +75,7 @@
                     }
                 });
                 $('#delete-log, #clean-log, #delete-all-log').click(function () {
-                    return confirm('Are you sure?');
+                    return confirm('کیا تمہیں یقین ہے؟');
                 });
             });
         </script>

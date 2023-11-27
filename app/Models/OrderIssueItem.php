@@ -33,7 +33,7 @@ class OrderIssueItem extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['order_id','purchase_item_id','quantity'];
+    protected $fillable = ['order_id','purchase_stock_id','quantity'];
 
 
     /**
@@ -47,9 +47,9 @@ class OrderIssueItem extends Model implements Auditable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function purchaseItem()
+    public function purchaseStock()
     {
-        return $this->hasOne('App\Models\PurchaseItem', 'id', 'purchase_item_id');
+        return $this->hasOne('App\Models\PurchaseStock', 'id', 'purchase_stock_id');
     }
     
 }

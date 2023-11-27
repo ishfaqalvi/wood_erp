@@ -7,13 +7,13 @@
         <div class="dropdown-menu dropdown-menu-end">
             @can('purchasePayments-view')
                 <a href="{{ route('purchase-payments.show',$purchasePayment->id) }}" class="dropdown-item">
-                    <i class="ph-eye me-2"></i>{{ __('Show') }}
+                    <i class="ph-eye me-2"></i>{{ __('دکھائیں۔') }}
                 </a>
             @endcan
             @if($purchasePayment->status =='Pending')
                 @can('purchasePayments-edit')
                     <a href="{{ route('purchase-payments.edit',$purchasePayment->id) }}" class="dropdown-item">
-                        <i class="ph-note-pencil me-2"></i>{{ __('Edit') }}
+                        <i class="ph-note-pencil me-2"></i>{{ __('ترمیم') }}
                     </a>
                 @endcan
                 @can('purchasePayments-approval')
@@ -21,7 +21,7 @@
                         @csrf
                         {{ method_field('PATCH') }}
                         <button type="submit" class="dropdown-item sa-approve">
-                            <i class="ph-check-square me-2"></i>{{ __('Approve') }}
+                            <i class="ph-check-square me-2"></i>{{ __('منظور کرو') }}
                         </button>
                     </form>
                 @endcan
@@ -31,7 +31,7 @@
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="dropdown-item sa-confirm">
-                        <i class="ph-trash me-2"></i>{{ __('Delete') }}
+                        <i class="ph-trash me-2"></i>{{ __('حذف کریں') }}
                     </button>
                 </form>
             @endcan

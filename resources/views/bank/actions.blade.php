@@ -10,17 +10,17 @@
                 @method('DELETE')
                 @can('banks-view')
                     <a href="{{ route('banks.show',$bank->id) }}" class="dropdown-item">
-                        <i class="ph-eye me-2"></i>{{ __('Show') }}
+                        <i class="ph-eye me-2"></i>{{ __('دکھائیں۔') }}
                     </a>
                 @endcan
                 @can('banks-edit')
                     <a href="{{ route('banks.edit',$bank->id) }}" class="dropdown-item">
-                        <i class="ph-note-pencil me-2"></i>{{ __('Edit') }}
+                        <i class="ph-note-pencil me-2"></i>{{ __('ترمیم') }}
                     </a>
                 @endcan
                 @can('banks-delete')
                     <button type="submit" class="dropdown-item sa-confirm">
-                        <i class="ph-trash me-2"></i>{{ __('Delete') }}
+                        <i class="ph-trash me-2"></i>{{ __('حذف کریں') }}
                     </button>
                 @endcan
             </form>

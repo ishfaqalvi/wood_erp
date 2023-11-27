@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ $bill->name ?? "Show Bill" }}
+    {{ $bill->name ?? "بل دکھائیں" }}
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Bill Managment</span>
+            <span class="fw-normal">بل مینجمنٹ</span>
         </h4>
     </div>
     <div class="d-lg-block my-lg-auto ms-lg-auto">
@@ -17,7 +17,7 @@
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                     <i class="ph-arrow-circle-left"></i>
                 </span>
-                Back
+                پیچھے
             </a>
         </div>
     </div>
@@ -28,7 +28,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header d-flex align-items-center">
-            <h5 class="mb-0">{{ __('Show') }} Bill</h5>
+            <h5 class="mb-0">{{ __('بل دکھائیں') }}</h5>
             <div class="d-inline-flex ms-auto">
                 <span class="badge bg-success rounded-pill">{{ $bill->status }}</span>
             </div>
@@ -40,7 +40,7 @@
                         <h5 class="mb-0">{{ $bill->bill_number }}</h5>
                     </div>
                     <span class="d-inline-block bg-success rounded-pill p-1 me-1"></span>
-                    <span class="text-muted">Bill Date: {{ date('d M Y', $bill->bill_date) }}</span>
+                    <span class="text-muted">بل کی تاریخ: {{ date('d M Y', $bill->bill_date) }}</span>
                 </div>
             </div>
 
@@ -50,14 +50,14 @@
                         <h5 class="mb-0">{{ $bill->vendor->name }}</h5>
                     </div>
                     <span class="d-inline-block bg-danger rounded-pill p-1 me-1"></span>
-                    <span class="text-muted">Due Date: {{ date('d M Y', $bill->due_date) }}</span>
+                    <span class="text-muted">اخری تاریخ: {{ date('d M Y', $bill->due_date) }}</span>
                 </div>
             </div>
             @if($bill->status !='Posted')
             <div>
                 <a href="#" class="btn btn-indigo" data-bs-toggle="modal" data-bs-target="#addItem">
                     <i class="ph-plus me-2"></i>
-                    Add Item
+                    آئٹم شامل کریں۔
                 </a>
             </div>
             @else
@@ -67,7 +67,7 @@
                             <h5 class="mb-0">{{ $bill->status }}</h5>
                         </div>
                         <span class="d-inline-block bg-success rounded-pill p-1 me-1"></span>
-                        <span class="text-muted">Posted By: {{ $bill->editor->name }}</span>
+                        <span class="text-muted">کی طرف سے پوسٹ کیا گیا: {{ $bill->editor->name }}</span>
                     </div>
                 </div>
             @endif
@@ -76,13 +76,13 @@
             <table class="table text-nowrap">
                 <thead>
                     <tr>
-                        <th>Item</th>
-                        <th>Lenght(MM)</th>
-                        <th>Width(MM)</th>
-                        <th>Thikness(MM)</th>
-                        <th>Quantity</th>
-                        <th>Rate/per fit</th>
-                        <th>Amount</th>
+                        <th>آئٹم</th>
+                        <th>لمبائی(MM)</th>
+                        <th>چوڑائی(MM)</th>
+                        <th>موٹائی(MM)</th>
+                        <th>مقدار</th>
+                        <th>ریٹ/فی فٹ</th>
+                        <th>رقم</th>
                         @if($bill->status !='Posted')
                         <th class="text-center" style="width: 20px;">
                             <i class="ph-dots-three"></i>
@@ -94,16 +94,15 @@
                     @php($total = 0)
                     @foreach($bill->billItems as $item)
                     <tr>
-                        <td>{{ $item->purchaseItem->name }}</td>
-                        <td><span class="text-muted">{{ $item->purchaseItem->length }}</span></td>
-                        <td><span class="text-muted">{{ $item->purchaseItem->width }}</span></td>
-                        <td><span class="text-muted">{{ $item->purchaseItem->thikness }}</span></td>
+                        <td>{{ $item->name }}</td>
+                        <td><span class="text-muted">{{ $item->length }}</span></td>
+                        <td><span class="text-muted">{{ $item->width }}</span></td>
+                        <td><span class="text-muted">{{ $item->thikness }}</span></td>
                         <td>{{ $item->quantity }}</td>
                         <td><span class="text-success">{{ $item->rate }}</span></td>
                         <td>
-                            @php($amount = getAmount($item->purchaseItem, $item->quantity, $item->rate))
-                            <h6 class="mb-0">{{ number_format($amount) }}</h6>
-                            @php($total += $amount)
+                            <h6 class="mb-0">{{ number_format($item->amount) }}</h6>
+                            @php($total += $item->amount)
                         </td>
                         @if($bill->status !='Posted')
                         <td class="text-center">
@@ -125,7 +124,7 @@
                     @include('purchasing.bill.item.edit')
                     @endforeach
                     <tr class="table-light">
-                        <td colspan="{{ $bill->status !='Posted' ? '7': '6'}}">Total</td>
+                        <td colspan="{{ $bill->status !='Posted' ? '7': '6'}}">کل</td>
                         <td class="text-end">
                             <h6 class="mb-0">{{ number_format($total) }}</h6>
                         </td>
@@ -181,12 +180,12 @@
         $(".sa-confirm").click(function (event) {
             event.preventDefault();
             swalInit.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'کیا تمہیں یقین ہے؟',
+                text: "آپ اسے واپس نہیں کر سکیں گے!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
+                confirmButtonText: 'جی ہاں، اسے حذف کریں!',
+                cancelButtonText: 'نہیں، منسوخ کریں!',
                 buttonsStyling: false,
                 customClass: {
                     confirmButton: 'btn btn-success',

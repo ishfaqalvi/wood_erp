@@ -61,21 +61,6 @@ class Bill extends Model implements Auditable
     }
 
     /**
-     * Calculate the total amount of the bill.
-     *
-     * @return float
-    */
-    public function calculateTotalAmount()
-    {
-        $total = 0;
-        foreach($this->billItems as $item)
-        {
-            $total += getAmount($item->purchaseItem, $item->quantity, $item->rate);
-        }
-        return $total;
-    }
-
-    /**
      * Interact with the date.
      */
     public function setBillDateAttribute($value)

@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ __('Update') }} Customer
+    {{ __('کسٹمر میں ترمیم کریں۔') }}
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Customer Managment</span>
+            <span class="fw-normal">کسٹمر مینجمنٹ</span>
         </h4>
     </div>
     <div class="d-lg-block my-lg-auto ms-lg-auto">
@@ -17,7 +17,7 @@
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                     <i class="ph-arrow-circle-left"></i>
                 </span>
-                Back
+                پیچھے
             </a>
         </div>
     </div>
@@ -28,7 +28,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">{{ __('Edit ') }} Customer </h5>
+            <h5 class="mb-0">{{ __('کسٹمر میں ترمیم کریں۔ ') }}</h5>
         </div>
         <div class="card-body">
             <form method="POST" action="{{ route('customers.update', $customer->id) }}" class="validate" role="form" enctype="multipart/form-data">

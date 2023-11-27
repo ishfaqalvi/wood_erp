@@ -31,7 +31,7 @@ class InvoicePurchaseItem extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['invoice_id','purchase_item_id','description','quantity','rate'];
+    protected $fillable = ['invoice_id','purchase_stock_id','description','quantity','rate'];
 
 
     /**
@@ -45,8 +45,8 @@ class InvoicePurchaseItem extends Model implements Auditable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function purchaseItem()
+    public function purchaseStock()
     {
-        return $this->hasOne('App\Models\PurchaseItem', 'id', 'purchase_item_id');
+        return $this->hasOne('App\Models\PurchaseStock', 'id', 'purchase_stock_id');
     }  
 }

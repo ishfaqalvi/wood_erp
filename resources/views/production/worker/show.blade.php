@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ $worker->name ?? "Show Worker" }}
+    {{ "کارکن کی تفصیل" }}
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Worker Managment</span>
+            <span class="fw-normal">ورکر مینجمنٹ</span>
         </h4>
     </div>
     <div class="d-lg-block my-lg-auto ms-lg-auto">
@@ -17,7 +17,7 @@
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                     <i class="ph-arrow-circle-left"></i>
                 </span>
-                Back
+                پیچھے
             </a>
         </div>
     </div>
@@ -28,7 +28,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">{{ __('Show') }} Worker</h5>
+            <h5 class="mb-0">{{ __('کارکن کی تفصیل') }}</h5>
         </div>
         <div class="card-body">
             <div class="row">
@@ -40,7 +40,7 @@
                                 <h4 class="mb-0">
                                     {{ number_format($worker->details()->where('type','Received')->sum('amount') )}}
                                 </h4>
-                                Total Received
+                                ٹوٹل موصول
                             </div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                                 <h4 class="mb-0">
                                     {{ number_format($worker->details()->where('type','Paid')->sum('amount') )}}
                                 </h4>
-                                Total Paid
+                                مکمل ادائیگی
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                                 <h4 class="mb-0">
                                     {{ number_format($worker->details()->where('type','Received')->sum('amount') - $worker->details()->where('type','Paid')->sum('amount') )}}
                                 </h4>
-                                Current Balance
+                                موجودہ توازن
                             </div>
                         </div>
                     </div>
@@ -76,13 +76,13 @@
                 <table class="table">
                     <thead class="thead">
                         <tr>
-                            <th>No</th>
-                            <th>Reference</th>
-                            <th>Detail</th>
-                            <th>Date</th>
-                            <th>Type</th>
-                            <th>Amount</th>
-                            <th>Balance</th>
+                            <th>نمبر</th>
+                            <th>حوالہ</th>
+                            <th>تفصیل</th>
+                            <th>تاریخ</th>
+                            <th>قسم</th>
+                            <th>رقم</th>
+                            <th>بقیہ</th>
                         </tr>
                     </thead>
                     <tbody>

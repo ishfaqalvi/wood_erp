@@ -114,18 +114,27 @@ class PurchasePaymentController extends Controller
      */
     public function approve(Request $request, PurchasePayment $payment)
     {
-        DB::transaction(function () use ($payment) {
+        $status = DB::transaction(function () use ($payment) {
+            $status = 'No error';
             $account = Account::whereNotNull('default')->first();
-            $transaction = $payment->updateBalance($account->id, $payment->amount, 'Outgoing', 'Purchasing');
-            $payment->vendor->details()->create([
-                'reference' => $transaction->transaction_id,
-                'detail'    => 'Payment Paid',
-                'date'      => date('Y-m-d', $payment->date),
-                'type'      => 'Paid',
-                'amount'    => $payment->amount
-            ]);
-            $payment->update(['status' => 'Approved']);
+            if (empty($account)) {
+                $status = 'Error';
+            }else{
+                $transaction = $payment->updateBalance($account->id, $payment->amount, 'Outgoing', 'Purchasing');
+                $payment->vendor->details()->create([
+                    'reference' => $transaction->transaction_id,
+                    'detail'    => 'Payment Paid',
+                    'date'      => date('Y-m-d', $payment->date),
+                    'type'      => 'Paid',
+                    'amount'    => $payment->amount
+                ]);
+                $payment->update(['status' => 'Approved']);
+            }
+            return $status;
         });
+        if ($status == 'Error') {
+            return redirect()->back()->with('warning', 'آپ نے بینک اکاؤنٹ شامل نہیں کیا ہے۔.');
+        }
         return redirect()->route('purchase-payments.index')
             ->with('success', 'Purchase Payment approved successfully.');
     }

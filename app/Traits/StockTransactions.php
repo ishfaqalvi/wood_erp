@@ -19,18 +19,16 @@ trait StockTransactions {
     {
         foreach($bill->billItems as $item)
         {
-            PurchaseDetail::create([
-                'purchase_item_id'=> $item->purchase_item_id,
-                'type'            => 'In',
-                'date'            => date('Y-m-d', $bill->bill_date),         
-                'quantity'        => $item->quantity
-            ]);
-            $checkItem = PurchaseStock::where('purchase_item_id', $item->purchase_item_id)->first();
+            $checkItem = PurchaseStock::where([['name', $item->name],['length', $item->length],['width', $item->width],['thikness', $item->thikness]])->first();
             if ($checkItem) {
                 $checkItem->increment('quantity',$item->quantity);
             }else{
                 PurchaseStock::create([
-                    'purchase_item_id' => $item->purchase_item_id, 'quantity' => $item->quantity
+                    'name' => $item->name,
+                    'length' => $item->length,
+                    'width' => $item->width,
+                    'thikness' => $item->thikness,
+                    'quantity' => $item->quantity
                 ]);
             }
         }
@@ -44,22 +42,9 @@ trait StockTransactions {
      */
     public function purchaseStockOut($order)
     {
-        foreach($order->issueItems as $item)
+        foreach($order->issueItems as $key => $item)
         {
-            PurchaseDetail::create([
-                'purchase_item_id'=> $item->purchase_item_id,
-                'type'            => 'Out',
-                'date'            => date('Y-m-d', $order->issue_date),         
-                'quantity'        => $item->quantity
-            ]);
-            $checkItem = PurchaseStock::where('purchase_item_id', $item->purchase_item_id)->first();
-            if ($checkItem) {
-                $checkItem->decrement('quantity',$item->quantity);
-            }else{
-                PurchaseStock::create([
-                    'purchase_item_id' => $item->purchase_item_id, 'quantity' => -($item->quantity)
-                ]);
-            }
+            PurchaseStock::find($item->purchase_stock_id)->decrement('quantity',$item->quantity);
         }
     }
 
@@ -127,20 +112,7 @@ trait StockTransactions {
     {
         foreach($invoice->purchaseItems as $item)
         {
-            PurchaseDetail::create([
-                'purchase_item_id'=> $item->purchase_item_id,
-                'type'            => 'Out',
-                'date'            => date('Y-m-d', $invoice->invoice_date),         
-                'quantity'        => $item->quantity
-            ]);
-            $checkItem = PurchaseStock::where('purchase_item_id', $item->purchase_item_id)->first();
-            if ($checkItem) {
-                $checkItem->decrement('quantity',$item->quantity);
-            }else{
-                PurchaseStock::create([
-                    'purchase_item_id' => $item->purchase_item_id, 'quantity' => -($item->quantity)
-                ]);
-            }
+            PurchaseStock::find($item->purchase_stock_id)->decrement('quantity',$item->quantity);
         }
     }
 }

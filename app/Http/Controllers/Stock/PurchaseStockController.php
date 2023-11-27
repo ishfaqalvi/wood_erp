@@ -57,9 +57,18 @@ class PurchaseStockController extends Controller
      */
     public function store(Request $request)
     {
-       $purchaseStock = PurchaseStock::create($request->all());
+        $checkItem = PurchaseStock::where('name', $request->name)
+             ->where('length', $request->length)
+             ->where('width', $request->width)
+             ->where('thikness', $request->thikness)
+             ->first();
+        if ($checkItem) {
+            $checkItem->increment('quantity',$request->quantity);
+        }else{
+            $purchaseStock = PurchaseStock::create($request->all());
+        }
         return redirect()->route('purchase-stocks.index')
-            ->with('success', 'PurchaseStock created successfully.');
+            ->with('success', 'PurchaseStock quantity added successfully.');
     }
 
     /**

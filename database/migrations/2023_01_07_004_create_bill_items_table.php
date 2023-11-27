@@ -16,9 +16,13 @@ return new class extends Migration
         Schema::create('bill_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('bill_id')->references('id')->on('bills');
-            $table->foreignId('purchase_item_id')->references('id')->on('purchase_items');
+            $table->string('name');
+            $table->integer('length');
+            $table->integer('width');
+            $table->integer('thikness');
             $table->integer('quantity');
             $table->bigInteger('rate');
+            $table->bigInteger('amount')->default(0);
             $table->timestamps();
         });
     }

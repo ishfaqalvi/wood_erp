@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-{{ __('Create') }} Purchase Stock
+{{ __('خریداری اسٹاک بنائیں') }}
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Purchase Stock Managment</span>
+            <span class="fw-normal">خریداری کے انتظام کا ذخیرہ</span>
         </h4>
     </div>
     <div class="d-lg-block my-lg-auto ms-lg-auto">
@@ -17,7 +17,7 @@
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                     <i class="ph-arrow-circle-left"></i>
                 </span>
-                Back
+                پیچھے
             </a>
         </div>
     </div>
@@ -28,12 +28,12 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">{{ __('Create') }} Purchase Stock</h5>
+            <h5 class="mb-0">{{ __('خریداری اسٹاک بنائیں') }}</h5>
         </div>
         <div class="card-body">
             <form method="POST" action="{{ route('purchase-stocks.store') }}" class="validate" role="form" enctype="multipart/form-data">
                 @csrf
-                @include('purchase-stock.form')
+                @include('stock.purchase.form')
             </form>
         </div>
     </div>
@@ -63,7 +63,7 @@
             errorPlacement: function(error, element) {
                 if (element.hasClass('select2-hidden-accessible')) {
                     error.appendTo(element.parent());
-                }else if (element.parents().hasClass('form-control-feedback') || element.parents().hasClass('form-check') || element.parents().hasClass('input-group')) {
+                }else if (element.parents().hasClass('form-control-feedپیچھے') || element.parents().hasClass('form-check') || element.parents().hasClass('input-group')) {
                     error.appendTo(element.parent().parent());
                 }else {
                     error.insertAfter(element);

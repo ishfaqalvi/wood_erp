@@ -2,12 +2,12 @@
       
     <div class="form-group col-lg-6 mb-3">
         {{ Form::label('from_account') }}
-        {{ Form::select('from_account', accounts(), $transfer->from_account, ['class' => 'form-control form-select' . ($errors->has('from_account') ? ' is-invalid' : ''), 'placeholder' => '--Select--','required','id'=>'from_account']) }}
+        {{ Form::select('from_account', accounts(), $transfer->from_account, ['class' => 'form-control form-select' . ($errors->has('from_account') ? ' is-invalid' : ''), 'placeholder' => '--منتخب کریں۔--','required','id'=>'from_account']) }}
         {!! $errors->first('from_account', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <div class="form-group col-lg-6 mb-3">
         {{ Form::label('to_account') }}
-        {{ Form::select('to_account', accounts(), $transfer->to_account, ['class' => 'form-control form-select' . ($errors->has('to_account') ? ' is-invalid' : ''), 'placeholder' => '--Select--','required']) }}
+        {{ Form::select('to_account', accounts(), $transfer->to_account, ['class' => 'form-control form-select' . ($errors->has('to_account') ? ' is-invalid' : ''), 'placeholder' => '--منتخب کریں۔--','required']) }}
         {!! $errors->first('to_account', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <div class="form-group col-lg-6 mb-3">
@@ -27,7 +27,7 @@
     </div>
     <div class="col-md-12 d-flex justify-content-end align-items-center mt-3">
         <button type="submit" class="btn btn-primary ms-3">
-            Submit <i class="ph-paper-plane-tilt ms-2"></i>
+            جمع کرائیں<i class="ph-paper-plane-tilt ms-2"></i>
         </button>
     </div>
 </div>

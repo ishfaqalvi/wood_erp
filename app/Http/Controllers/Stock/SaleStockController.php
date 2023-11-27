@@ -46,7 +46,7 @@ class SaleStockController extends Controller
     public function create()
     {
         $saleStock = new SaleStock();
-        return view('sale-stock.create', compact('saleStock'));
+        return view('stock.sale.create', compact('saleStock'));
     }
 
     /**
@@ -57,9 +57,14 @@ class SaleStockController extends Controller
      */
     public function store(Request $request)
     {
-       $saleStock = SaleStock::create($request->all());
+        $checkItem = SaleStock::where('sale_item_id', $request->sale_item_id)->first();
+        if ($checkItem) {
+            $checkItem->increment('quantity',$request->quantity);
+        }else{
+            $purchaseStock = SaleStock::create($request->all());
+        }
         return redirect()->route('sale-stocks.index')
-            ->with('success', 'SaleStock created successfully.');
+            ->with('success', 'SaleStock item added successfully.');
     }
 
     /**

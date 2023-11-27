@@ -8,6 +8,7 @@ use App\Models\SaleItem;
 use App\Models\PurchaseItem;
 use App\Models\InvoiceSaleItem;
 use App\Models\InvoicePurchaseItem;
+use App\Models\PurchaseStock;
 use Illuminate\Http\Request;
 use DB;
 
@@ -78,12 +79,12 @@ class InvoiceController extends Controller
         $invoice = Invoice::find($id);
         if ($invoice->type == 'Fancy') {
             $view = 'selling.invoice.sale-item.index';
-            $ids = InvoiceSaleItem::pluck('sale_item_id')->toArray();
+            $ids = InvoiceSaleItem::where('invoice_id',$id)->pluck('sale_item_id')->toArray();
             $items = SaleItem::whereNotIn('id',$ids)->pluck('name','id');
         }else{
             $view = 'selling.invoice.purchase-item.index';
-            $ids = InvoicePurchaseItem::pluck('purchase_item_id')->toArray();
-            $items = PurchaseItem::whereNotIn('id',$ids)->get()->mapWithKeys(function ($item, $key) {
+            $ids = InvoicePurchaseItem::where('invoice_id',$id)->pluck('purchase_stock_id')->toArray();
+            $items = PurchaseStock::whereNotIn('id',$ids)->where('quantity','>',0)->get()->mapWithKeys(function ($item, $key) {
                 $string = "{$item->name} ( L={$item->length} W={$item->width} T={$item->thikness} )";
                 return [$item->id => $string];
             })->toArray(); 

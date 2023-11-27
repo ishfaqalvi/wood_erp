@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    Order
+    آرڈر
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Order Managment</span>
+            <span class="fw-normal">آرڈر مینجمنٹ</span>
         </h4>
     </div>
     @can('orders-create')
@@ -18,7 +18,7 @@
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                     <i class="ph-plus"></i>
                 </span>
-                Create New
+                نیا بنائیں
             </a>
         </div>
     </div>
@@ -30,20 +30,20 @@
 <div class="col-sm-12">
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">Order</h5>
+            <h5 class="mb-0">آرڈر </h5>
         </div>
         <table class="table datatable-basic">
             <thead class="thead">
                 <tr>
-                    <th>No</th>
-                    <th>Order #</th>
-					<th>Shop</th>
-					<th>Worker</th>
-					<th>Issue Date</th>
-					<th>Receive Date</th>
-					<th>Status</th>
-					<th>Created By</th>
-                    <th class="text-center">Actions</th>
+                    <th>نمبر</th>
+                    <th>آرڈر  #</th>
+					<th>دکان</th>
+					<th>ورکر</th>
+					<th>تاریخ اجراء</th>
+					<th>تاریخ وصول کریں۔</th>
+					<th>حالت</th>
+					<th>پیدا کیا</th>
+                    <th class="text-center">اعمال</th>
                 </tr>
             </thead>
             <tbody>
@@ -90,12 +90,12 @@
         $(".sa-confirm").click(function (event) {
             event.preventDefault();
             swalInit.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'کیا تمہیں یقین ہے؟',
+                text: "آپ اسے واپس نہیں کر سکیں گے!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
+                confirmButtonText: 'جی ہاں، اسے حذف کریں!',
+                cancelButtonText: 'نہیں، منسوخ کریں!',
                 buttonsStyling: false,
                 customClass: {
                     confirmButton: 'btn btn-success',

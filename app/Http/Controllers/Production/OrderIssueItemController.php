@@ -24,8 +24,8 @@ class OrderIssueItemController extends Controller
     public function index($id)
     {
         $order = Order::find($id);
-        $ids = OrderIssueItem::pluck('purchase_item_id')->toArray();
-        $items = PurchaseItem::whereNotIn('id',$ids)->get()->mapWithKeys(function ($item, $key) {
+        $ids   = OrderIssueItem::where('order_id',$id)->pluck('purchase_stock_id')->toArray();
+        $items = PurchaseStock::whereNotIn('id',$ids)->where('quantity', '>', 0)->get()->mapWithKeys(function ($item, $key) {
             $string = "{$item->name} ( L={$item->length} W={$item->width} T={$item->thikness} )";
             return [$item->id => $string];
         })->toArray();
@@ -78,7 +78,7 @@ class OrderIssueItemController extends Controller
      */
     public function checkQty(Request $request)
     {
-        $item = PurchaseStock::where('purchase_item_id',$request->item_id)->first();
-        if ($item && $item->quantity >= $request->quantity) { echo "false"; }else{ echo "true"; }
+        $item = PurchaseStock::where('id',$request->stock_id)->first();
+        if ($item->quantity >= $request->quantity) { echo "true"; }else{ echo "false"; }
     }
 }

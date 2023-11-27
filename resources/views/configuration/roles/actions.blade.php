@@ -10,17 +10,17 @@
                 @method('DELETE')
                 @can('roles-view')
                     <a href="{{ route('roles.show',$role->id) }}" class="dropdown-item">
-                        <i class="ph-eye me-2"></i>{{ __('Show') }}
+                        <i class="ph-eye me-2"></i>{{ __('دکھائیں۔') }}
                     </a>
                 @endcan
                 @can('roles-edit')
                     <a href="{{ route('roles.edit',$role->id) }}" class="dropdown-item">
-                        <i class="ph-note-pencil me-2"></i>{{ __('Edit') }}
+                        <i class="ph-note-pencil me-2"></i>{{ __('ترمیم') }}
                     </a>
                 @endcan
                 @can('roles-delete')
                     <button type="submit" class="dropdown-item sa-confirm">
-                        <i class="ph-trash me-2"></i>{{ __('Delete') }}
+                        <i class="ph-trash me-2"></i>{{ __('حذف کریں') }}
                     </button>
                 @endcan
             </form>

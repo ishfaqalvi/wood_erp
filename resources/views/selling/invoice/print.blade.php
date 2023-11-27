@@ -8,7 +8,7 @@
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Invoice Managment</span>
+            <span class="fw-normal">انوائس کا انتظام</span>
         </h4>
     </div>
     <div class="d-lg-block my-lg-auto ms-lg-auto">
@@ -17,7 +17,7 @@
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                     <i class="ph-arrow-circle-left"></i>
                 </span>
-                Back
+                پیچھے
             </a>
         </div>
     </div>
@@ -28,11 +28,11 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header d-flex align-items-center py-0">
-            <h5 class="py-3 mb-0">{{ __('Show') }} Invoice Print</h5>
+            <h5 class="py-3 mb-0">{{ __('انوائس پرنٹ دکھائیں۔') }}</h5>
             @if($invoice->status == 'Posted')
             <div class="d-inline-flex ms-auto">
                 <button type="button" class="btn btn-light ms-3"  onclick="printContent('print');">
-                    <i class="ph-printer me-2"></i> Print
+                    <i class="ph-printer me-2"></i> پرنٹ کریں
                 </button>
             </div>
             @endif
@@ -56,20 +56,20 @@
                 <div class="col-sm-6">
                     <div class="text-sm-end mb-4">
                         <h4 class="text-primary mb-2 mt-lg-2">
-                            Invoice # {{ $invoice->invoice_number }}
+                            رسید # {{ $invoice->invoice_number }}
                         </h4>
                         <ul class="list list-unstyled mb-0">
-                            <li>Invoice Date: 
+                            <li>رسید کی تاریخ: 
                                 <span class="fw-semibold">
-                                    {{ date('d M Y',$invoice->invoice_date) }}
+                                    {{ date('d-m-Y',$invoice->invoice_date) }}
                                 </span>
                             </li>
-                            <li>Due Date: 
+                            <li>اخری تاریخ: 
                                 <span class="fw-semibold">
-                                    {{ date('d M Y',$invoice->due_date) }}
+                                    {{ date('d-m-Y',$invoice->due_date) }}
                                 </span>
                             </li>
-                            <li>Meterial Type: 
+                            <li>مواد کی قسم: 
                                 <span class="fw-semibold">
                                     {{ $invoice->type }}
                                 </span>
@@ -80,7 +80,7 @@
             </div>
             <div class="d-lg-flex flex-lg-wrap">
                 <div class="mb-4 mb-lg-2">
-                    <span class="text-muted">Invoice To:</span>
+                    <span class="text-muted">کسٹمر کی تفصیلات:</span>
                     <ul class="list list-unstyled mb-0">
                         <li><h5 class="my-2">{{ $invoice->customer->name }}</h5></li>
                         <li><span class="fw-semibold">{{ $invoice->customer->phone }}</span></li>
@@ -93,10 +93,10 @@
             <table class="table table-lg">
                 <thead>
                     <tr>
-                        <th>Item</th>
-                        <th>Quantity</th>
-                        <th>Rate</th>
-                        <th>Amount</th>
+                        <th>آئٹم</th>
+                        <th>مقدار</th>
+                        <th>شرح</th>
+                        <th>رقم</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -129,7 +129,7 @@
                     @else
                     @foreach($invoice->purchaseItems as $item)
                     <tr>
-                        <td><div class="fw-bold">{{ $item->purchaseItem->name }}</div></td>
+                        <td><div class="fw-bold">{{ $item->purchaseStock->name }}</div></td>
                         <td>
                             <span class="fw-semibold">
                                 {{ number_format($item->quantity) }}
@@ -157,22 +157,32 @@
         <div class="card-body binvoice-top">
             <div class="d-lg-flex flex-md-wrap">
                 <div class="pt-2 mb-3">
-                    <h6 class="mb-3">Signature</h6>
+                    <h6 class="mb-3">دستخط</h6>
                     <div class="mb-3">_______________________</div>
                 </div>
                 <div class="pt-2 mb-3 wmin-lg-400 ms-auto">
-                    <h6 class="mb-3">Total Detail</h6>
+                    <h6 class="mb-3">کل تفصیل</h6>
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <th>Total Quantity:</th>
+                                    <th>کل مقدار:</th>
                                     <td class="text-end">{{ $totalQty }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Total Amount:</th>
+                                    <th> موجودہ رقم</th>
+                                    <td class="text-end">{{ $total }}</td>
+                                </tr>
+                                <tr>
+                                    <th>گزشتہ بیلنس </th>
+                                    @php($customerDetail = $invoice->customer->details()->orderBy('id','DESC')->first())
+                                    @php($previous = $customerDetail ? $customerDetail->balance : 0)
+                                    <td class="text-end">{{ -($previous) }}</td>
+                                </tr>
+                                <tr>
+                                    <th>کل رقم:</th>
                                     <td class="text-end text-primary">
-                                        <h5 class="fw-semibold">{{ $total }}</h5>
+                                        <h5 class="fw-semibold">{{ $total -($previous) }}</h5>
                                     </td>
                                 </tr>
                             </tbody>
