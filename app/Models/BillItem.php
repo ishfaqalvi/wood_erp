@@ -32,8 +32,17 @@ class BillItem extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['bill_id','purchase_item_id','quantity','rate'];
+    protected $fillable = ['bill_id','name','length','width','thikness','quantity','rate','amount'];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($item) {
+            $result = ($item->length /1000) * ($item->width/1000) * ($item->thikness/1000);
+            $item->amount = $result * 35.3147 * $item->quantity * $item->rate;
+        });
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -41,13 +50,5 @@ class BillItem extends Model implements Auditable
     public function bill()
     {
         return $this->hasOne('App\Models\Bill', 'id', 'bill_id');
-    }
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function purchaseItem()
-    {
-        return $this->hasOne('App\Models\PurchaseItem', 'id', 'purchase_item_id');
     }
 }

@@ -6,7 +6,7 @@
     </div>
 	<div class="col-md-12 d-flex justify-content-end align-items-center mt-3">
 		<button type="submit" class="btn btn-primary ms-3">
-			Submit <i class="ph-paper-plane-tilt ms-2"></i>
+			جمع کرائیں<i class="ph-paper-plane-tilt ms-2"></i>
 		</button>
 	</div>
 </div>

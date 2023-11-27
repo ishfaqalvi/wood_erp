@@ -10,17 +10,17 @@
                 @method('DELETE')
                 @can('users-view')
                     <a href="{{ route('users.show',$user->id) }}" class="dropdown-item">
-                        <i class="ph-eye me-2"></i>{{ __('Show') }}
+                        <i class="ph-eye me-2"></i>{{ __('دکھائیں۔') }}
                     </a>
                 @endcan
                 @can('users-edit')
                     <a href="{{ route('users.edit',$user->id) }}" class="dropdown-item">
-                        <i class="ph-note-pencil me-2"></i>{{ __('Edit') }}
+                        <i class="ph-note-pencil me-2"></i>{{ __('ترمیم') }}
                     </a>
                 @endcan
                 @can('users-delete')
                     <button type="submit" class="dropdown-item sa-confirm">
-                        <i class="ph-trash me-2"></i>{{ __('Delete') }}
+                        <i class="ph-trash me-2"></i>{{ __('حذف کریں') }}
                     </button>
                 @endcan
             </form>

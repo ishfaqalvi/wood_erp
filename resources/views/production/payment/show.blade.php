@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ $productionPayment->name ?? "Show Production Payment" }}
+    پیداوار کی ادائیگی دکھائیں۔
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Production Payment Managment</span>
+            <span class="fw-normal">پیداوار کی ادائیگی کا انتظام</span>
         </h4>
     </div>
     <div class="d-lg-block my-lg-auto ms-lg-auto">
@@ -17,7 +17,7 @@
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                     <i class="ph-arrow-circle-left"></i>
                 </span>
-                Back
+                پیچھے
             </a>
         </div>
     </div>
@@ -28,23 +28,23 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">{{ __('Show') }} Production Payment</h5>
+            <h5 class="mb-0">{{ __('پیداوار کی ادائیگی دکھائیں۔') }}</h5>
         </div>
         <div class="card-body">
            <div class="form-group mb-3">
-                <strong>Vendor:</strong>
-                {{ $productionPayment->vendor->name }}
+                <strong>ورکر:</strong>
+                {{ $productionPayment->worker->name }}
             </div>
             <div class="form-group mb-3">
-                <strong>Date:</strong>
+                <strong>تاریخ:</strong>
                 {{ date('d-m-Y', $productionPayment->date) }}
             </div>
             <div class="form-group mb-3">
-                <strong>Amount:</strong>
+                <strong>رقم:</strong>
                 {{ number_format($productionPayment->amount) }}
             </div>
             <div class="form-group mb-3">
-                <strong>Status:</strong>
+                <strong>حالت:</strong>
                 {{ $productionPayment->status }}
             </div>
         </div>

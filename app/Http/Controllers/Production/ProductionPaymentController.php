@@ -114,18 +114,27 @@ class ProductionPaymentController extends Controller
      */
     public function approve(Request $request, ProductionPayment $payment)
     {
-        DB::transaction(function () use ($payment) {
-            $account = Account::whereNotNull('default')->first();
-            $transaction = $payment->updateBalance($account->id, $payment->amount, 'Outgoing', 'Production');
-            $payment->worker->details()->create([
-                'reference' => $transaction->transaction_id,
-                'detail'    => 'Payment Paid',
-                'date'      => date('Y-m-d', $payment->date),
-                'type'      => 'Paid',
-                'amount'    => $payment->amount
-            ]);
-            $payment->update(['status' => 'Approved']);
+        $status = DB::transaction(function () use ($payment) {
+            $status = 'No error';
+            if (empty($account)) {
+                $status = 'Error';
+            }else{
+                $account = Account::whereNotNull('default')->first();
+                $transaction = $payment->updateBalance($account->id, $payment->amount, 'Outgoing', 'Production');
+                $payment->worker->details()->create([
+                    'reference' => $transaction->transaction_id,
+                    'detail'    => 'Payment Paid',
+                    'date'      => date('Y-m-d', $payment->date),
+                    'type'      => 'Paid',
+                    'amount'    => $payment->amount
+                ]);
+                $payment->update(['status' => 'Approved']);
+            }
+            return $status;
         });
+        if ($status == 'Error') {
+            return redirect()->back()->with('warning', 'آپ نے بینک اکاؤنٹ شامل نہیں کیا ہے۔.');
+        }
         return redirect()->route('production-payments.index')
             ->with('success', 'Production Payment approved successfully.');
     }

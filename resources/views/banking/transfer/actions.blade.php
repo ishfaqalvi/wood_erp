@@ -10,17 +10,17 @@
                 @method('DELETE')
                 @can('transfers-view')
                     <a href="{{ route('transfers.show',$transfer->id) }}" class="dropdown-item">
-                        <i class="ph-eye me-2"></i>{{ __('Show') }}
+                        <i class="ph-eye me-2"></i>{{ __('دکھائیں۔') }}
                     </a>
                 @endcan
                 @can('transfers-edit')
                     <a href="{{ route('transfers.edit',$transfer->id) }}" class="dropdown-item">
-                        <i class="ph-note-pencil me-2"></i>{{ __('Edit') }}
+                        <i class="ph-note-pencil me-2"></i>{{ __('ترمیم') }}
                     </a>
                 @endcan
                 @can('transfers-delete')
                     <button type="submit" class="dropdown-item sa-confirm">
-                        <i class="ph-trash me-2"></i>{{ __('Delete') }}
+                        <i class="ph-trash me-2"></i>{{ __('حذف کریں') }}
                     </button>
                 @endcan
             </form>

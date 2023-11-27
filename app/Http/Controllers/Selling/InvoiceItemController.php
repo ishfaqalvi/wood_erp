@@ -75,7 +75,7 @@ class InvoiceItemController extends Controller
     public function checkQty(Request $request)
     {
         if($request->type == 'Purchase'){
-            $item = PurchaseStock::where('purchase_item_id',$request->item_id)->first();
+            $item = PurchaseStock::find($request->item_id);
         }else{
             $item = SaleStock::where('sale_item_id',$request->item_id)->first();
         }

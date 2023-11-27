@@ -21,13 +21,13 @@
         <table class="table datatable-basic">
             <thead class="thead">
                 <tr>
-                    <th>No</th>
+                    <th>نمبر</th>
                     <th>Model</th>
                     <th>Record ID</th>
                     <th>User</th>
                     <th>Time</th>
                     <th>Event</th>
-                    <th class="text-center">Actions</th>
+                    <th class="text-center">اعمال</th>
                 </tr>
             </thead>
             <tbody>
@@ -72,12 +72,12 @@
         $(".sa-confirm").click(function (event) {
             event.preventDefault();
             swalInit.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'کیا تمہیں یقین ہے؟',
+                text: "آپ اسے واپس نہیں کر سکیں گے!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
+                confirmButtonText: 'جی ہاں، اسے حذف کریں!',
+                cancelButtonText: 'نہیں، منسوخ کریں!',
                 buttonsStyling: false,
                 customClass: {
                     confirmButton: 'btn btn-success',

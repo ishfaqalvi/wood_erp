@@ -7,13 +7,13 @@
         <div class="dropdown-menu dropdown-menu-end">
             @can('bills-view')
                 <a href="{{ route('bills.show',$bill->id) }}" class="dropdown-item">
-                    <i class="ph-eye me-2"></i>{{ __('Show') }}
+                    <i class="ph-eye me-2"></i>{{ __('دکھائیں۔') }}
                 </a>
             @endcan
             @if($bill->status !='Posted')
                 @can('bills-edit')
                     <a href="{{ route('bills.edit',$bill->id) }}" class="dropdown-item">
-                        <i class="ph-note-pencil me-2"></i>{{ __('Edit') }}
+                        <i class="ph-note-pencil me-2"></i>{{ __('ترمیم') }}
                     </a>
                 @endcan
                 @can('bills-publish')
@@ -22,7 +22,7 @@
                         @csrf
                         {{ method_field('PATCH') }}
                         <button type="submit" class="dropdown-item sa-post">
-                            <i class="ph-fast-forward-circle me-2"></i>{{ __('Post') }}
+                            <i class="ph-fast-forward-circle me-2"></i>{{ __('پوسٹ') }}
                         </button>
                     </form>
                     @endif
@@ -33,7 +33,7 @@
                 @csrf
                 @method('DELETE')
                     <button type="submit" class="dropdown-item sa-confirm">
-                        <i class="ph-trash me-2"></i>{{ __('Delete') }}
+                        <i class="ph-trash me-2"></i>{{ __('حذف کریں') }}
                     </button>
                 </form>
             @endcan

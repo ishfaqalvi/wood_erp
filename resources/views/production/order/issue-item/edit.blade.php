@@ -5,26 +5,26 @@
                 @csrf
                 {{ method_field('PATCH') }}
                 <div class="modal-header">
-                    <h5 class="modal-title">Update Order Issue Item</h5>
+                    <h5 class="modal-title">آرڈر ایشو آئٹم کو اپ ڈیٹ کریں۔</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="form-group mb-3">
-                            {{ Form::label('item') }}
-                            {{ Form::select('purchase_item_id', $items, $item->purchase_item_id, ['class' => 'form-control form-select' . ($errors->has('purchase_item_id') ? ' is-invalid' : ''), 'placeholder' => '--Select--','disabled']) }}
+                            {{ Form::label('آئٹم') }}
+                            {{ Form::select('purchase_item_id', $items, $item->purchase_item_id, ['class' => 'form-control form-select' . ($errors->has('purchase_item_id') ? ' is-invalid' : ''), 'placeholder' => '--منتخب کریں۔--','disabled']) }}
                             {!! $errors->first('purchase_item_id', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                         <div class="form-group mb-3">
-                            {{ Form::label('quantity') }}
-                            {{ Form::number('quantity', $item->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => 'Quantity','required', 'min'=> '1']) }}
+                            {{ Form::label('مقدار') }}
+                            {{ Form::number('quantity', $item->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => 'مقدار','required', 'min'=> '1']) }}
                             {!! $errors->first('quantity', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-link" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-link" data-bs-dismiss="modal">بند کریں</button>
+                    <button type="submit" class="btn btn-primary">تبدیلیاں محفوظ کرو</button>
                 </div>
             </form>
         </div>

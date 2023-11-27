@@ -17,7 +17,7 @@
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                     <i class="ph-arrow-circle-left"></i>
                 </span>
-                Back
+                پیچھے
             </a>
         </div>
     </div>
@@ -76,9 +76,9 @@
                 <table class="table">
                     <thead class="thead">
                         <tr>
-                            <th>No</th>
+                            <th>نمبر</th>
                             <th>Type</th>
-                            <th>Date</th>
+                            <th>تاریخ</th>
                             <th>Quantity</th>
                         </tr>
                     </thead>

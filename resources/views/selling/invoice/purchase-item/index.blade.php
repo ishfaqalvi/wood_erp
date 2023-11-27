@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ $invoice->name ?? "Show Invoice" }}
+    انوائس کا انتظام
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Invoice Managment</span>
+            <span class="fw-normal">انوائس کا انتظام</span>
         </h4>
     </div>
     <div class="d-lg-block my-lg-auto ms-lg-auto">
@@ -17,7 +17,7 @@
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                     <i class="ph-arrow-circle-left"></i>
                 </span>
-                Back
+                پیچھے
             </a>
             <a href="{{ route('invoices.print', $invoice->id) }}" class="btn btn-outline-primary btn-labeled btn-labeled-start rounded-pill ms-2">
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
@@ -34,7 +34,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header d-flex align-items-center">
-            <h5 class="mb-0">{{ __('Show') }} Invoice</h5>
+            <h5 class="mb-0">{{ __('رسید دکھائیں۔') }}</h5>
             <div class="d-inline-flex ms-auto">
                 <span class="badge bg-success rounded-pill">{{ $invoice->status }}</span>
             </div>
@@ -46,7 +46,7 @@
                         <h5 class="mb-0">{{ $invoice->invoice_number }}</h5>
                     </div>
                     <span class="d-inline-block bg-success rounded-pill p-1 me-1"></span>
-                    <span class="text-muted">Bill Date: {{ date('d M Y', $invoice->invoice_date) }}</span>
+                    <span class="text-muted">رسید کی تاریخ: {{ date('d M Y', $invoice->invoice_date) }}</span>
                 </div>
             </div>
             <div class="d-flex align-items-center mb-3 mb-sm-0">
@@ -55,14 +55,14 @@
                         <h5 class="mb-0">{{ $invoice->customer->name }}</h5>
                     </div>
                     <span class="d-inline-block bg-danger rounded-pill p-1 me-1"></span>
-                    <span class="text-muted">Due Date: {{ date('d M Y', $invoice->due_date) }}</span>
+                    <span class="text-muted">اخری تاریخ: {{ date('d M Y', $invoice->due_date) }}</span>
                 </div>
             </div>
             @if($invoice->status !='Posted')
             <div>
                 <a href="#" class="btn btn-indigo" data-bs-toggle="modal" data-bs-target="#addItem">
                     <i class="ph-plus me-2"></i>
-                    Add Item
+                    آئٹم شامل کریں۔
                 </a>
             </div>
             @else
@@ -72,7 +72,7 @@
                             <h5 class="mb-0">{{ $invoice->status }}</h5>
                         </div>
                         <span class="d-inline-block bg-success rounded-pill p-1 me-1"></span>
-                        <span class="text-muted">Posted By: {{ $invoice->editor->name }}</span>
+                        <span class="text-muted">کی طرف سے پوسٹ کیا گیا: {{ $invoice->editor->name }}</span>
                     </div>
                 </div>
             @endif
@@ -81,11 +81,11 @@
             <table class="table text-nowrap">
                 <thead>
                     <tr>
-                        <th>Item</th>
-                        <th>Description</th>
-                        <th>Quantity(ft)</th>
-                        <th>Rate/per ft</th>
-                        <th>Amount</th>
+                        <th>آئٹم</th>
+                        <th>تفصیل</th>
+                        <th>مقدار (فٹ)</th>
+                        <th>ریٹ/فی فٹ</th>
+                        <th>رقم</th>
                         @if($invoice->status !='Posted')
                         <th class="text-center" style="width: 20px;">
                             <i class="ph-dots-three"></i>
@@ -97,7 +97,7 @@
                     @php($total = 0)
                     @foreach($invoice->purchaseItems as $item)
                     <tr>
-                        <td>{{ $item->purchaseItem->name }}</td>
+                        <td>{{ $item->purchaseStock->name }}</td>
                         <td>{{ $item->description }}</td>
                         <td>{{ $item->quantity }}</td>
                         <td><span class="text-success">{{ $item->rate }}</span></td>
@@ -182,7 +182,7 @@
                             _token: _token,
                             type: 'Purchase',
                             quantity: function() {
-                                return $("input[name='quantity']").val();
+                                return $("#quantity").val();
                             },
                             item_id: function() {
                                 return $("#createItem").val();
@@ -193,8 +193,8 @@
             },
             messages:{
                 quantity: {
-                    required: "Please enter a quantity.",
-                    remote: "Not enough stock available."
+                    required: "براہ کرم ایک مقدار درج کریں۔",
+                    remote: "آپ کی درج کردہ مقدار اسٹاک میں دستیاب نہیں ہے۔"
                 }
             }
         });
@@ -210,12 +210,12 @@
         $(".sa-confirm").click(function (event) {
             event.preventDefault();
             swalInit.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'کیا تمہیں یقین ہے؟',
+                text: "آپ اسے واپس نہیں کر سکیں گے!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
+                confirmButtonText: 'جی ہاں، اسے حذف کریں!',
+                cancelButtonText: 'نہیں، منسوخ کریں!',
                 buttonsStyling: false,
                 customClass: {
                     confirmButton: 'btn btn-success',

@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ $order->name ?? "Show Order" }}
+    آرڈر ایشو میٹریل
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Order Managment</span>
+            <span class="fw-normal">آرڈر مینجمنٹ</span>
         </h4>
     </div>
     <div class="d-lg-block my-lg-auto ms-lg-auto">
@@ -17,7 +17,7 @@
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                     <i class="ph-arrow-circle-left"></i>
                 </span>
-                Back
+                پیچھے
             </a>
             @if($order->status =='Pending' && count($order->receiveItems)>0)
             <form method="POST" action="{{ route('orders.post', $order->id) }}">
@@ -27,7 +27,7 @@
                     <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                         <i class="ph-arrow-u-up-right"></i>
                     </span>
-                    Post
+                    پوسٹ
                 </button>
             </form>
             @endif
@@ -40,7 +40,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header d-flex align-items-center">
-            <h5 class="mb-0">Order Issue Material</h5>
+            <h5 class="mb-0">آرڈر ایشو میٹریل</h5>
             <div class="d-inline-flex ms-auto">
                 <span class="badge bg-success rounded-pill">{{ $order->status }}</span>
             </div>
@@ -52,7 +52,7 @@
                         <h5 class="mb-0">{{ $order->shop->name }}</h5>
                     </div>
                     <span class="d-inline-block bg-success rounded-pill p-1 me-1"></span>
-                    <span class="text-muted">Order Number: {{ $order->order_number }}</span>
+                    <span class="text-muted">آرڈر نمبر: {{ $order->order_number }}</span>
                 </div>
             </div>
 
@@ -62,14 +62,14 @@
                         <h5 class="mb-0">{{ $order->worker->name }}</h5>
                     </div>
                     <span class="d-inline-block bg-danger rounded-pill p-1 me-1"></span>
-                    <span class="text-muted">Plan Date: {{ date('d M Y', $order->issue_date) }}</span>
+                    <span class="text-muted">پلان کی تاریخ: {{ date('d M Y', $order->issue_date) }}</span>
                 </div>
             </div>
             @if($order->status =='Pending')
             <div>
                 <a href="#" class="btn btn-indigo" data-bs-toggle="modal" data-bs-target="#addItem">
                     <i class="ph-plus me-2"></i>
-                    Add Item
+                    آئٹم شامل کریں۔
                 </a>
             </div>
             @else
@@ -79,7 +79,7 @@
                             <h5 class="mb-0">{{ $order->status }}</h5>
                         </div>
                         <span class="d-inline-block bg-success rounded-pill p-1 me-1"></span>
-                        <span class="text-muted">Posted By: {{ $order->editor->name }}</span>
+                        <span class="text-muted">کی طرف سے پوسٹ کیا گیا: {{ $order->editor->name }}</span>
                     </div>
                 </div>
             @endif
@@ -88,11 +88,11 @@
             <table class="table text-nowrap">
                 <thead>
                     <tr>
-                        <th>Item</th>
-                        <th>Lenght(MM)</th>
-                        <th>Width(MM)</th>
-                        <th>Thikness(MM)</th>
-                        <th>Quantity</th>
+                        <th>آئٹم</th>
+                        <th>لمبائی(MM)</th>
+                        <th>چوڑائی(MM)</th>
+                        <th>موٹائی(MM)</th>
+                        <th>مقدار</th>
                         @if($order->status =='Pending')
                         <th class="text-center" style="width: 20px;">
                             <i class="ph-dots-three"></i>
@@ -104,10 +104,10 @@
                     @php($total = 0)
                     @foreach($order->issueItems as $item)
                     <tr>
-                        <td>{{ $item->purchaseItem->name }}</td>
-                        <td><span class="text-muted">{{ $item->purchaseItem->length }}</span></td>
-                        <td><span class="text-muted">{{ $item->purchaseItem->width }}</span></td>
-                        <td><span class="text-muted">{{ $item->purchaseItem->thikness }}</span></td>
+                        <td>{{ $item->purchaseStock->name }}</td>
+                        <td><span class="text-muted">{{ $item->purchaseStock->length }}</span></td>
+                        <td><span class="text-muted">{{ $item->purchaseStock->width }}</span></td>
+                        <td><span class="text-muted">{{ $item->purchaseStock->thikness }}</span></td>
                         <td>
                             <h6 class="mb-0">{{ number_format($item->quantity) }}</h6>
                             @php($total += $item->quantity)
@@ -115,9 +115,6 @@
                         @if($order->status =='Pending')
                         <td class="text-center">
                             <div class="d-inline-flex">
-                                <a href="#" class="btn btn-sm text-primary" data-bs-toggle="modal" data-bs-target="#editItem{{$item->id}}">
-                                    <i class="ph-pen"></i>
-                                </a>
                                 <form action="{{ route('order.issue.items.destroy',$item->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
@@ -129,10 +126,9 @@
                         </td>
                         @endif
                     </tr>
-                    @include('production.order.issue-item.edit')
                     @endforeach
                     <tr class="table-light">
-                        <td colspan="{{ $order->status =='Pending' ? '5': '4'}}">Total</td>
+                        <td colspan="{{ $order->status =='Pending' ? '5': '4'}}">کل</td>
                         <td class="text-end">
                             <h6 class="mb-0">{{ number_format($total) }}</h6>
                         </td>
@@ -186,10 +182,10 @@
                         data: {
                             _token: _token,
                             quantity: function() {
-                                return $("input[name='quantity']").val();
+                                return $("#quantity").val();
                             },
-                            item_id: function() {
-                                return $("select[name='purchase_item_id']").val();
+                            stock_id: function() {
+                                return $("#purchase_stock_id").val();
                             }
                         },
                     }
@@ -197,8 +193,8 @@
             },
             messages:{
                 quantity: {
-                    required: "Please enter a quantity.",
-                    remote: "Not enough stock available."
+                    required: "براہ کرم ایک مقدار درج کریں۔.",
+                    remote: "یہ مقدار اسٹاک میں دستیاب نہیں ہے۔"
                 }
             }
         });
@@ -214,12 +210,12 @@
         $(".sa-confirm").click(function (event) {
             event.preventDefault();
             swalInit.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'کیا تمہیں یقین ہے؟',
+                text: "آپ اسے واپس نہیں کر سکیں گے!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
+                confirmButtonText: 'جی ہاں، اسے حذف کریں!',
+                cancelButtonText: 'نہیں، منسوخ کریں!',
                 buttonsStyling: false,
                 customClass: {
                     confirmButton: 'btn btn-success',
@@ -232,12 +228,12 @@
         $(".sa-post").click(function (event) {
             event.preventDefault();
             swalInit.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'کیا تمہیں یقین ہے؟',
+                text: "آپ اسے واپس نہیں کر سکیں گے!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, post it!',
-                cancelButtonText: 'No, cancel!',
+                confirmButtonText: 'جی ہاں، اسے پوسٹ کریں!',
+                cancelButtonText: 'نہیں، منسوخ کریں!',
                 buttonsStyling: false,
                 customClass: {
                     confirmButton: 'btn btn-success',

@@ -16,7 +16,7 @@
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                     <i class="ph-plus"></i>
                 </span>
-                Create New
+                نیا بنائیں
             </a>
         </div>
     </div>
@@ -33,12 +33,12 @@
         <table class="table datatable-basic">
             <thead class="thead">
                 <tr>
-                    <th>No</th>
+                    <th>نمبر</th>
                     <th>Name</th>
                     <th>Guard</th>
                     <th>Created At</th>
                     <th>Updated At</th>
-                    <th class="text-center">Actions</th>
+                    <th class="text-center">اعمال</th>
                 </tr>
             </thead>
             <tbody>
@@ -72,12 +72,12 @@
         $(".sa-confirm").click(function (event) {
             event.preventDefault();
             swalInit.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'کیا تمہیں یقین ہے؟',
+                text: "آپ اسے واپس نہیں کر سکیں گے!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
+                confirmButtonText: 'جی ہاں، اسے حذف کریں!',
+                cancelButtonText: 'نہیں، منسوخ کریں!',
                 buttonsStyling: false,
                 customClass: {
                     confirmButton: 'btn btn-success',

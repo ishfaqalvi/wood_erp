@@ -1,7 +1,7 @@
 <div class="row">
     <div class="form-group col-lg-6 mb-3">
         {{ Form::label('bank') }}
-        {{ Form::select('bank_id', banks(), $account->bank_id, ['class' => 'form-control form-select' . ($errors->has('bank_id') ? ' is-invalid' : ''), 'placeholder' => '--Select--','required']) }}
+        {{ Form::select('bank_id', banks(), $account->bank_id, ['class' => 'form-control form-select' . ($errors->has('bank_id') ? ' is-invalid' : ''), 'placeholder' => '--منتخب کریں۔--','required']) }}
         {!! $errors->first('bank_id', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <div class="form-group col-lg-6 mb-3">
@@ -27,7 +27,7 @@
     </div>
     <div class="col-md-12 d-flex justify-content-end align-items-center mt-3">
         <button type="submit" class="btn btn-primary ms-3">
-            Submit <i class="ph-paper-plane-tilt ms-2"></i>
+            جمع کرائیں<i class="ph-paper-plane-tilt ms-2"></i>
         </button>
     </div>
 </div>

@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('purchase_stocks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('purchase_item_id')->references('id')->on('purchase_items')->cascadeOnDelete();
+            $table->string('name');
+            $table->integer('length');
+            $table->integer('width');
+            $table->integer('thikness');
             $table->integer('quantity');
             $table->timestamps();
         });

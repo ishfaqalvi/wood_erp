@@ -35,7 +35,7 @@
                         @if ($standardFormat)
                             <th>Level</th>
                             <th>Context</th>
-                            <th>Date</th>
+                            <th>تاریخ</th>
                         @else
                             <th>Line number</th>
                         @endif
