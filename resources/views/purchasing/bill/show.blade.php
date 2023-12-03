@@ -40,7 +40,7 @@
                         <h5 class="mb-0">{{ $bill->bill_number }}</h5>
                     </div>
                     <span class="d-inline-block bg-success rounded-pill p-1 me-1"></span>
-                    <span class="text-muted">بل کی تاریخ: {{ date('d M Y', $bill->bill_date) }}</span>
+                    <span class="text-muted">{{ date('d M Y', $bill->bill_date) }} :  بل کی تاریخ</span>
                 </div>
             </div>
 
@@ -50,7 +50,7 @@
                         <h5 class="mb-0">{{ $bill->vendor->name }}</h5>
                     </div>
                     <span class="d-inline-block bg-danger rounded-pill p-1 me-1"></span>
-                    <span class="text-muted">اخری تاریخ: {{ date('d M Y', $bill->due_date) }}</span>
+                    <span class="text-muted">{{ date('d M Y', $bill->due_date) }} :  اخری تاریخ</span>
                 </div>
             </div>
             @if($bill->status !='Posted')

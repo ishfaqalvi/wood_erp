@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('bank_id')->references('id')->on('banks');
+            $table->foreignId('bank_id')->references('id')->on('banks')->cascadeOnDelete();
             $table->string('title');
             $table->string('number');
             $table->bigInteger('balance');

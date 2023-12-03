@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    Purchase Item
+    خام مال کی مینجمنٹ
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Purchase Item Managment</span>
+            <span class="fw-normal">خام مال کی مینجمنٹ  </span>
         </h4>
     </div>
     @can('purchaseItems-create')
@@ -30,16 +30,16 @@
 <div class="col-sm-12">
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">Purchase Item</h5>
+            <h5 class="mb-0">خام مال   </h5>
         </div>
         <table class="table datatable-basic">
             <thead class="thead">
                 <tr>
                     <th>نمبر</th>
-					<th>Name</th>
-					<th>Length(MM)</th>
-					<th>Width(MM)</th>
-					<th>Thikness(MM)</th>
+					<th>نام  </th>
+					<th>لمبائی  (MM)</th>
+					<th>چوڑائی  (MM)</th>
+					<th>موٹائی  (MM)</th>
                     <th>پیدا کیا</th>
                     <th class="text-center">اعمال</th>
                 </tr>

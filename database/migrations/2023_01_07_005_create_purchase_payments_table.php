@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('purchase_payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('vendor_id')->references('id')->on('vendors');
+            $table->foreignId('vendor_id')->references('id')->on('vendors')->cascadeOnDelete();
             $table->bigInteger('date');
             $table->decimal('amount',10,2);
             $table->enum('status',['Pending','Approved'])->default('Pending');

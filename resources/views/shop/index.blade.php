@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    Shop
+    ورکشاپ  
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Shop Managment</span>
+            <span class="fw-normal">ورکشاپ کا انتظام  </span>
         </h4>
     </div>
     @can('shops-create')
@@ -30,15 +30,15 @@
 <div class="col-sm-12">
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">Shop</h5>
+            <h5 class="mb-0">ورکشاپ  </h5>
         </div>
         <table class="table datatable-basic">
             <thead class="thead">
                 <tr>
                     <th>نمبر</th>
-					<th>Name</th>
-					<th>Owner Name</th>
-					<th>Mobile #</th>
+					<th>نام</th>
+					<th>مالک کا نام</th>
+					<th>فون نمبر</th>
 					<th>پیدا کیا</th>
                     <th class="text-center">اعمال</th>
                 </tr>

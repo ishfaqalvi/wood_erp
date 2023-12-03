@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('worker_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('worker_id')->references('id')->on('workers');
+            $table->foreignId('worker_id')->references('id')->on('workers')->cascadeOnDelete();
             $table->string('reference');
             $table->string('detail');
             $table->bigInteger('date');

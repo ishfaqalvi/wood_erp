@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('vendor_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('vendor_id')->references('id')->on('vendors');
+            $table->foreignId('vendor_id')->references('id')->on('vendors')->cascadeOnDelete();
             $table->string('reference');
             $table->string('detail');
             $table->bigInteger('date');

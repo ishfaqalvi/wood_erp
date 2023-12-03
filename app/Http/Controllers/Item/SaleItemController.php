@@ -33,7 +33,7 @@ class SaleItemController extends Controller
      */
     public function index()
     {
-        $saleItems = SaleItem::get();
+        $saleItems = SaleItem::orderBy('id','DESC')->get();
 
         return view('item.sale.index', compact('saleItems'));
     }

@@ -28,6 +28,12 @@ class PermissionsSeeder extends Seeder
             'shops-edit',
             'shops-delete',
 
+            'warehouses-list',
+            'warehouses-view',
+            'warehouses-create',
+            'warehouses-edit',
+            'warehouses-delete',
+
             'purchaseItems-list',
             'purchaseItems-view',
             'purchaseItems-create',
@@ -98,11 +104,19 @@ class PermissionsSeeder extends Seeder
             'workers-edit',
             'workers-delete',
 
-            'orders-list',
-            'orders-view',
-            'orders-create',
-            'orders-edit',
-            'orders-delete',
+            'issueOrders-list',
+            'issueOrders-view',
+            'issueOrders-create',
+            'issueOrders-edit',
+            'issueOrders-post',
+            'issueOrders-delete',
+
+            'receiveOrders-list',
+            'receiveOrders-view',
+            'receiveOrders-create',
+            'receiveOrders-edit',
+            'receiveOrders-post',
+            'receiveOrders-delete',
 
             'productionPayments-list',
             'productionPayments-view',

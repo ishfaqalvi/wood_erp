@@ -17,73 +17,45 @@ class SettingsSeeder extends Seeder
     {
         DB::table('settings')->insert([
             [
-                'key' 	=> 'header_logo',
-                'value' => 'upload/images/settings/derivative-calculator-logo.webp',
+                'key' 	=> 'company_name',
+                'value' => ' نیو پائن ',
             ],
             [
-                'key' 	=> 'footer_logo',
-                'value' => 'upload/images/settings/derivative-calculator-logo.webp',
+                'key' 	=> 'business_name',
+                'value' => ' وڈ مولڈنگ انڈسٹری ',
             ],
             [
-                'key'   => 'page_title_icon',
-                'value' => 'upload/images/settings/derivative-favicon.png',
+                'key'   => 'owner_name',
+                'value' => ' ناصر صاحب ',
             ],
             [
-                'key'   => 'bazigate_website_url',
-                'value' => '',
+                'key'   => 'first_contact_person_name',
+                'value' => ' تنویر ناصر ',
             ],
             [
-                'key'   => 'facebook_link',
-                'value' => '',
+                'key'   => 'first_contact_person_mobile_number',
+                'value' => '0303-7728317',
             ],
             [
-                'key'   => 'twitter_link',
-                'value' => '',
+                'key'   => 'second_contact_person_name',
+                'value' => ' وحید ناصر ',
             ],
             [
-                'key'   => 'instagram_link',
-                'value' => '',
+                'key'   => 'second_contact_person_mobile_number',
+                'value' => '0303-4655720',
             ],
             [
-                'key'   => 'app_store_link',
-                'value' => '',
+                'key'   => 'third_contact_person_name',
+                'value' => 'توقیر ناصر ',
             ],
             [
-                'key'   => 'playstore_link',
-                'value' => '',
+                'key'   => 'third_contact_person_mobile_number',
+                'value' => '0300-0479596',
             ],
             [
-                'key'   => 'copyright_link',
-                'value' => '',
-            ],
-            [
-                'key'   => 'google_search_console_code',
-                'value' => '',
-            ],
-            [
-                'key'   => 'google_analytics_code',
-                'value' => '',
-            ],
-            [
-                'key'   => 'clarity_code',
-                'value' => '',
-            ],
-            [
-                'key'   => 'job_application_message',
-                'value' => 'Thank you for submitting your resume',
-            ],
-            [
-                'key'   => 'feadback_message',
-                'value' => 'Thanks for filling out our form!',
-            ],
-            [
-                'key'   => 'comment_message',
-                'value' => 'Thanks for filling out our form!',
-            ],
-            [
-                'key'   => 'newsletter_message',
-                'value' => 'Thanks for reaching us.',
-            ],
+                'key'   => 'address',
+                'value' => ' میں شیخوپورہ روڈ، امین مارکیٹ، حاجی آباد، فیصل آباد ',
+            ]
         ]);
     }
 }

@@ -39,7 +39,15 @@ class Invoice extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['customer_id','invoice_number','type','invoice_date','due_date','status'];
+    protected $fillable = [
+        'warehouse_id',
+        'customer_id',
+        'invoice_number',
+        'type',
+        'invoice_date',
+        'due_date',
+        'status'
+    ];
  
     /**
      * Attributes that should auto genereted.
@@ -93,6 +101,14 @@ class Invoice extends Model implements Auditable
     public function customer()
     {
         return $this->hasOne('App\Models\Customer', 'id', 'customer_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function warehouse()
+    {
+        return $this->hasOne('App\Models\Warehouse', 'id', 'warehouse_id');
     }
     
     /**

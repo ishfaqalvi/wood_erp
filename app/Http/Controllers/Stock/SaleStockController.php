@@ -33,7 +33,7 @@ class SaleStockController extends Controller
      */
     public function index()
     {
-        $saleStocks = SaleStock::get();
+        $saleStocks = SaleStock::latest('id')->get();
 
         return view('stock.sale.index', compact('saleStocks'));
     }

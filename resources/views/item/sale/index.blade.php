@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    Sale Item
+    سیل آئٹم کا انتظام
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Sale Item Managment</span>
+            <span class="fw-normal"> سیل آئٹم کا انتظام </span>
         </h4>
     </div>
     @can('saleItems-create')
@@ -30,13 +30,13 @@
 <div class="col-sm-12">
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">Sale Item</h5>
+            <h5 class="mb-0">سیل آئٹم  </h5>
         </div>
         <table class="table datatable-basic">
             <thead class="thead">
                 <tr>
                     <th>نمبر</th>
-					<th>Name</th>
+					<th>نام</th>
 					<th>پیدا کیا</th>
                     <th class="text-center">اعمال</th>
                 </tr>

@@ -57,6 +57,13 @@ Route::group(['middleware' => ['auth'],'namespace' => 'App\Http\Controllers'], f
 	Route::resource('shops', ShopController::class)->names('shops');
 
 	/*
+	|--------------------------------------------------------------------------
+	| Warehouses Route
+	|--------------------------------------------------------------------------
+	*/
+	Route::resource('warehouses', WarehouseController::class)->names('warehouses');
+
+	/*
     |--------------------------------------------------------------------------
     | Items Routes
     |--------------------------------------------------------------------------

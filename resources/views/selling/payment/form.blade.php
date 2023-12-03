@@ -6,7 +6,7 @@
     </div>
     <div class="form-group col-lg-6 mb-3">
         {{ Form::label('تاریخ') }}
-        {{ Form::text('date', $salePayment->date, ['class' => 'form-control date' . ($errors->has('date') ? ' is-invalid' : ''), 'placeholder' => 'تاریخ','required']) }}
+        {{ Form::text('date', date('m-d-Y', $salePayment->date), ['class' => 'form-control datepicker-autohide' . ($errors->has('date') ? ' is-invalid' : ''), 'placeholder' => 'تاریخ','required']) }}
         {!! $errors->first('date', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <div class="form-group col-lg-6 mb-3">

@@ -33,7 +33,7 @@ class AccountController extends Controller
      */
     public function index()
     {
-        $accounts = Account::get();
+        $accounts = Account::orderBy('id','DESC')->get();
 
         return view('banking.account.index', compact('accounts'));
     }

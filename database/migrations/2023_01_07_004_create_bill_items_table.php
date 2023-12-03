@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('bill_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('bill_id')->references('id')->on('bills');
+            $table->foreignId('bill_id')->references('id')->on('bills')->cascadeOnDelete();
             $table->string('name');
             $table->integer('length');
             $table->integer('width');

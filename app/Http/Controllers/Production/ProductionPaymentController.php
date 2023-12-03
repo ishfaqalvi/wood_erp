@@ -35,7 +35,7 @@ class ProductionPaymentController extends Controller
      */
     public function index()
     {
-        $productionPayments = ProductionPayment::get();
+        $productionPayments = ProductionPayment::orderBy('id','DESC')->get();
 
         return view('production.payment.index', compact('productionPayments'));
     }
@@ -116,10 +116,10 @@ class ProductionPaymentController extends Controller
     {
         $status = DB::transaction(function () use ($payment) {
             $status = 'No error';
+            $account = Account::whereNotNull('default')->first();
             if (empty($account)) {
                 $status = 'Error';
             }else{
-                $account = Account::whereNotNull('default')->first();
                 $transaction = $payment->updateBalance($account->id, $payment->amount, 'Outgoing', 'Production');
                 $payment->worker->details()->create([
                     'reference' => $transaction->transaction_id,

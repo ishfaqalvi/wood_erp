@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ __('Update') }} Account
+    {{ __('اکاؤنٹ میں ترمیم کریں۔  ') }}
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Account Managment</span>
+            <span class="fw-normal">اکاؤنٹ کا انتظام  </span>
         </h4>
     </div>
     <div class="d-lg-block my-lg-auto ms-lg-auto">
@@ -28,7 +28,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">{{ __('Edit ') }} Account </h5>
+            <h5 class="mb-0">{{ __('اکاؤنٹ میں ترمیم کریں۔   ') }} </h5>
         </div>
         <div class="card-body">
             <form method="POST" action="{{ route('accounts.update', $account->id) }}" class="validate"   role="form" enctype="multipart/form-data">

@@ -35,7 +35,7 @@ class PurchasePaymentController extends Controller
      */
     public function index()
     {
-        $purchasePayments = PurchasePayment::get();
+        $purchasePayments = PurchasePayment::orderBy('id','DESC')->get();
 
         return view('purchasing.payment.index', compact('purchasePayments'));
     }

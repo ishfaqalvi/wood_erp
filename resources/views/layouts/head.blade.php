@@ -7,6 +7,7 @@
 <link href="{{ asset('assets/fonts/inter/inter.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('assets/icons/phosphor/styles.min.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('assets/css/all.min.css') }}" id="stylesheet" rel="stylesheet" type="text/css">
+<link href="{{ asset('assets/css/custom.css') }}" id="stylesheet" rel="stylesheet" type="text/css">
 <link href="{{ asset('assets/demo/dropify/css/dropify.css') }}" rel="stylesheet" type="text/css">
 <!-- /global stylesheets -->
 

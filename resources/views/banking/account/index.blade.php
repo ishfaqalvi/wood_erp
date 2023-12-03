@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    Account
+    اکاؤنٹ کا انتظام  
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Account Managment</span>
+            <span class="fw-normal">اکاؤنٹ کا انتظام  </span>
         </h4>
     </div>
     @can('accounts-create')
@@ -30,16 +30,16 @@
 <div class="col-sm-12">
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">Account</h5>
+            <h5 class="mb-0">اکاؤنٹ    </h5>
         </div>
         <table class="table datatable-basic">
             <thead class="thead">
                 <tr>
                     <th>نمبر</th>
-					<th>Bank</th>
-					<th>Title</th>
-					<th>Number</th>
-					<th>Balance</th>
+					<th>بینک</th>
+					<th>عنوان</th>
+					<th>نمبر</th>
+					<th>بیلنس</th>
 					<th>پیدا کیا</th>
                     <th class="text-center">اعمال</th>
                 </tr>
@@ -52,7 +52,7 @@
 					<td>
                         {{ $account->title }}
                         @if($account->default == 'Yes')
-                            <span class="badge bg-success rounded-pill">Default</span>
+                            <span class="badge bg-success rounded-pill">ڈیفالٹ  </span>
                         @endif
                     </td>
 					<td>{{ $account->number }}</td>

@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'AlviNastaleeq';
+    src: url('../fonts/Alvi Nastaleeq Regular/alvi-nastaleeq.ttf') format('truetype');
+    font-weight: 800;
+    font-style: large;
+}
+
+
+body {
+    font-family: 'AlviNastaleeq', sans-serif;
+    font-size: 22px;
+}

@@ -2,6 +2,7 @@
 
 use App\Models\Bank;
 use App\Models\Shop;
+use App\Models\Warehouse;
 use App\Models\Account;
 use App\Models\Vendor;
 use App\Models\Customer;
@@ -27,6 +28,16 @@ function banks()
 function shops()
 {
     return Shop::pluck('name','id');
+}
+
+/**
+ * Get listing of a resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
+function warehouses()
+{
+    return Warehouse::pluck('name','id');
 }
 
 /**

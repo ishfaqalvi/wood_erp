@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ $saleItem->name ?? "Show Sale Item" }}
+    {{ "سیل آئٹم کا انتظام  " }}
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Sale Item Managment</span>
+            <span class="fw-normal">سیل آئٹم کا انتظام  </span>
         </h4>
     </div>
     <div class="d-lg-block my-lg-auto ms-lg-auto">
@@ -28,7 +28,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">{{ $saleItem->name }} Stock Details</h5>
+            <h5 class="mb-0">سٹاک کی تفصیلات   {{ $saleItem->name }}</h5>
         </div>
         <div class="card-body">
             <div class="row">
@@ -40,7 +40,7 @@
                                 <h4 class="mb-0">
                                     {{ number_format($saleItem->details()->where('type','In')->sum('quantity') )}}
                                 </h4>
-                                Total Stock In
+                                کل اسٹاک وصولی
                             </div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                                 <h4 class="mb-0">
                                     {{ number_format($saleItem->details()->where('type','Out')->sum('quantity') )}}
                                 </h4>
-                                Total Stock Out
+                                کل اسٹاک آؤٹ
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                                 <h4 class="mb-0">
                                     {{ number_format($saleItem->details()->where('type','In')->sum('quantity') - $saleItem->details()->where('type','Out')->sum('quantity') )}}
                                 </h4>
-                                Current Stock
+                                موجودہ اسٹاک
                             </div>
                         </div>
                     </div>
@@ -77,9 +77,9 @@
                     <thead class="thead">
                         <tr>
                             <th>نمبر</th>
-                            <th>Type</th>
+                            <th>قسم</th>
                             <th>تاریخ</th>
-                            <th>Quantity</th>
+                            <th>مقدار</th>
                         </tr>
                     </thead>
                     <tbody>

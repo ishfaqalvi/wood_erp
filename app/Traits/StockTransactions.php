@@ -6,6 +6,8 @@ use App\Models\PurchaseDetail;
 use App\Models\PurchaseStock;
 use App\Models\SaleDetail;
 use App\Models\SaleStock;
+use App\Models\Warehouse;
+use App\Models\WarehouseDetail;
 
 trait StockTransactions {
 
@@ -40,11 +42,16 @@ trait StockTransactions {
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function purchaseStockOut($order)
+    public function purchaseStockOut()
     {
-        foreach($order->issueItems as $key => $item)
+        foreach($this->items as $item)
         {
             PurchaseStock::find($item->purchase_stock_id)->decrement('quantity',$item->quantity);
+            $this->shop->details()->create([
+                'purchase_stock_id' => $item->purchase_stock_id,
+                'date'        => date('m-d-Y', $this->date),         
+                'quantity'    => $item->quantity
+            ]);
         }
     }
 
@@ -54,22 +61,31 @@ trait StockTransactions {
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function saleStockIn($order)
+    public function saleStockIn()
     {
-        foreach($order->receiveItems as $item)
+        foreach($this->items as $item)
         {
             SaleDetail::create([
                 'sale_item_id'=> $item->sale_item_id,
                 'type'        => 'In',
-                'date'        => date('Y-m-d', $order->receive_date),         
-                'quantity'    => $item->product_quantity
+                'date'        => date('Y-m-d', $this->date),         
+                'quantity'    => $item->quantity
             ]);
             $checkItem = SaleStock::where('sale_item_id', $item->sale_item_id)->first();
             if ($checkItem) {
-                $checkItem->increment('quantity',$item->product_quantity);
+                $checkItem->increment('quantity',$item->quantity);
             }else{
                 SaleStock::create([
-                    'sale_item_id' => $item->sale_item_id, 'quantity' => $item->product_quantity
+                    'sale_item_id' => $item->sale_item_id, 'quantity' => $item->quantity
+                ]);
+            }
+            $checkWarehouseItem = WarehouseDetail::where([['warehouse_id',$this->warehouse_id],['sale_item_id',$this->sale_item_id]])->first();
+            if ($checkWarehouseItem) {
+                $checkWarehouseItem->increment('quantity',$item->quantity);
+            }else{
+                $this->warehouse->details()->create([
+                    'sale_item_id' => $item->sale_item_id,
+                    'quantity'    => $item->quantity
                 ]);
             }
         }
@@ -98,6 +114,10 @@ trait StockTransactions {
                 SaleStock::create([
                     'sale_item_id' => $item->sale_item_id, 'quantity' => -($item->quantity)
                 ]);
+            }
+            $warehouseItme = $invoice->warehouse->details()->where('sale_item_id',$item->sale_item_id)->first();
+            if ($warehouseItme) {
+                $warehouseItme->decrement('quantity',$item->quantity);
             }
         }
     }

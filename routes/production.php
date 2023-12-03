@@ -11,10 +11,10 @@ Route::resource('workers',     'WorkerController')->names('workers');
 
 /*
 |--------------------------------------------------------------------------
-| Orders Route
+| Issue Orders Route
 |--------------------------------------------------------------------------
 */
-Route::controller(OrderController::class)->prefix('orders')->as('orders.')->group(function () {
+Route::controller(IssueOrderController::class)->prefix('issue-orders')->as('issue-orders.')->group(function () {
 	Route::get('index',				'index'	 )->name('index'	);
 	Route::get('create',			'create' )->name('create'	);
 	Route::post('store',			'store'	 )->name('store'	);
@@ -22,33 +22,46 @@ Route::controller(OrderController::class)->prefix('orders')->as('orders.')->grou
 	Route::get('edit/{id}',			'edit'	 )->name('edit'		);
 	Route::patch('update/{order}',	'update' )->name('update'	);
 	Route::patch('post/{order}', 	'post'	 )->name('post'		);
-	Route::patch('receive/{order}', 'receive')->name('receive'	);
 	Route::delete('delete/{id}',	'destroy')->name('destroy'	);
 });
 
 /*
 |--------------------------------------------------------------------------
-| Order Issue Items Route
+| Issue Order Items Route
 |--------------------------------------------------------------------------
 */
-Route::controller(OrderIssueItemController::class)->prefix('orders/issue/items')->group(function () {
-	Route::get('index/{id}',		'index'	 	)->name('order.issue.items.index'	);
-	Route::post('store',			'store'	 	)->name('order.issue.items.store'	);
-	Route::post('check_quantity',	'checkQty'	)->name('order.issue.items.checkQty');
-	Route::patch('update/{item}',	'update' 	)->name('order.issue.items.update'	);
-	Route::delete('delete/{id}',	'destroy'	)->name('order.issue.items.destroy' );
+Route::controller(IssueOrderItemController::class)->prefix('issue-orders/items')->group(function () {
+	Route::post('store',			'store'	  )->name('issue-orders.items.store'   );
+	Route::post('check_quantity',	'checkQty')->name('issue-orders.items.checkQty');
+	Route::patch('update/{item}',	'update'  )->name('issue-orders.items.update'  );
+	Route::delete('delete/{id}',	'destroy' )->name('issue-orders.items.destroy' );
 });
 
 /*
 |--------------------------------------------------------------------------
-| Order Issue Items Route
+| Receive Orders Route
 |--------------------------------------------------------------------------
 */
-Route::controller(OrderReceiveItemController::class)->prefix('orders/receive/items')->group(function () {
-	Route::get('index/{id}',		'index'	 )->name('order.receive.items.index'  );
-	Route::post('store',			'store'	 )->name('order.receive.items.store'  );
-	Route::patch('update/{item}',	'update' )->name('order.receive.items.update' );
-	Route::delete('delete/{id}',	'destroy')->name('order.receive.items.destroy');
+Route::controller(ReceiveOrderController::class)->prefix('receive-orders')->as('receive-orders.')->group(function () {
+	Route::get('index',				'index'	 )->name('index'	);
+	Route::get('create',			'create' )->name('create'	);
+	Route::post('store',			'store'	 )->name('store'	);
+	Route::get('show/{id}',			'show'	 )->name('show'		);
+	Route::get('edit/{id}',			'edit'	 )->name('edit'		);
+	Route::patch('update/{order}',	'update' )->name('update'	);
+	Route::patch('post/{order}', 	'post'	 )->name('post'		);
+	Route::delete('delete/{id}',	'destroy')->name('destroy'	);
+});
+
+/*
+|--------------------------------------------------------------------------
+| Receive Order Items Route
+|--------------------------------------------------------------------------
+*/
+Route::controller(ReceiveOrderItemController::class)->prefix('receive-orders/items')->group(function () {
+	Route::post('store',			'store'	 )->name('receive-orders.items.store'  );
+	Route::patch('update/{item}',	'update' )->name('receive-orders.items.update' );
+	Route::delete('delete/{id}',	'destroy')->name('receive-orders.items.destroy');
 });
 
 /*

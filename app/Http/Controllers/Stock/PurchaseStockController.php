@@ -33,7 +33,7 @@ class PurchaseStockController extends Controller
      */
     public function index()
     {
-        $purchaseStocks = PurchaseStock::get();
+        $purchaseStocks = PurchaseStock::latest('id')->get();
 
         return view('stock.purchase.index', compact('purchaseStocks'));
     }

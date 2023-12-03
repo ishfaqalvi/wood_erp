@@ -33,7 +33,7 @@ class PurchaseItemController extends Controller
      */
     public function index()
     {
-        $purchaseItems = PurchaseItem::get();
+        $purchaseItems = PurchaseItem::orderBy('id','DESC')->get();
 
         return view('item.purchase.index', compact('purchaseItems'));
     }

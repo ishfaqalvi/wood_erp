@@ -37,4 +37,12 @@ class Shop extends Model implements Auditable
      * @var array
      */
     protected $fillable = ['name','owner_name','mobile_number','address'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function details()
+    {
+        return $this->hasMany('App\Models\ShopDetail', 'shop_id', 'id');
+    }
 }

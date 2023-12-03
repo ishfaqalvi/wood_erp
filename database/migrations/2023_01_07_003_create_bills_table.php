@@ -15,11 +15,10 @@ return new class extends Migration
     {
         Schema::create('bills', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('vendor_id')->references('id')->on('vendors');
+            $table->foreignId('vendor_id')->references('id')->on('vendors')->cascadeOnDelete();
             $table->string('bill_number')->nullable();
             $table->bigInteger('bill_date');
             $table->bigInteger('due_date');
-            $table->bigInteger('paid_amount')->default(0);
             $table->string('status')->default('Pending');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();

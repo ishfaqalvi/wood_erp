@@ -33,7 +33,7 @@ class WorkerController extends Controller
      */
     public function index()
     {
-        $workers = Worker::get();
+        $workers = Worker::orderBy('id','DESC')->get();
 
         return view('production.worker.index', compact('workers'));
     }

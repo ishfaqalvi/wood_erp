@@ -5,6 +5,11 @@
         {!! $errors->first('customer_id', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <div class="form-group col-lg-6 mb-3">
+        {{ Form::label('گودام') }}
+        {{ Form::select('warehouse_id', warehouses(), $invoice->warehouse_id, ['class' => 'form-control select' . ($errors->has('warehouse_id') ? ' is-invalid' : ''), 'placeholder' => '--منتخب کریں۔--','required']) }}
+        {!! $errors->first('warehouse_id', '<div class="invalid-feedback">:message</div>') !!}
+    </div>
+    <div class="form-group col-lg-6 mb-3">
         {{ Form::label('قسم') }}
         {{ Form::select('type', ['Fancy' => 'فینسی شے', 'Raw' => 'خام'], $invoice->type, ['class' => 'form-control form-select' . ($errors->has('type') ? ' is-invalid' : ''), 'placeholder' => '--منتخب کریں۔--','required']) }}
         {!! $errors->first('type', '<div class="invalid-feedback">:message</div>') !!}

@@ -32,7 +32,7 @@ class BankController extends Controller
      */
     public function index()
     {
-        $banks = Bank::get();
+        $banks = Bank::latest('id')->get();
 
         return view('bank.index', compact('banks'));
     }

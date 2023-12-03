@@ -32,7 +32,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $shops = Shop::get();
+        $shops = Shop::latest('id')->get();
 
         return view('shop.index', compact('shops'));
     }

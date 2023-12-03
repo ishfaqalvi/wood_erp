@@ -39,7 +39,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $invoices = Invoice::get();
+        $invoices = Invoice::latest('id')->get();
 
         return view('selling.invoice.index', compact('invoices'));
     }

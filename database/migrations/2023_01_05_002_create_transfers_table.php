@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('transfers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('from_account')->references('id')->on('accounts');
-            $table->foreignId('to_account')->references('id')->on('accounts');
+            $table->foreignId('from_account')->references('id')->on('accounts')->cascadeOnDelete();
+            $table->foreignId('to_account')->references('id')->on('accounts')->cascadeOnDelete();
             $table->bigInteger('date');
             $table->bigInteger('amount');
             $table->string('description')->nullable();

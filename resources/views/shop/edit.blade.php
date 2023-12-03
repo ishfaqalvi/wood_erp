@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ __('Update') }} Shop
+    {{ __('ورک شاپ میں ترمیم کریں۔') }}
 @endsection
 
 @section('header')
 <div class="page-header-content d-lg-flex">
     <div class="d-flex">
         <h4 class="page-title mb-0">
-            Home - <span class="fw-normal">Shop Managment</span>
+            <span class="fw-normal">ورکشاپ کا انتظام  </span>
         </h4>
     </div>
     <div class="d-lg-block my-lg-auto ms-lg-auto">
@@ -28,7 +28,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">{{ __('Edit ') }} Shop </h5>
+            <h5 class="mb-0">{{ __('ورک شاپ میں ترمیم کریں۔ ') }} </h5>
         </div>
         <div class="card-body">
             <form method="POST" action="{{ route('shops.update', $shop->id) }}" class="validate"   role="form" enctype="multipart/form-data">

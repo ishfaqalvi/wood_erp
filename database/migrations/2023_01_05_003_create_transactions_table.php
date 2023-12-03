@@ -19,7 +19,7 @@ return new class extends Migration
             $table->bigInteger('date');
             $table->enum('type',['Incoming','Outgoing']);
             $table->string('category');
-            $table->foreignId('account_id')->references('id')->on('accounts');
+            $table->foreignId('account_id')->references('id')->on('accounts')->cascadeOnDelete();
             $table->bigInteger('amount');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();

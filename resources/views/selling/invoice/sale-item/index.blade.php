@@ -19,12 +19,14 @@
                 </span>
                 پیچھے
             </a>
+            @if($invoice->status == 'Posted')
             <a href="{{ route('invoices.print', $invoice->id) }}" class="btn btn-outline-primary btn-labeled btn-labeled-start rounded-pill ms-2">
                 <span class="btn-labeled-icon bg-primary text-white rounded-pill">
                     <i class="ph-printer"></i>
                 </span>
                 پرنٹ کریں
             </a>
+            @endif
         </div>
     </div>
 </div>
@@ -46,7 +48,7 @@
                         <h5 class="mb-0">{{ $invoice->invoice_number }}</h5>
                     </div>
                     <span class="d-inline-block bg-success rounded-pill p-1 me-1"></span>
-                    <span class="text-muted">انوائس کی تاریخ: {{ date('d M Y', $invoice->invoice_date) }}</span>
+                    <span class="text-muted">{{ date('d M Y', $invoice->invoice_date) }}:انوائس کی تاریخ   </span>
                 </div>
             </div>
             <div class="d-flex align-items-center mb-3 mb-sm-0">
@@ -55,7 +57,7 @@
                         <h5 class="mb-0">{{ $invoice->customer->name }}</h5>
                     </div>
                     <span class="d-inline-block bg-danger rounded-pill p-1 me-1"></span>
-                    <span class="text-muted">اخری تاریخ: {{ date('d M Y', $invoice->due_date) }}</span>
+                    <span class="text-muted">{{ date('d M Y', $invoice->due_date) }} :  اخری تاریخ </span>
                 </div>
             </div>
             @if($invoice->status !='Posted')
@@ -180,7 +182,7 @@
                             _token: _token,
                             type: 'Sale',
                             quantity: function() {
-                                return $("input[name='quantity']").val();
+                                return $("#quantity").val();
                             },
                             item_id: function() {
                                 return $("#createItem").val();

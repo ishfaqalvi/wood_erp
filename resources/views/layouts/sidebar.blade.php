@@ -1,14 +1,14 @@
 <li class="nav-item">
     <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : ''}}" href="{{ route('dashboard') }}">
         <i class="ph-house"></i>
-        <span>Dashboard ( ڈیش بورڈ )</span>
+        <span>ڈیش بورڈ </span>
     </a>
 </li>
 @canany(['vendors-list','bills-list','purchasePayments'])
 <li class="nav-item nav-item-submenu {{ request()->is('purchasing*') ? 'nav-item-open' : ''}}">
     <a href="#" class="nav-link">
         <i class="ph-shopping-bag-open"></i>
-        <span>Purchasing( خریداری )</span>
+        <span> خام مال خریداری </span>
     </a>
     <ul class="nav-group-sub collapse {{ request()->is('purchasing*') ? 'show' : ''}}">
         @can('vendors-list')
@@ -16,7 +16,7 @@
                 <a 
                     href ="{{ route('vendors.index') }}" 
                     class="nav-link {{ request()->routeIs('vendors*') ? 'active' : ''}}">
-                    Vendors( فروش )
+                    فروش کھاتا
                 </a>
             </li>
         @endcan
@@ -25,7 +25,7 @@
                 <a 
                     href="{{ route('bills.index') }}"
                     class="nav-link {{ request()->routeIs('bills*') ? 'active' : ''}}">
-                    Bills( بلز )
+                    خریداری بلز
                 </a>
             </li>
         @endcan
@@ -34,7 +34,7 @@
                 <a 
                     href="{{ route('purchase-payments.index') }}"
                     class="nav-link {{ request()->routeIs('purchase-payments*') ? 'active' : ''}}">
-                    Payments( ادائیگیاں )
+                    خریداری رقم
                 </a>
             </li>
         @endcan
@@ -45,7 +45,7 @@
 <li class="nav-item nav-item-submenu {{ request()->is('selling*') ? 'nav-item-open' : ''}}">
     <a href="#" class="nav-link">
         <i class="ph-shopping-cart"></i>
-        <span>Selling( فروخت )</span>
+        <span>فروخت </span>
     </a>
     <ul class="nav-group-sub collapse {{ request()->is('selling*') ? 'show' : ''}}">
         @can('customers-list')
@@ -53,7 +53,7 @@
                 <a 
                     href ="{{ route('customers.index') }}" 
                     class="nav-link {{ request()->routeIs('customers*') ? 'active' : ''}}">
-                    Customers( گاہک )
+                    کسٹمرز
                 </a>
             </li>
         @endcan
@@ -62,7 +62,7 @@
                 <a 
                     href="{{ route('invoices.index') }}"
                     class="nav-link {{ request()->routeIs('invoices*') ? 'active' : ''}}">
-                    Invoices( رسیدیں )
+                    کسٹمر بلز
                 </a>
             </li>
         @endcan
@@ -71,7 +71,7 @@
                 <a 
                     href="{{ route('sale-payments.index') }}"
                     class="nav-link {{ request()->routeIs('sale-payments*') ? 'active' : ''}}">
-                    Payments( ادائیگیاں )
+                    کسٹمر رقم وصولی
                 </a>
             </li>
         @endcan
@@ -82,7 +82,7 @@
 <li class="nav-item nav-item-submenu {{ request()->is('production*') ? 'nav-item-open' : ''}}">
     <a href="#" class="nav-link">
         <i class="ph-activity"></i>
-        <span>Production( پیداوار )</span>
+        <span>پیداوار </span>
     </a>
     <ul class="nav-group-sub collapse {{ request()->is('production*') ? 'show' : ''}}">
         @can('workers-list')
@@ -90,16 +90,25 @@
                 <a 
                     href ="{{ route('workers.index') }}" 
                     class="nav-link {{ request()->routeIs('workers*') ? 'active' : ''}}">
-                    Workers( ورکرز )
+                     ورکرز 
                 </a>
             </li>
         @endcan
-        @can('orders-list')
+        @can('issueOrders-list')
             <li class="nav-item">
                 <a 
-                    href="{{ route('orders.index') }}"
-                    class="nav-link {{ request()->routeIs('orders*') ? 'active' : ''}}">
-                    Orders( احکامات )
+                    href="{{ route('issue-orders.index') }}"
+                    class="nav-link {{ request()->routeIs('issue-orders*') ? 'active' : ''}}">
+                     احکامات  جاری 
+                </a>
+            </li>
+        @endcan
+        @can('receiveOrders-list')
+            <li class="nav-item">
+                <a 
+                    href="{{ route('receive-orders.index') }}"
+                    class="nav-link {{ request()->routeIs('receive-orders*') ? 'active' : ''}}">
+                     احکامات وصول 
                 </a>
             </li>
         @endcan
@@ -108,7 +117,7 @@
                 <a 
                     href="{{ route('production-payments.index') }}"
                     class="nav-link {{ request()->routeIs('production-payments*') ? 'active' : ''}}">
-                    Payments( ادائیگیاں )
+                    کارکن رقم
                 </a>
             </li>
         @endcan
@@ -119,7 +128,7 @@
 <li class="nav-item nav-item-submenu {{ request()->is('item*') ? 'nav-item-open' : ''}}">
     <a href="#" class="nav-link">
         <i class="ph-article"></i>
-        <span>Item( اشیاء )</span>
+        <span> آئٹم </span>
     </a>
     <ul class="nav-group-sub collapse {{ request()->is('item*') ? 'show' : ''}}">
         @can('purchaseItems-list')
@@ -127,7 +136,7 @@
                 <a 
                     href ="{{ route('purchase-items.index') }}" 
                     class="nav-link {{ request()->routeIs('purchase-items*') ? 'active' : ''}}">
-                    Purchase( خرید )
+                    خام مال
                 </a>
             </li>
         @endcan
@@ -136,7 +145,7 @@
                 <a 
                     href="{{ route('sale-items.index') }}"
                     class="nav-link {{ request()->routeIs('sale-items*') ? 'active' : ''}}">
-                    Sale( فروخت )
+                    فینسی
                 </a>
             </li>
         @endcan
@@ -146,8 +155,8 @@
 @canany(['purchaseStocks-list','saleStocks-list'])
 <li class="nav-item nav-item-submenu {{ request()->is('stock*') ? 'nav-item-open' : ''}}">
     <a href="#" class="nav-link">
-        <i class="ph-article"></i>
-        <span>Stock( اسٹاک )</span>
+        <i class="ph-list-bullets"></i>
+        <span> اسٹاک </span>
     </a>
     <ul class="nav-group-sub collapse {{ request()->is('stock*') ? 'show' : ''}}">
         @can('purchaseStocks-list')
@@ -155,7 +164,7 @@
                 <a 
                     href ="{{ route('purchase-stocks.index') }}" 
                     class="nav-link {{ request()->routeIs('purchase-stocks*') ? 'active' : ''}}">
-                    Purchase( خرید )
+                    خام مال
                 </a>
             </li>
         @endcan
@@ -164,7 +173,7 @@
                 <a 
                     href="{{ route('sale-stocks.index') }}"
                     class="nav-link {{ request()->routeIs('sale-stocks*') ? 'active' : ''}}">
-                    Sale( فروخت )
+                    فینسی مال
                 </a>
             </li>
         @endcan
@@ -175,7 +184,7 @@
 <li class="nav-item nav-item-submenu {{ request()->is('banking*') ? 'nav-item-open' : ''}}">
     <a href="#" class="nav-link">
         <i class="ph-bank"></i>
-        <span>Banking( بینکنگ )</span>
+        <span> بینکنگ </span>
     </a>
     <ul class="nav-group-sub collapse {{ request()->is('banking*') ? 'show' : ''}}">
         @can('accounts-list')
@@ -183,7 +192,7 @@
                 <a 
                     href ="{{ route('accounts.index') }}" 
                     class="nav-link {{ request()->routeIs('accounts*') ? 'active' : ''}}">
-                    Accounts( اکاؤنٹس )
+                    اکاؤنٹس
                 </a>
             </li>
         @endcan
@@ -192,7 +201,7 @@
                 <a 
                     href="{{ route('transfers.index') }}"
                     class="nav-link {{ request()->routeIs('transfers*') ? 'active' : ''}}">
-                    Transfers( منتقلی )
+                    رقم منتقلی
                 </a>
             </li>
         @endcan
@@ -201,7 +210,7 @@
                 <a 
                     href="{{ route('transactions.index') }}"
                     class="nav-link {{ request()->routeIs('transactions*') ? 'active' : ''}}">
-                    Transactions( لین دین )
+                    لین دین
                 </a>
             </li>
         @endcan
@@ -212,7 +221,7 @@
 <li class="nav-item">
     <a class="nav-link {{ request()->routeIs('banks*') ? 'active' : ''}}" href="{{ route('banks.index') }}">
         <i class="ph-bank"></i>
-        <span>Banks( بینک )</span>
+        <span> بینک کی فہرست </span>
     </a>
 </li>
 @endcan
@@ -220,7 +229,15 @@
 <li class="nav-item">
     <a class="nav-link {{ request()->routeIs('shops*') ? 'active' : ''}}" href="{{ route('shops.index') }}">
         <i class="ph-storefront"></i>
-        <span>Shops( ورکشاپ )</span>
+        <span> ورکشاپ کھاتہ </span>
+    </a>
+</li>
+@endcan
+@can('warehouses-list')
+<li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('warehouses*') ? 'active' : ''}}" href="{{ route('warehouses.index') }}">
+        <i class="ph-house-simple"></i>
+        <span> گودام </span>
     </a>
 </li>
 @endcan
@@ -228,7 +245,7 @@
 <li class="nav-item nav-item-submenu {{ request()->is('configuration*') ? 'nav-item-open' : ''}}">
     <a href="#" class="nav-link">
         <i class="ph-gear"></i>
-        <span>Configuration( کنفیگریشن )</span>
+        <span> ترتیب </span>
     </a>
     <ul class="nav-group-sub collapse {{ request()->is('configuration*') ? 'show' : ''}}">
         @can('users-list')
@@ -236,7 +253,7 @@
                 <a 
                     href ="{{ route('users.index') }}" 
                     class="nav-link {{ request()->routeIs('users*') ? 'active' : ''}}">
-                    Users( ایڈمن )
+                    صارفین
                 </a>
             </li>
         @endcan
@@ -245,7 +262,7 @@
                 <a 
                     href="{{ route('roles.index') }}"
                     class="nav-link {{ request()->routeIs('roles*') ? 'active' : ''}}">
-                    Roles( کردار )
+                    کردار
                 </a>
             </li>
         @endcan
@@ -254,7 +271,7 @@
                 <a 
                     href="{{ route('notifications.index') }}"
                     class="nav-link {{ request()->routeIs('notifications*') ? 'active' : ''}}">
-                    Notifications( اطلاعات )
+                    اطلاعات
                 </a>
             </li>
         @endcan
@@ -263,7 +280,7 @@
                 <a 
                     href="{{ route('audits.index') }}"
                     class="nav-link {{ request()->routeIs('audits*') ? 'active' : ''}}">
-                    Audit( آڈٹ )
+                    آڈٹ 
                 </a>
             </li>
         @endcan
@@ -272,7 +289,7 @@
                 <a 
                     href="{{ route('logs') }}" target="_blank"
                     class="nav-link {{ request()->routeIs('logs*') ? 'active' : ''}}">
-                    Errors( غلطیاں )
+                     غلطیاں 
                 </a>
             </li>
         @endcan
@@ -281,7 +298,7 @@
                 <a 
                     href="{{ route('settings.index') }}"
                     class="nav-link {{ request()->routeIs('settings*') ? 'active' : ''}}">
-                    Settings( ترتیبات )
+                    ترتیبات
                 </a>
             </li>
         @endcan

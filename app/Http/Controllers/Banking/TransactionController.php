@@ -33,7 +33,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::get();
+        $transactions = Transaction::orderBy('id','DESC')->get();
 
         return view('banking.transaction.index', compact('transactions'));
     }

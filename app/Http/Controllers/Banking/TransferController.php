@@ -33,7 +33,7 @@ class TransferController extends Controller
      */
     public function index()
     {
-        $transfers = Transfer::get();
+        $transfers = Transfer::orderBy('id','DESC')->get();
 
         return view('banking.transfer.index', compact('transfers'));
     }

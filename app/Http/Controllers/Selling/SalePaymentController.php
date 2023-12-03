@@ -35,7 +35,7 @@ class SalePaymentController extends Controller
      */
     public function index()
     {
-        $salePayments = SalePayment::get();
+        $salePayments = SalePayment::latest('id')->get();
 
         return view('selling.payment.index', compact('salePayments'));
     }
@@ -114,18 +114,27 @@ class SalePaymentController extends Controller
      */
     public function approve(Request $request, SalePayment $payment)
     {
-        DB::transaction(function () use ($payment) {
+        $status = DB::transaction(function () use ($payment) {
+            $status = 'No error';
             $account = Account::whereNotNull('default')->first();
-            $transaction = $payment->updateBalance($account->id, $payment->amount, 'Incoming', 'Sale');
-            $payment->customer->details()->create([
-                'reference' => $transaction->transaction_id,
-                'detail'    => 'Payment Received',
-                'date'      => date('Y-m-d', $payment->date),
-                'type'      => 'Received',
-                'amount'    => $payment->amount
-            ]);
-            $payment->update(['status' => 'Approved']);
+            if (empty($account)) {
+                $status = 'Error';
+            }else{
+                $transaction = $payment->updateBalance($account->id, $payment->amount, 'Incoming', 'Sale');
+                $payment->customer->details()->create([
+                    'reference' => $transaction->transaction_id,
+                    'detail'    => 'Payment Received',
+                    'date'      => date('Y-m-d', $payment->date),
+                    'type'      => 'Received',
+                    'amount'    => $payment->amount
+                ]);
+                $payment->update(['status' => 'Approved']);
+            }
+            return $status;
         });
+        if ($status == 'Error') {
+            return redirect()->back()->with('warning', 'آپ نے بینک اکاؤنٹ شامل نہیں کیا ہے۔.');
+        }
         return redirect()->route('sale-payments.index')
             ->with('success', 'Sale Payment approved successfully.');
     }
