@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('invoice_id')->references('id')->on('invoices')->cascadeOnDelete();
             $table->foreignId('sale_item_id')->references('id')->on('sale_items')->cascadeOnDelete();
             $table->integer('quantity');
+            $table->integer('bundle_quantity');
             $table->decimal('rate',10,2);
             $table->timestamps();
         });

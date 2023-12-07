@@ -36,6 +36,30 @@
                 {{ $salePayment->customer->name }}
             </div>
             <div class="form-group mb-3">
+                <strong> قسم :</strong>
+                {{ $salePayment->type }}
+            </div>
+            @if($salePayment->type == 'Check')
+            <div class="form-group mb-3">
+                <strong>بینک   :</strong>
+                {{ $salePayment->bank }}
+            </div>
+            <div class="form-group mb-3">
+                <strong>چیک نمبر  :</strong>
+                {{ $salePayment->check_number }}
+            </div>
+            @endif
+            @if($salePayment->type == 'Online')
+            <div class="form-group mb-3">
+                <strong>بینک   :</strong>
+                {{ $salePayment->bank }}
+            </div>
+            <div class="form-group mb-3">
+                <strong>سلپ  نمبر :</strong>
+                {{ $salePayment->slip_number }}
+            </div>
+            @endif
+            <div class="form-group mb-3">
                 <strong>تاریخ:</strong>
                 {{ date('d-m-Y', $salePayment->date) }}
             </div>
@@ -47,6 +71,12 @@
                 <strong>حالت:</strong>
                 {{ $salePayment->status }}
             </div>
+            @if($salePayment->type != 'Cash')
+            <div class="form-group mb-3">
+                <strong> تصویر :</strong>
+                <img src="{{ $salePayment->attachment }}">
+            </div>
+            @endif
         </div>
     </div>
 </div>

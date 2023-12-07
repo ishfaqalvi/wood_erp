@@ -25,6 +25,14 @@ class SettingsSeeder extends Seeder
                 'value' => ' وڈ مولڈنگ انڈسٹری ',
             ],
             [
+                'key'   => 'business_heading',
+                'value' => 'امپورٹڈ لکڑی حول سیل ڈیلر  ',
+            ],
+            [
+                'key'   => 'business_detail',
+                'value' => ' کیل پارتل مولڈنگ گولا ہول سیل ریٹ پر دستیاب ہے ',
+            ],
+            [
                 'key'   => 'owner_name',
                 'value' => ' ناصر صاحب ',
             ],

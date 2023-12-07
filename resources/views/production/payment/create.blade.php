@@ -44,6 +44,7 @@
 <script>
     $(function(){
         $(".select").select2();
+        var type = $('select[name=type]');
         $('.validate').validate({
             errorClass: 'validation-invalid-label',
             successClass: 'validation-valid-label',
@@ -69,7 +70,12 @@
                 }else {
                     error.insertAfter(element);
                 }
-            }
+            },
+            rules: {        
+                bank:        {required: function(){if (type.val() !='Cash') {return true}}},
+                slip_number: {required: function(){if (type.val() =='Online') {return true}}},
+                check_number:{required: function(){if (type.val() =='Check') {return true}}}
+            },
         });
         const dpAutoHideElement = document.querySelector('.date');
         if(dpAutoHideElement) {
@@ -81,6 +87,28 @@
                 autohide: true
             });
         }
+        $('.dropify').dropify();
+        $("select[name=type]").change(function(){
+            $(this).find("option:selected").each(function(){
+                var optionValue = $(this).attr("value");
+                if(optionValue =='Online'){
+                    $('div.bank').show('slow');
+                    $('div.slipNumber').show('slow');
+                    $("div.checkNumber").hide('slow');
+                    $("div.attachment").show('slow');
+                }else if(optionValue =='Check'){
+                    $('div.bank').show('slow');
+                    $('div.slipNumber').hide('slow');
+                    $("div.checkNumber").show('slow');
+                    $("div.attachment").show('slow');
+                }else{
+                    $('div.bank').hide('slow');
+                    $("div.slipNumber").hide('slow');
+                    $("div.checkNumber").hide('slow');
+                    $("div.attachment").hide('slow');
+                }
+            });
+        }).change();
     });
 </script>
 @endsection

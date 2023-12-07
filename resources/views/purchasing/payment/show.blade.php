@@ -36,6 +36,30 @@
                 {{ $purchasePayment->vendor->name }}
             </div>
             <div class="form-group mb-3">
+                <strong> قسم :</strong>
+                {{ $purchasePayment->type }}
+            </div>
+            @if($purchasePayment->type == 'Check')
+            <div class="form-group mb-3">
+                <strong>بینک   :</strong>
+                {{ $purchasePayment->bank }}
+            </div>
+            <div class="form-group mb-3">
+                <strong>چیک نمبر  :</strong>
+                {{ $purchasePayment->check_number }}
+            </div>
+            @endif
+            @if($purchasePayment->type == 'Online')
+            <div class="form-group mb-3">
+                <strong>بینک   :</strong>
+                {{ $purchasePayment->bank }}
+            </div>
+            <div class="form-group mb-3">
+                <strong>سلپ  نمبر :</strong>
+                {{ $purchasePayment->slip_number }}
+            </div>
+            @endif
+            <div class="form-group mb-3">
                 <strong>تاریخ:</strong>
                 {{ date('d-m-Y', $purchasePayment->date) }}
             </div>
@@ -47,6 +71,12 @@
                 <strong>حالت:</strong>
                 {{ $purchasePayment->status }}
             </div>
+            @if($purchasePayment->type != 'Cash')
+            <div class="form-group mb-3">
+                <strong> تصویر :</strong>
+                <img src="{{ $purchasePayment->attachment }}">
+            </div>
+            @endif
         </div>
     </div>
 </div>

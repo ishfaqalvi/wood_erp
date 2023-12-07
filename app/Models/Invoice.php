@@ -45,7 +45,9 @@ class Invoice extends Model implements Auditable
         'invoice_number',
         'type',
         'invoice_date',
-        'due_date',
+        'bilti_number',
+        'goods_name',
+        'concession',
         'status'
     ];
  
@@ -76,7 +78,7 @@ class Invoice extends Model implements Auditable
         {
             $total += $item->quantity*$item->rate;
         }
-        return $total;
+        return $total - $this->concession;
     }
 
     /**
@@ -85,14 +87,6 @@ class Invoice extends Model implements Auditable
     public function setInvoiceDateAttribute($value)
     {
         $this->attributes['invoice_date'] = strtotime($value);
-    }
-
-    /**
-     * Interact with the date.
-     */
-    public function setDueDateAttribute($value)
-    {
-        $this->attributes['due_date'] = strtotime($value);
     }
 
     /**

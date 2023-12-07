@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('bill_id')->references('id')->on('bills')->cascadeOnDelete();
             $table->string('name');
-            $table->integer('length');
-            $table->integer('width');
-            $table->integer('thikness');
+            $table->decimal('length',10,2);
+            $table->decimal('width',10,2);
+            $table->decimal('thikness',10,2);
             $table->integer('quantity');
             $table->bigInteger('rate');
             $table->bigInteger('amount')->default(0);

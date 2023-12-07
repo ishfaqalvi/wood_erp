@@ -38,8 +38,6 @@
                     <th>نمبر</th>
                     <th>تصویر</th>
 					<th>نام</th>
-					<th>ای میل</th>
-					<th>فون نمبر</th>
 					<th>پیدا کیا</th>
                     <th class="text-center">اعمال</th>
                 </tr>
@@ -56,8 +54,6 @@
                         </div>
                     </td>
 					<td>{{ $vendor->name }}</td>
-					<td>{{ $vendor->email }}</td>
-					<td>{{ $vendor->phone }}</td>
 					<td>{{ $vendor->creator?->name }}</td>
                     <td class="text-center">@include('purchasing.vendor.actions')</td>
                 </tr>

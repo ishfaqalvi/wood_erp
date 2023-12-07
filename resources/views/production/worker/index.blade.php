@@ -38,8 +38,6 @@
                     <th>نمبر</th>
                     <th>تصویر</th>
                     <th>نام</th>
-                    <th>ای میل</th>
-                    <th>فون نمبر</th>
                     <th>پیدا کیا</th>
                     <th class="text-center">اعمال</th>
                 </tr>
@@ -56,8 +54,6 @@
                         </div>
                     </td>
 					<td>{{ $worker->name }}</td>
-					<td>{{ $worker->email }}</td>
-					<td>{{ $worker->phone }}</td>
 					<td>{{ $worker->creator?->name }}</td>
                     <td class="text-center">@include('production.worker.actions')</td>
                 </tr>

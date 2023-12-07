@@ -36,7 +36,7 @@ class Warehouse extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['name','owner_name','mobile_number','address'];
+    protected $fillable = ['name'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

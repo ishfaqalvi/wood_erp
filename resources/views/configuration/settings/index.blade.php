@@ -19,7 +19,7 @@
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-lg-9 offset-lg-2">
+            <div class="col-lg-10 offset-lg-1">
                 <form method="POST" action="{{ route('settings.save') }}" enctype="multipart/form-data">
                     @csrf
                     @include('configuration.settings.form')

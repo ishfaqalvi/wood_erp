@@ -39,7 +39,6 @@
 					<th>انوائس تعداد</th>
                     <th>صارف</th>
 					<th>رسید کی تاریخ</th>
-                    <th>اخری تاریخ</th>
                     <th>پیدا کیا</th>
 					<th>حالت</th>
                     <th class="text-center">اعمال</th>
@@ -52,7 +51,6 @@
 					<td>{{ $invoice->invoice_number }}</td>
                     <td>{{ $invoice->customer->name }}</td>
 					<td>{{ date('d-m-Y', $invoice->invoice_date) }}</td>
-                    <td>{{ date('d-m-Y', $invoice->due_date) }}</td>
 					<td>{{ $invoice->creator?->name }}</td>
                     <td>
                         <span class="badge {{ $invoice->status == 'Posted' ? 'bg-success' : 'bg-secondary'}}">{{ $invoice->status }}</span>

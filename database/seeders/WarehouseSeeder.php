@@ -19,9 +19,6 @@ class WarehouseSeeder extends Seeder
         for ($i = 1; $i <= 3; $i++) {
             $warehouses[] = [
                 'name'          => "گودام  $i",
-                'owner_name'    => "Owner Name $i",
-                'mobile_number' => "0300676544 $i",
-                'address'       => "گودام  Address $i",
                 'created_by'    => 1,
                 'updated_by'    => 1,
                 'created_at'    => Carbon::now(),

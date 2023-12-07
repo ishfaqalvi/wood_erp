@@ -31,10 +31,34 @@
             <h5 class="mb-0">{{ __('پیداوار کی ادائیگی دکھائیں۔') }}</h5>
         </div>
         <div class="card-body">
-           <div class="form-group mb-3">
-                <strong>ورکر:</strong>
+            <div class="form-group mb-3">
+                <strong>فروش:</strong>
                 {{ $productionPayment->worker->name }}
             </div>
+            <div class="form-group mb-3">
+                <strong> قسم :</strong>
+                {{ $productionPayment->type }}
+            </div>
+            @if($productionPayment->type == 'Check')
+            <div class="form-group mb-3">
+                <strong>بینک   :</strong>
+                {{ $productionPayment->bank }}
+            </div>
+            <div class="form-group mb-3">
+                <strong>چیک نمبر  :</strong>
+                {{ $productionPayment->check_number }}
+            </div>
+            @endif
+            @if($productionPayment->type == 'Online')
+            <div class="form-group mb-3">
+                <strong>بینک   :</strong>
+                {{ $productionPayment->bank }}
+            </div>
+            <div class="form-group mb-3">
+                <strong>سلپ  نمبر :</strong>
+                {{ $productionPayment->slip_number }}
+            </div>
+            @endif
             <div class="form-group mb-3">
                 <strong>تاریخ:</strong>
                 {{ date('d-m-Y', $productionPayment->date) }}
@@ -47,6 +71,12 @@
                 <strong>حالت:</strong>
                 {{ $productionPayment->status }}
             </div>
+            @if($productionPayment->type != 'Cash')
+            <div class="form-group mb-3">
+                <strong> تصویر :</strong>
+                <img src="{{ $productionPayment->attachment }}">
+            </div>
+            @endif
         </div>
     </div>
 </div>

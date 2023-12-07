@@ -37,7 +37,7 @@ class Worker extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['name','email','phone','image','address'];
+    protected $fillable = ['name','image'];
 
     /**
      * The set attributes.

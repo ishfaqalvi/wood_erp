@@ -10,12 +10,12 @@
                     <i class="ph-eye me-2"></i>{{ __('دکھائیں۔') }}
                 </a>
             @endcan
+            @can('invoices-edit')
+                <a href="{{ route('invoices.edit',$invoice->id) }}" class="dropdown-item">
+                    <i class="ph-note-pencil me-2"></i>{{ __('ترمیم') }}
+                </a>
+            @endcan
             @if($invoice->status !='Posted')
-                @can('invoices-edit')
-                    <a href="{{ route('invoices.edit',$invoice->id) }}" class="dropdown-item">
-                        <i class="ph-note-pencil me-2"></i>{{ __('ترمیم') }}
-                    </a>
-                @endcan
                 @can('invoices-publish')
                     @if(count($invoice->purchaseItems)>0 || count($invoice->saleItems)>0)
                     <form method="POST" action="{{ route('invoices.publish', $invoice->id) }}">

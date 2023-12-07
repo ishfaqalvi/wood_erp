@@ -39,7 +39,6 @@
                     <th>بل نمبر</th>
 					<th>فروش</th>
 					<th>بل کی تاریخ</th>
-					<th>اخری تاریخ</th>
 					<th>پیدا کیا</th>
                     <th>حالت</th>
                     <th class="text-center">اعمال</th>
@@ -52,7 +51,6 @@
                     <td>{{ $bill->bill_number }}</td>
 					<td>{{ $bill->vendor->name }}</td>
 					<td>{{ date('d-m-Y', $bill->bill_date) }}</td>
-					<td>{{ date('d-m-Y', $bill->due_date) }}</td>
 					<td>{{ $bill->creator->name }}</td>
                     <td>
                         <span class="badge {{ $bill->status == 'Posted' ? 'bg-success' : 'bg-secondary'}}">{{ $bill->status }}</span>

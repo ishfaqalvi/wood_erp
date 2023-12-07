@@ -5,9 +5,21 @@
     </div>
 </div>
 <div class="row mb-3">
-    <label class="col-lg-4 col-form-label">بزنس کا نام  :</label>
+    <label class="col-lg-4 col-form-label"> صنعت کی قسم :</label>
     <div class="col-lg-8">
         <input type="text" name="values[business_name]" class="form-control" value="{{ settings('business_name') }}">
+    </div>
+</div>
+<div class="row mb-3">
+    <label class="col-lg-4 col-form-label">بزنس کا نام  :</label>
+    <div class="col-lg-8">
+        <input type="text" name="values[business_heading]" class="form-control" value="{{ settings('business_heading') }}">
+    </div>
+</div>
+<div class="row mb-3">
+    <label class="col-lg-4 col-form-label">تفصیل  :</label>
+    <div class="col-lg-8">
+        <input type="text" name="values[business_detail]" class="form-control" value="{{ settings('business_detail') }}">
     </div>
 </div>
 <div class="row mb-3">

@@ -16,17 +16,22 @@
                             {{ Form::select('purchase_stock_id', $items, null, ['class' => 'form-control select' . ($errors->has('purchase_stock_id') ? ' is-invalid' : ''), 'placeholder' => '--منتخب کریں۔--','required','id'=>'createItem']) }}
                             {!! $errors->first('purchase_stock_id', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
-                        <div class="form-group mb-3">
+                        <div class="form-group col-lg-6 mb-3">
                             {{ Form::label('تفصیل') }}
                             {{ Form::text('description', null, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'placeholder' => 'تفصیل','required']) }}
                             {!! $errors->first('description', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                         <div class="form-group col-lg-6 mb-3">
+                            {{ Form::label('بنڈل کی مقدار') }}
+                            {{ Form::number('bundle_quantity', null, ['class' => 'form-control' . ($errors->has('bundle_quantity') ? ' is-invalid' : ''), 'placeholder' => 'بنڈل کی مقدار  ','required', 'min'=> '1']) }}
+                            {!! $errors->first('bundle_quantity', '<div class="invalid-feedback">:message</div>') !!}
+                        </div>
+                        <div class="form-group col-lg-6">
                             {{ Form::label('مقدار (فٹ)') }}
                             {{ Form::number('quantity', null, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => 'مقدار (فٹ)','required', 'min'=> '1','id'=>'quantity']) }}
                             {!! $errors->first('quantity', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
-                        <div class="form-group col-lg-6 mb-3">
+                        <div class="form-group col-lg-6">
                             {{ Form::label('شرح') }}
                             {{ Form::number('rate', null, ['class' => 'form-control' . ($errors->has('rate') ? ' is-invalid' : ''), 'placeholder' => 'شرح','required', 'min'=> '1']) }}
                             {!! $errors->first('rate', '<div class="invalid-feedback">:message</div>') !!}

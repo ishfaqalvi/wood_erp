@@ -37,8 +37,6 @@
                 <tr>
                     <th>نمبر</th>
                     <th>نام</th>
-                    <th>مالک کا نام</th>
-                    <th>فون نمبر</th>
                     <th>پیدا کیا</th>
                     <th class="text-center">اعمال</th>
                 </tr>
@@ -48,8 +46,6 @@
                 <tr>
                     <td>{{ ++$key }}</td>
                     <td>{{ $warehouse->name }}</td>
-                    <td>{{ $warehouse->owner_name }}</td>
-                    <td>{{ $warehouse->mobile_number }}</td>
                     <td>{{ $warehouse->creator?->name }}</td>
                     <td class="text-center">@include('warehouse.actions')</td>
                 </tr>

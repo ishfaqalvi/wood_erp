@@ -32,7 +32,43 @@ class ProductionPayment extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['worker_id','date','amount','status'];
+    protected $fillable = [
+        'worker_id',
+        'type',
+        'bank',
+        'slip_number',
+        'check_number',
+        'attachment',
+        'date',
+        'amount',
+        'status'
+    ];
+
+    /**
+     * The set attributes.
+     *
+     * @var array
+     */
+    public function setAttachmentAttribute($image)
+    {
+        if ($image) {
+            $name = $image->getClientOriginalName();
+            $image->move('images/payments/production', $name);
+            $this->attributes['attachment'] = 'images/payments/production/'.$name;
+        } else {
+            unset($this->attributes['attachment']);
+        }
+    }
+
+    /**
+     * The get attributes.
+     *
+     * @var array
+     */
+    public function getAttachmentAttribute($image)
+    {
+        if ($image) { return asset($image); }
+    }
 
     /**
      * Interact with the date.

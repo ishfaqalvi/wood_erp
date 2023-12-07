@@ -56,8 +56,6 @@
                     <div class="d-flex align-items-center">
                         <h5 class="mb-0">{{ $invoice->customer->name }}</h5>
                     </div>
-                    <span class="d-inline-block bg-danger rounded-pill p-1 me-1"></span>
-                    <span class="text-muted">{{ date('d M Y', $invoice->due_date) }} :  اخری تاریخ </span>
                 </div>
             </div>
             @if($invoice->status !='Posted')
@@ -85,6 +83,7 @@
                     <tr>
                         <th>آئٹم</th>
                         <th>مقدار (فٹ)</th>
+                        <th>بنڈل کی مقدار  </th> 
                         <th>ریٹ/فی فٹ</th>
                         <th>رقم</th>
                         @if($invoice->status !='Posted')
@@ -100,6 +99,7 @@
                     <tr>
                         <td>{{ $item->saleItem->name }}</td>
                         <td>{{ $item->quantity }}</td>
+                        <td>{{ $item->bundle_quantity }}</td>
                         <td><span class="text-success">{{ $item->rate }}</span></td>
                         <td>
                             @php($amount = $item->quantity * $item->rate)
@@ -127,7 +127,7 @@
                     @include('selling.invoice.sale-item.edit')
                     @endforeach
                     <tr class="table-light">
-                        <td colspan="{{ $invoice->status !='Posted' ? '4': '3'}}">Total</td>
+                        <td colspan="{{ $invoice->status !='Posted' ? '5': '4'}}">Total</td>
                         <td class="text-end">
                             <h6 class="mb-0">{{ number_format($total) }}</h6>
                         </td>

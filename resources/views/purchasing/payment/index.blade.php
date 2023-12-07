@@ -37,6 +37,7 @@
                 <tr>
                     <th>نمبر</th>
 					<th>فروش</th>
+                    <th>قسم</th> 
 					<th>تاریخ</th>
 					<th>رقم</th>
                     <th>پیدا کیا</th>
@@ -50,6 +51,7 @@
                 <tr>
                     <td>{{ ++$key }}</td>
 					<td>{{ $purchasePayment->vendor->name }}</td>
+                    <td>{{ $purchasePayment->type }}</td>
 					<td>{{ date('d-m-Y',$purchasePayment->date) }}</td>
 					<td>{{ number_format($purchasePayment->amount) }}</td>
                     <td>{{ $purchasePayment->creator?->name }}</td>

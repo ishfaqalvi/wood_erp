@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('purchase_items', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('length');
-            $table->integer('width');
-            $table->integer('thikness');
+            $table->decimal('length',10,2); 
+            $table->decimal('width',10,2);
+            $table->decimal('thikness',10,2);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();

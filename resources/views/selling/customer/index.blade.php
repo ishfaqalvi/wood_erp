@@ -38,8 +38,6 @@
                     <th>نمبر</th>
                     <th>تصویر</th>
                     <th>نام</th>
-                    <th>ای میل</th>
-                    <th>فون نمبر</th>
                     <th>پیدا کیا</th>
                     <th class="text-center">اعمال</th>
                 </tr>
@@ -56,8 +54,6 @@
                         </div>
                     </td>
 					<td>{{ $customer->name }}</td>
-					<td>{{ $customer->email }}</td>
-					<td>{{ $customer->phone }}</td>
 					<td>{{ $customer->creator?->name }}</td>
                     <td class="text-center">@include('selling.customer.actions')</td>
                 </tr>

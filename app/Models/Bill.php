@@ -44,7 +44,7 @@ class Bill extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['vendor_id','bill_number','bill_date','due_date','paid_amount','status'];
+    protected $fillable = ['vendor_id','bill_number','bill_date','concession','status'];
 
     /**
      * Attributes that should auto genereted.
@@ -66,14 +66,6 @@ class Bill extends Model implements Auditable
     public function setBillDateAttribute($value)
     {
         $this->attributes['bill_date'] = strtotime($value);
-    }
-
-    /**
-     * Interact with the date.
-     */
-    public function setDueDateAttribute($value)
-    {
-        $this->attributes['due_date'] = strtotime($value);
     }
 
     /**

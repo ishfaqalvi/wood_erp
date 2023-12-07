@@ -30,7 +30,7 @@ class InvoiceSaleItem extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['invoice_id','sale_item_id','quantity','rate'];
+    protected $fillable = ['invoice_id','sale_item_id','bundle_quantity','quantity','rate'];
 
 
     /**

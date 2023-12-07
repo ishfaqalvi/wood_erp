@@ -71,16 +71,6 @@
                 }
             }
         });
-        const dpAutoHideElement = document.querySelector('.due_date');
-        if(dpAutoHideElement) {
-            const dpAutoHide = new Datepicker(dpAutoHideElement, {
-                container: '.content-inner',
-                buttonClass: 'btn',
-                prevArrow: document.dir == 'rtl' ? '&rarr;' : '&larr;',
-                nextArrow: document.dir == 'rtl' ? '&larr;' : '&rarr;',
-                autohide: true
-            });
-        }
     });
 </script>
 @endsection

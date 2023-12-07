@@ -120,7 +120,7 @@ class BillController extends Controller
                 'detail'    => "Bill Posted",
                 'date'      => date('Y-m-d', $bill->bill_date),
                 'type'      => "Received",
-                'amount'    => $bill->billItems()->sum('amount')
+                'amount'    => $bill->billItems()->sum('amount') - $bill->concession
             ]); 
             $bill->purchaseStockIn($bill);
             $bill->update(['status' => 'Posted']);

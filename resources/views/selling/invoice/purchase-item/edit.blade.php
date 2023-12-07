@@ -11,17 +11,22 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="form-group mb-3">
+                        <div class="form-group col-lg-6 mb-3">
                             {{ Form::label('تفصیل') }}
                             {{ Form::text('description', $item->description, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'placeholder' => 'تفصیل','required']) }}
                             {!! $errors->first('description', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                         <div class="form-group col-lg-6 mb-3">
+                            {{ Form::label('بنڈل کی مقدار') }}
+                            {{ Form::number('bundle_quantity', $item->bundle_quantity, ['class' => 'form-control' . ($errors->has('bundle_quantity') ? ' is-invalid' : ''), 'placeholder' => 'بنڈل کی مقدار  ','required', 'min'=> '1']) }}
+                            {!! $errors->first('bundle_quantity', '<div class="invalid-feedback">:message</div>') !!}
+                        </div>
+                        <div class="form-group col-lg-6">
                             {{ Form::label('مقدار (فٹ)') }}
                             {{ Form::number('quantity', $item->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => 'مقدار (فٹ)','required', 'min'=> '1']) }}
                             {!! $errors->first('quantity', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
-                        <div class="form-group col-lg-6 mb-3">
+                        <div class="form-group col-lg-6">
                             {{ Form::label('شرح') }}
                             {{ Form::number('rate', $item->rate, ['class' => 'form-control' . ($errors->has('rate') ? ' is-invalid' : ''), 'placeholder' => 'شرح','required', 'min'=> '1']) }}
                             {!! $errors->first('rate', '<div class="invalid-feedback">:message</div>') !!}

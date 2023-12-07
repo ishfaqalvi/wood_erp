@@ -37,6 +37,7 @@
                 <tr>
                     <th>نمبر</th>
                     <th>ورکر</th>
+                    <th>قسم</th>
                     <th>تاریخ</th>
                     <th>رقم</th>
                     <th>پیدا کیا</th>
@@ -50,6 +51,7 @@
                 <tr>
                     <td>{{ ++$key }}</td>
                     <td>{{ $productionPayment->worker->name }}</td>
+                    <td>{{ $productionPayment->type }}</td>
                     <td>{{ date('d-m-Y',$productionPayment->date) }}</td>
                     <td>{{ number_format($productionPayment->amount) }}</td>
                     <td>{{ $productionPayment->creator?->name }}</td>
