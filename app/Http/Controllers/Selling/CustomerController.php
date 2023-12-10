@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 /**
  * Class CustomerController
@@ -57,7 +58,18 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-       $customer = Customer::create($request->all());
+        $customer = Customer::create($request->all());
+        if (!empty($request->type)) {
+            $type = $request->type == 'Plus' ? 'Received' : 'Paid'; 
+            $customer->details()->create([
+                'reference' => $customer->name,
+                'detail'    => 'Previous Balance',
+                'date'      => Carbon::now(),
+                'type'      => $type,
+                'amount'    => $request->amount
+            ]);
+        }
+
         return redirect()->route('customers.index')
             ->with('success', 'Customer created successfully.');
     }

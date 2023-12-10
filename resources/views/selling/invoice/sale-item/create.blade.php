@@ -17,6 +17,11 @@
                             {!! $errors->first('sale_item_id', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                         <div class="form-group col-lg-6 mb-3">
+                            {{ Form::label('گودام') }}
+                            {{ Form::select('warehouse_id', warehouses(), $invoice->warehouse_id, ['class' => 'form-control select' . ($errors->has('warehouse_id') ? ' is-invalid' : ''), 'placeholder' => '--منتخب کریں۔--','required','id' => 'warehouseId']) }}
+                            {!! $errors->first('warehouse_id', '<div class="invalid-feedback">:message</div>') !!}
+                        </div>
+                        <div class="form-group col-lg-6 mb-3">
                             {{ Form::label('مقدار') }}
                             {{ Form::number('quantity', null, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => 'مقدار','required', 'min'=> '1','id' => 'quantity']) }}
                             {!! $errors->first('quantity', '<div class="invalid-feedback">:message</div>') !!}
@@ -27,8 +32,8 @@
                             {!! $errors->first('bundle_quantity', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                         <div class="form-group col-lg-6">
-                            {{ Form::label('شرح') }}
-                            {{ Form::number('rate', null, ['class' => 'form-control' . ($errors->has('rate') ? ' is-invalid' : ''), 'placeholder' => 'شرح','required', 'min'=> '1']) }}
+                            {{ Form::label('ریٹ  ') }}
+                            {{ Form::number('rate', null, ['class' => 'form-control' . ($errors->has('rate') ? ' is-invalid' : ''), 'placeholder' => 'ریٹ  ','required', 'min'=> '0']) }}
                             {!! $errors->first('rate', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                     </div>

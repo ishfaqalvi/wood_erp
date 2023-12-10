@@ -68,6 +68,9 @@
                 }else {
                     error.insertAfter(element);
                 }
+            },
+            rules: {
+                amount:{required: function(element) {return $('#selectField').val() !== '';}}
             }
         });
         $('.dropify').dropify();

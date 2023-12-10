@@ -44,7 +44,7 @@ class Bill extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['vendor_id','bill_number','bill_date','concession','status'];
+    protected $fillable = ['vendor_id','bill_number','bill_date','status'];
 
     /**
      * Attributes that should auto genereted.

@@ -71,6 +71,10 @@
                 <strong>حالت:</strong>
                 {{ $salePayment->status }}
             </div>
+            <div class="form-group mb-3">
+                <strong>تفصیل   :</strong>
+                {{ $salePayment->remarks }}
+            </div>
             @if($salePayment->type != 'Cash')
             <div class="form-group mb-3">
                 <strong> تصویر :</strong>

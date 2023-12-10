@@ -59,7 +59,7 @@ class PurchasePaymentController extends Controller
      */
     public function store(Request $request)
     {
-       $purchasePayment = PurchasePayment::create($request->all());
+        $purchasePayment = PurchasePayment::create($request->all());
         return redirect()->route('purchase-payments.index')
             ->with('success', 'Purchase Payment created successfully.');
     }
@@ -120,14 +120,25 @@ class PurchasePaymentController extends Controller
             if (empty($account)) {
                 $status = 'Error';
             }else{
-                $transaction = $payment->updateBalance($account->id, $payment->amount, 'Outgoing', 'Purchasing');
-                $payment->vendor->details()->create([
-                    'reference' => $transaction->transaction_id,
-                    'detail'    => 'Payment Paid',
-                    'date'      => date('Y-m-d', $payment->date),
-                    'type'      => 'Paid',
-                    'amount'    => $payment->amount
-                ]);
+                if ($payment->type == 'Concession') {
+                    $transaction = $payment->updateBalance($account->id, $payment->amount, 'Incoming', 'Concession');
+                    $payment->vendor->details()->create([
+                        'reference' => $transaction->transaction_id,
+                        'detail'    => 'Concession',
+                        'date'      => date('Y-m-d', $payment->date),
+                        'type'      => 'Paid',
+                        'amount'    => $payment->amount
+                    ]);
+                }else{
+                    $transaction = $payment->updateBalance($account->id, $payment->amount, 'Outgoing', 'Purchasing');
+                    $payment->vendor->details()->create([
+                        'reference' => $transaction->transaction_id,
+                        'detail'    => 'Payment Paid',
+                        'date'      => date('Y-m-d', $payment->date),
+                        'type'      => 'Paid',
+                        'amount'    => $payment->amount
+                    ]);
+                }
                 $payment->update(['status' => 'Approved']);
             }
             return $status;

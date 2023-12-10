@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('warehouse_id')->references('id')->on('warehouses')->cascadeOnDelete();
             $table->foreignId('worker_id')->references('id')->on('workers')->cascadeOnDelete();
             $table->string('order_number')->nullable();
+            $table->string('slip_number')->nullable();
             $table->bigInteger('date');
             $table->string('status')->default('Pending');
             $table->unsignedBigInteger('created_by')->nullable();

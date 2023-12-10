@@ -39,6 +39,7 @@ class PurchasePayment extends Model implements Auditable
         'slip_number',
         'check_number',
         'attachment',
+        'remarks',
         'date',
         'amount',
         'status'

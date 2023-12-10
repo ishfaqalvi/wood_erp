@@ -120,14 +120,25 @@ class SalePaymentController extends Controller
             if (empty($account)) {
                 $status = 'Error';
             }else{
-                $transaction = $payment->updateBalance($account->id, $payment->amount, 'Incoming', 'Sale');
-                $payment->customer->details()->create([
-                    'reference' => $transaction->transaction_id,
-                    'detail'    => 'Payment Received',
-                    'date'      => date('Y-m-d', $payment->date),
-                    'type'      => 'Received',
-                    'amount'    => $payment->amount
-                ]);
+                if ($payment->type == 'Concession') {
+                    $transaction = $payment->updateBalance($account->id, $payment->amount, 'Outgoing', 'Concession');
+                    $payment->customer->details()->create([
+                        'reference' => $transaction->transaction_id,
+                        'detail'    => 'Concession',
+                        'date'      => date('Y-m-d', $payment->date),
+                        'type'      => 'Received',
+                        'amount'    => $payment->amount
+                    ]);
+                }else{
+                    $transaction = $payment->updateBalance($account->id, $payment->amount, 'Incoming', 'Sale');
+                    $payment->customer->details()->create([
+                        'reference' => $transaction->transaction_id,
+                        'detail'    => 'Payment Received',
+                        'date'      => date('Y-m-d', $payment->date),
+                        'type'      => 'Received',
+                        'amount'    => $payment->amount
+                    ]);
+                }
                 $payment->update(['status' => 'Approved']);
             }
             return $status;

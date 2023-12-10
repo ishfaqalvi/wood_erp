@@ -43,7 +43,6 @@
 @section('script')
 <script>
     $(function(){
-        $('.dropify').dropify();
         $('.validate').validate({
             errorClass: 'validation-invalid-label',
             successClass: 'validation-valid-label',
@@ -69,8 +68,12 @@
                 }else {
                     error.insertAfter(element);
                 }
+            },
+            rules: {
+                amount:{required: function(element) {return $('#selectField').val() !== '';}}
             }
         });
+        $('.dropify').dropify();
     });
 </script>
 @endsection

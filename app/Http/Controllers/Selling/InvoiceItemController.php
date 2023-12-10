@@ -7,6 +7,7 @@ use App\Models\InvoiceSaleItem;
 use App\Models\InvoicePurchaseItem;
 use App\Models\PurchaseStock;
 use App\Models\SaleStock;
+use App\Models\WarehouseDetail;
 use Illuminate\Http\Request;
 
 /**
@@ -77,7 +78,7 @@ class InvoiceItemController extends Controller
         if($request->type == 'Purchase'){
             $item = PurchaseStock::find($request->item_id);
         }else{
-            $item = SaleStock::where('sale_item_id',$request->item_id)->first();
+            $item = WarehouseDetail::where([['warehouse_id',$request->warehouse_id],['sale_item_id',$request->item_id]])->first();
         }
         if ($item && $item->quantity >= $request->quantity) { echo "true"; }else{ echo "false"; }
     }

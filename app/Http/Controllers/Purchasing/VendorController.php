@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Vendor;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 /**
  * Class VendorController
  * @package App\Http\Controllers
@@ -58,6 +58,16 @@ class VendorController extends Controller
     public function store(Request $request)
     {
         $vendor = Vendor::create($request->all());
+        if (!empty($request->type)) {
+            $type = $request->type == 'Plus' ? 'Received' : 'Paid'; 
+            $vendor->details()->create([
+                'reference' => $vendor->name,
+                'detail'    => 'Previous Balance',
+                'date'      => Carbon::now(),
+                'type'      => $type,
+                'amount'    => $request->amount
+            ]);
+        }
 
         return redirect()->route('vendors.index')
             ->with('success', 'Vendor created successfully.');

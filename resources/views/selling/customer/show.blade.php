@@ -66,7 +66,7 @@
                                 <h4 class="mb-0">
                                     {{ number_format($customer->details()->where('type','Received')->sum('amount') - $customer->details()->where('type','Paid')->sum('amount') )}}
                                 </h4>
-                                موجودہ توازن
+                                باقی بل
                             </div>
                         </div>
                     </div>

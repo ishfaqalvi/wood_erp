@@ -31,13 +31,13 @@
                             {!! $errors->first('thikness', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                         <div class="form-group col-lg-6 mb-3">
-                            {{ Form::label('quantity') }}
-                            {{ Form::number('quantity', $item->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => 'Quantity','required', 'min'=> '1']) }}
+                            {{ Form::label('فٹ ') }}
+                            {{ Form::number('quantity', $item->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => 'فٹ  ','required', 'min'=> '1']) }}
                             {!! $errors->first('quantity', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                         <div class="form-group col-lg-6 mb-3">
-                            {{ Form::label('rate') }}
-                            {{ Form::number('rate', $item->rate, ['class' => 'form-control' . ($errors->has('rate') ? ' is-invalid' : ''), 'placeholder' => 'Rate','required', 'min'=> '1']) }}
+                            {{ Form::label('ریٹ  ') }}
+                            {{ Form::number('rate', $item->rate, ['class' => 'form-control' . ($errors->has('rate') ? ' is-invalid' : ''), 'placeholder' => 'ریٹ  ','required', 'min'=> '1']) }}
                             {!! $errors->first('rate', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                     </div>

@@ -6,7 +6,7 @@
     </div>
     <div class="form-group col-lg-6 mb-3">
         {{ Form::label('قسم  ') }}
-        {{ Form::select('type', ['Cash' => 'Cash','Online' => 'Online','Check' => 'Check'], $salePayment->type, ['class' => 'form-control select' . ($errors->has('type') ? ' is-invalid' : ''), 'placeholder' => '--منتخب کریں۔--','required']) }}
+        {{ Form::select('type', ['Cash' => 'Cash','Online' => 'Online','Check' => 'Check','Concession'=>'Concession'], $salePayment->type, ['class' => 'form-control select' . ($errors->has('type') ? ' is-invalid' : ''), 'placeholder' => '--منتخب کریں۔--','required']) }}
         {!! $errors->first('type', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <div class="form-group col-lg-6 mb-3 bank" style="display: none;">
@@ -32,6 +32,11 @@
     <div class="form-group col-lg-6 mb-3">
         {{ Form::label('رقم') }}
         {{ Form::number('amount', $salePayment->amount, ['class' => 'form-control' . ($errors->has('amount') ? ' is-invalid' : ''), 'placeholder' => 'رقم','required','min' => '0']) }}
+        {!! $errors->first('amount', '<div class="invalid-feedback">:message</div>') !!}
+    </div>
+    <div class="form-group col-lg-12 mb-3">
+        {{ Form::label('تفصیل ') }}
+        {{ Form::text('remarks', $salePayment->remarks, ['class' => 'form-control' . ($errors->has('remarks') ? ' is-invalid' : ''), 'placeholder' => 'تفصیل ']) }}
         {!! $errors->first('amount', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <div class="form-group col-lg-12 mb-3 attachment" style="display:none;">

@@ -115,7 +115,7 @@ trait StockTransactions {
                     'sale_item_id' => $item->sale_item_id, 'quantity' => -($item->quantity)
                 ]);
             }
-            $warehouseItme = $invoice->warehouse->details()->where('sale_item_id',$item->sale_item_id)->first();
+            $warehouseItme = $item->warehouse->details()->where('sale_item_id',$item->sale_item_id)->first();
             if ($warehouseItme) {
                 $warehouseItme->decrement('quantity',$item->quantity);
             }

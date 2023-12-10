@@ -41,7 +41,7 @@ class ReceiveOrder extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['warehouse_id','worker_id','order_number','date','status'];
+    protected $fillable = ['warehouse_id','worker_id','order_number','slip_number','date','status'];
 
     /**
      * Attributes that should auto genereted.

@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Worker;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 /**
  * Class WorkerController
@@ -57,7 +58,17 @@ class WorkerController extends Controller
      */
     public function store(Request $request)
     {
-       $worker = Worker::create($request->all());
+        $worker = Worker::create($request->all());
+        if (!empty($request->type)) {
+            $type = $request->type == 'Plus' ? 'Received' : 'Paid'; 
+            $worker->details()->create([
+                'reference' => $worker->name,
+                'detail'    => 'Previous Balance',
+                'date'      => Carbon::now(),
+                'type'      => $type,
+                'amount'    => $request->amount
+            ]);
+        }
         return redirect()->route('workers.index')
             ->with('success', 'Worker created successfully.');
     }

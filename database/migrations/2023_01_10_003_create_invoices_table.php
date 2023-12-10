@@ -16,13 +16,11 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->references('id')->on('customers')->cascadeOnDelete();
-            $table->foreignId('warehouse_id')->references('id')->on('warehouses')->cascadeOnDelete();
             $table->string('invoice_number')->nullable();
             $table->enum('type',['Fancy','Raw']);
             $table->bigInteger('invoice_date');
             $table->string('bilti_number')->nullable();
             $table->string('goods_name')->nullable();
-            $table->bigInteger('concession')->default(0);
             $table->string('status')->default('Pending');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();

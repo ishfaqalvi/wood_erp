@@ -30,7 +30,7 @@ class InvoiceSaleItem extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['invoice_id','sale_item_id','bundle_quantity','quantity','rate'];
+    protected $fillable = ['invoice_id','sale_item_id','warehouse_id','bundle_quantity','quantity','rate'];
 
 
     /**
@@ -47,5 +47,13 @@ class InvoiceSaleItem extends Model implements Auditable
     public function saleItem()
     {
         return $this->hasOne('App\Models\SaleItem', 'id', 'sale_item_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function warehouse()
+    {
+        return $this->hasOne('App\Models\Warehouse', 'id', 'warehouse_id');
     }
 }

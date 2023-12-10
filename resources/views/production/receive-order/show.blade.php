@@ -78,7 +78,7 @@
                     <tr>
                         <th>آئٹم</th>
                         <th>مقدار</th>
-                        <th>شرح  </th>
+                        <th>ریٹ  </th>
                         <th>رقم</th>
                         @if($receiveOrder->status =='Pending')
                         <th class="text-center" style="width: 20px;">
@@ -143,13 +143,13 @@
                             {!! $errors->first('sale_item_id', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                         <div class="form-group mb-3">
-                            {{ Form::label('مقدار') }}
+                            {{ Form::label('فٹ  ') }}
                             {{ Form::number('quantity', null, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => 'مقدار','required', 'min'=> '1']) }}
                             {!! $errors->first('quantity', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                         <div class="form-group">
-                            {{ Form::label('شرح') }}
-                            {{ Form::number('rate', null, ['class' => 'form-control' . ($errors->has('rate') ? ' is-invalid' : ''), 'placeholder' => 'شرح','required', 'min'=> '1']) }}
+                            {{ Form::label('ریٹ  ') }}
+                            {{ Form::number('rate', null, ['class' => 'form-control' . ($errors->has('rate') ? ' is-invalid' : ''), 'placeholder' => 'ریٹ  ','required', 'min'=> '0']) }}
                             {!! $errors->first('rate', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                     </div>

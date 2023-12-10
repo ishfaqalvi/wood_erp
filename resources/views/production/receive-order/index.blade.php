@@ -36,7 +36,7 @@
             <thead class="thead">
                 <tr>
                     <th>نمبر  </th>
-                    <th>آرڈر نمبر  </th>
+                    <th>پرچی نمبر  </th>
                     <th>گودام  </th>
                     <th>ورکر  </th>
                     <th>تاریخ  </th>
@@ -49,7 +49,7 @@
             @foreach ($receiveOrders as $key => $receiveOrder)
                 <tr>
                     <td>{{ ++$key }}</td>
-                    <td>{{ $receiveOrder->order_number }}</td>
+                    <td>{{ $receiveOrder->slip_number }}</td>
 					<td>{{ $receiveOrder->warehouse->name }}</td>
 					<td>{{ $receiveOrder->worker->name }}</td>
 					<td>{{ date('d M Y',$receiveOrder->date) }}</td>

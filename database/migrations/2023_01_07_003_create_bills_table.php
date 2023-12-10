@@ -18,7 +18,6 @@ return new class extends Migration
             $table->foreignId('vendor_id')->references('id')->on('vendors')->cascadeOnDelete();
             $table->string('bill_number')->nullable();
             $table->bigInteger('bill_date');
-            $table->bigInteger('concession')->default(0);
             $table->string('status')->default('Pending');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();

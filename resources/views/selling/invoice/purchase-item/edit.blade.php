@@ -27,8 +27,8 @@
                             {!! $errors->first('quantity', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                         <div class="form-group col-lg-6">
-                            {{ Form::label('شرح') }}
-                            {{ Form::number('rate', $item->rate, ['class' => 'form-control' . ($errors->has('rate') ? ' is-invalid' : ''), 'placeholder' => 'شرح','required', 'min'=> '1']) }}
+                            {{ Form::label('ریٹ  ') }}
+                            {{ Form::number('rate', $item->rate, ['class' => 'form-control' . ($errors->has('rate') ? ' is-invalid' : ''), 'placeholder' => 'ریٹ  ','required', 'min'=> '1']) }}
                             {!! $errors->first('rate', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                     </div>

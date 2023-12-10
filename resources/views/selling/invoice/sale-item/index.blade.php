@@ -81,6 +81,7 @@
             <table class="table text-nowrap">
                 <thead>
                     <tr>
+                        <th>گودام  </th>
                         <th>آئٹم</th>
                         <th>مقدار (فٹ)</th>
                         <th>بنڈل کی مقدار  </th> 
@@ -97,6 +98,7 @@
                     @php($total = 0)
                     @foreach($invoice->saleItems as $item)
                     <tr>
+                        <td>{{ $item->warehouse->name }}</td>
                         <td>{{ $item->saleItem->name }}</td>
                         <td>{{ $item->quantity }}</td>
                         <td>{{ $item->bundle_quantity }}</td>
@@ -127,7 +129,7 @@
                     @include('selling.invoice.sale-item.edit')
                     @endforeach
                     <tr class="table-light">
-                        <td colspan="{{ $invoice->status !='Posted' ? '5': '4'}}">Total</td>
+                        <td colspan="{{ $invoice->status !='Posted' ? '6': '5'}}">Total</td>
                         <td class="text-end">
                             <h6 class="mb-0">{{ number_format($total) }}</h6>
                         </td>
@@ -186,6 +188,9 @@
                             },
                             item_id: function() {
                                 return $("#createItem").val();
+                            },
+                            warehouse_id: function() {
+                                return $("#warehouseId").val();
                             }
                         },
                     }
