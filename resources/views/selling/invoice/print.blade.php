@@ -148,19 +148,19 @@
                             @foreach($invoice->purchaseItems as $item)
                             <tr>
                                 <td width="5%">{{ ++$key }}</td>
-                                <td><div class="fw-bold">{{ $item->bundle_quantity }}</div></td>
-                                <td>
+                                <td width="15%"><div class="fw-bold">{{ $item->bundle_quantity }}</div></td>
+                                <td width="15%">
                                     <span class="fw-semibold">
                                         {{ number_format($item->quantity) }}
                                     </span>
                                 </td>
-                                <td><div class="fw-bold">{{ $item->purchaseStock->name }}</div></td>
-                                <td>
+                                <td width="35%"><div class="fw-bold">{{ $item->purchaseStock->name }}</div></td>
+                                <td width="15%">
                                     <span class="fw-semibold">
                                         {{ number_format($item->rate) }}
                                     </span>
                                 </td>
-                                <td>
+                                <td width="15%">
                                     @php($amount = ($item->rate * $item->quantity))
                                     <span class="fw-semibold">
                                         {{ number_format($amount) }}
