@@ -114,38 +114,28 @@ class SalePaymentController extends Controller
      */
     public function approve(Request $request, SalePayment $payment)
     {
-        $status = DB::transaction(function () use ($payment) {
-            $status = 'No error';
-            $account = Account::whereNotNull('default')->first();
-            if (empty($account)) {
-                $status = 'Error';
-            }else{
-                if ($payment->type == 'Concession') {
-                    $transaction = $payment->updateBalance($account->id, $payment->amount, 'Outgoing', 'Concession');
-                    $payment->customer->details()->create([
-                        'reference' => $transaction->transaction_id,
-                        'detail'    => 'Concession',
-                        'date'      => date('Y-m-d', $payment->date),
-                        'type'      => 'Received',
-                        'amount'    => $payment->amount
-                    ]);
-                }else{
-                    $transaction = $payment->updateBalance($account->id, $payment->amount, 'Incoming', 'Sale');
-                    $payment->customer->details()->create([
-                        'reference' => $transaction->transaction_id,
-                        'detail'    => 'Payment Received',
-                        'date'      => date('Y-m-d', $payment->date),
-                        'type'      => 'Received',
-                        'amount'    => $payment->amount
-                    ]);
+        DB::transaction(function () use ($payment) {
+            $category   = $payment->type == 'Concession' ? 'Concession' : 'Sale';
+            $type       = $payment->type == 'Concession' ? 'Outgoing' : 'Incoming';
+            $detail     = $payment->type == 'Concession' ? 'Concession Added' : 'Payment Paid';
+            if ($payment->type == 'Cash' || $payment->type == 'Concession') {
+                $account = Account::whereNotNull('default')->first()->id;
+                if (empty($account)) {
+                    return redirect()->back()->with('warning', 'آپ نے بینک اکاؤنٹ شامل نہیں کیا ہے۔.');
                 }
-                $payment->update(['status' => 'Approved']);
+            }else{
+                $account = $payment->bank;
             }
-            return $status;
+            $transaction= $payment->updateBalance($account, $payment->amount, $type, $category);
+            $payment->customer->details()->create([
+                'reference' => $transaction->transaction_id,
+                'detail'    => $detail,
+                'date'      => date('Y-m-d', $payment->date),
+                'type'      => 'Received',
+                'amount'    => $payment->amount
+            ]);
+            $payment->update(['status' => 'Approved']);
         });
-        if ($status == 'Error') {
-            return redirect()->back()->with('warning', 'آپ نے بینک اکاؤنٹ شامل نہیں کیا ہے۔.');
-        }
         return redirect()->route('sale-payments.index')
             ->with('success', 'Sale Payment approved successfully.');
     }

@@ -72,6 +72,7 @@
                     </ul>
                 </div>
                 <div class="col-sm-3">
+                    <img src="{{ asset('assets/images/logo.png')}}">
                 </div>
                 <div class="col-sm-5">
                     <div class="text-sm-end">
@@ -103,16 +104,16 @@
                     </h4>
                 </div>
             </div>
-            <div class="table-responsive border rounded" dir="rtl">
+            <div class="table-responsive border rounded">
                 <table class="table-xs table-bordered text-sm-center" width="100%" align="center">
-                    <thead>
+                    <thead class="bg-dark text-white">
                         <tr>
-                            <th># </th>
-                            <th> بنڈل تعداد </th>
-                            <th>فٹ </th>
-                            <th>تفصیل  </th>
-                            <th>ریٹ  </th>
                             <th>رقم</th>
+                            <th>ریٹ  </th>
+                            <th>تفصیل  </th>
+                            <th>فٹ </th>
+                            <th> بنڈل تعداد </th>
+                            <th># </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -123,25 +124,25 @@
                             @php($count = count($invoice->saleItems))
                             @foreach($invoice->saleItems as $key => $item)
                             <tr>
-                                <td width="5%">{{ ++$key }}</td>
-                                <td width="15%"><div class="fw-bold">{{ $item->bundle_quantity }}</div></td>
-                                <td width="15%">
-                                    <span class="fw-semibold">
-                                        {{ number_format($item->quantity) }}
-                                    </span>
-                                </td>
-                                <td width="35%"><div class="fw-bold">{{ $item->saleItem->name }}</div></td>
-                                <td width="15%">
-                                    <span class="fw-semibold">
-                                        {{ $item->rate }}
-                                    </span>
-                                </td>
-                                <td width="15%">
+                               <td width="15%">
                                     @php($amount = $item->rate * $item->quantity)
                                     <span class="fw-semibold">
                                         {{ number_format($amount) }}
                                     </span>
                                 </td>
+                                <td width="15%">
+                                    <span class="fw-semibold">
+                                        {{ $item->rate }}
+                                    </span>
+                                </td>
+                                <td width="35%"><div class="fw-bold">{{ $item->saleItem->name }}</div></td>
+                                <td width="15%">
+                                    <span class="fw-semibold">
+                                        {{ number_format($item->quantity) }}
+                                    </span>
+                                </td>
+                                <td width="15%"><div class="fw-bold">{{ $item->bundle_quantity }}</div></td>
+                                <td width="5%">{{ ++$key }}</td>
                                 @php($total += $amount)
                             </tr>
                             @endforeach
@@ -149,59 +150,59 @@
                             @php($count = count($invoice->purchaseItems))
                             @foreach($invoice->purchaseItems as $key => $item)
                             <tr>
-                                <td width="5%">{{ ++$key }}</td>
-                                <td width="15%"><div class="fw-bold">{{ $item->bundle_quantity }}</div></td>
-                                <td width="15%">
-                                    <span class="fw-semibold">
-                                        {{ number_format($item->quantity) }}
-                                    </span>
-                                </td>
-                                <td width="35%"><div class="fw-bold">{{ $item->purchaseStock->name }}</div></td>
-                                <td width="15%">
-                                    <span class="fw-semibold">
-                                        {{ $item->rate }}
-                                    </span>
-                                </td>
                                 <td width="15%">
                                     @php($amount = ($item->rate * $item->quantity))
                                     <span class="fw-semibold">
                                         {{ number_format($amount) }}
                                     </span>
                                 </td>
+                                <td width="15%">
+                                    <span class="fw-semibold">
+                                        {{ $item->rate }}
+                                    </span>
+                                </td>
+                                <td width="35%"><div class="fw-bold">{{ $item->purchaseStock->name }}</div></td>
+                                <td width="15%">
+                                    <span class="fw-semibold">
+                                        {{ number_format($item->quantity) }}
+                                    </span>
+                                </td>
+                                <td width="15%"><div class="fw-bold">{{ $item->bundle_quantity }}</div></td>
+                                <td width="5%">{{ ++$key }}</td>
                                 @php($total += $amount)
                             </tr>
                             @endforeach
                         @endif
                         @for($empty= $count + 1; $empty < 16; ++$empty)
                         <tr>
+                            <td></td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
                             <td>{{ $empty}}</td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
                         </tr> 
                         @endfor  
                     </tbody>
                     <tfoot>
                         <tr>
+                            <td>{{ number_format($total) }}</td>
+                            <td class="bg-dark text-white">مال  ٹوٹل رقم  </td>
                             <td colspan="4" rowspan="3">
                                 <div class="text-sm-center">
                                     <div class="mb-3">دستخط  </div>
                                     <div class="mb-3">_______________________</div>
                                 </div>
                             </td>
-                            <td>مال  ٹوٹل رقم  </td>
-                            <td>{{ number_format($total) }}</td>
                         </tr>
                         <tr>
-                            <td>سابقہ رقم  </td>
                             @php($previous = getCustomerLastBalance($invoice->customer))
                             <td>{{ number_format(-($previous)) }}</td>
+                            <td class="bg-dark text-white">سابقہ رقم  </td>
                         </tr>
                         <tr>
-                            <td>میزان  </td>
                             <td> {{ number_format($total -($previous)) }} </td>
+                            <td class="bg-dark text-white">میزان  </td>
                         </tr>
                     </tfoot>
                 </table>

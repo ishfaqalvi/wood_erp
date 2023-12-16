@@ -115,37 +115,27 @@ class PurchasePaymentController extends Controller
     public function approve(Request $request, PurchasePayment $payment)
     {
         $status = DB::transaction(function () use ($payment) {
-            $status = 'No error';
-            $account = Account::whereNotNull('default')->first();
-            if (empty($account)) {
-                $status = 'Error';
-            }else{
-                if ($payment->type == 'Concession') {
-                    $transaction = $payment->updateBalance($account->id, $payment->amount, 'Incoming', 'Concession');
-                    $payment->vendor->details()->create([
-                        'reference' => $transaction->transaction_id,
-                        'detail'    => 'Concession',
-                        'date'      => date('Y-m-d', $payment->date),
-                        'type'      => 'Paid',
-                        'amount'    => $payment->amount
-                    ]);
-                }else{
-                    $transaction = $payment->updateBalance($account->id, $payment->amount, 'Outgoing', 'Purchasing');
-                    $payment->vendor->details()->create([
-                        'reference' => $transaction->transaction_id,
-                        'detail'    => 'Payment Paid',
-                        'date'      => date('Y-m-d', $payment->date),
-                        'type'      => 'Paid',
-                        'amount'    => $payment->amount
-                    ]);
+            $category   = $payment->type == 'Concession' ? 'Concession' : 'Purchasing';
+            $type       = $payment->type == 'Concession' ? 'Incoming' : 'Outgoing';
+            $detail     = $payment->type == 'Concession' ? 'Received' : 'Payment Paid';
+            if ($payment->type == 'Cash' || $payment->type == 'Concession') {
+                $account = Account::whereNotNull('default')->first()->id;
+                if (empty($account)) {
+                    return redirect()->back()->with('warning', 'آپ نے بینک اکاؤنٹ شامل نہیں کیا ہے۔.');
                 }
-                $payment->update(['status' => 'Approved']);
+            }else{
+                $account = $payment->bank;
             }
-            return $status;
+            $transaction= $payment->updateBalance($account, $payment->amount, $type, $category);
+            $payment->vendor->details()->create([
+                'reference' => $transaction->transaction_id,
+                'detail'    => $detail,
+                'date'      => date('Y-m-d', $payment->date),
+                'type'      => 'Paid',
+                'amount'    => $payment->amount
+            ]);
+            $payment->update(['status' => 'Approved']);
         });
-        if ($status == 'Error') {
-            return redirect()->back()->with('warning', 'آپ نے بینک اکاؤنٹ شامل نہیں کیا ہے۔.');
-        }
         return redirect()->route('purchase-payments.index')
             ->with('success', 'Purchase Payment approved successfully.');
     }

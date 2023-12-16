@@ -114,27 +114,25 @@ class ProductionPaymentController extends Controller
      */
     public function approve(Request $request, ProductionPayment $payment)
     {
-        $status = DB::transaction(function () use ($payment) {
-            $status = 'No error';
-            $account = Account::whereNotNull('default')->first();
-            if (empty($account)) {
-                $status = 'Error';
+        DB::transaction(function () use ($payment) {
+            if ($payment->type == 'Cash') {
+                $account = Account::whereNotNull('default')->first()->id;
+                if (empty($account)) {
+                    return redirect()->back()->with('warning', 'آپ نے بینک اکاؤنٹ شامل نہیں کیا ہے۔.');
+                }
             }else{
-                $transaction = $payment->updateBalance($account->id, $payment->amount, 'Outgoing', 'Production');
-                $payment->worker->details()->create([
-                    'reference' => $transaction->transaction_id,
-                    'detail'    => 'Payment Paid',
-                    'date'      => date('Y-m-d', $payment->date),
-                    'type'      => 'Paid',
-                    'amount'    => $payment->amount
-                ]);
-                $payment->update(['status' => 'Approved']);
+                $account = $payment->bank;
             }
-            return $status;
+            $transaction = $payment->updateBalance($account, $payment->amount, 'Outgoing', 'Production');
+            $payment->worker->details()->create([
+                'reference' => $transaction->transaction_id,
+                'detail'    => 'Payment Paid',
+                'date'      => date('Y-m-d', $payment->date),
+                'type'      => 'Paid',
+                'amount'    => $payment->amount
+            ]);
+            $payment->update(['status' => 'Approved']);
         });
-        if ($status == 'Error') {
-            return redirect()->back()->with('warning', 'آپ نے بینک اکاؤنٹ شامل نہیں کیا ہے۔.');
-        }
         return redirect()->route('production-payments.index')
             ->with('success', 'Production Payment approved successfully.');
     }

@@ -55,6 +55,16 @@ function accounts()
  *
  * @return \Illuminate\Http\Response
  */
+function otherAccounts()
+{
+    return Account::whereNull('default')->pluck('title','id');
+}
+
+/**
+ * Get listing of a resource.
+ *
+ * @return \Illuminate\Http\Response
+ */
 function vendors()
 {
     return Vendor::pluck('name','id');
