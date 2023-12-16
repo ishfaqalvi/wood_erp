@@ -66,7 +66,7 @@
                                 <h4 class="mb-0">
                                     {{ number_format($worker->details()->where('type','Received')->sum('amount') - $worker->details()->where('type','Paid')->sum('amount') )}}
                                 </h4>
-                                باقی بل
+                                بقایا بل
                             </div>
                         </div>
                     </div>

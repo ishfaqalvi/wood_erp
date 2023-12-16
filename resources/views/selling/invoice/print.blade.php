@@ -53,32 +53,33 @@
                             <b>{{ settings('third_contact_person_mobile_number') }}</b>
                             : {{ settings('third_contact_person_name') }}
                         </li>
+                        <li>
+                            <b>{{ settings('fourth_contact_person_mobile_number') }}</b>
+                            : {{ settings('fourth_contact_person_name') }}
+                        </li>
+                        <li>
+                            <b>{{ settings('fifth_contact_person_mobile_number') }}</b>
+                            : {{ settings('fifth_contact_person_name') }}
+                        </li>
                         <li class="mt-1">
                             <b>{{ $invoice->invoice_number }}</b>
                             : بل نمبر
                         </li>
                         <li class="mt-1">
                             <b>{{ date('d-m-Y',$invoice->invoice_date) }}</b>
-                            :بتاریخ 
+                            :تاریخ 
                         </li>
                     </ul>
                 </div>
                 <div class="col-sm-3">
-                    <div class="mb-4 text-sm-center">
-                        <h4 class="d-none d-sm-inline-block text-body mb-0 ms-2" style="font-size: 28px;">دکاندار کا نام
-                        </h4></br>
-                        <h4 class="d-none d-sm-inline-block text-body mb-0 ms-2" style="font-size: 28px;">
-                            <b>{{ $invoice->customer->name }}</b>
-                        </h4>
-                    </div>
                 </div>
                 <div class="col-sm-5">
-                    <div class="mb-4 text-sm-end">
+                    <div class="text-sm-end">
                         <div class="d-inline-flex align-items-center">
-                            <h3 class="d-none d-sm-inline-block text-body mb-0 ms-2" style="font-size: 28px;">
+                            <h3 class="d-none d-sm-inline-block text-body mb-0 ms-2" style="font-size: 43px;">
                                 <b>{{ settings('business_name') }}</b>
                             </h3>
-                            <h1 class="d-none d-sm-inline-block text-body mb-0 ms-2 fw-bold" style="font-size: 32px;">
+                            <h1 class="d-none d-sm-inline-block text-body mb-0 ms-2 fw-bold" style="font-size: 44px;">
                                 <b>{{ settings('company_name') }}</b>
                             </h1>
                         </div>
@@ -89,16 +90,17 @@
                             <li><b>{{ settings('business_heading') }}</b></li>
                             <li><b>{{ settings('business_detail') }}</b></li>
                             <li><b>{{ settings('address') }}</b></li>
+                            <li>گڈز کا نام   : <b>{{ $invoice->goods_name }}</b></li>
+                            <li><b>{{ $invoice->bilti_number }}</b> :  بلٹی نمبر </li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-8">
-                    <div class="text-sm-end"> {{ $invoice->goods_name }} : گڈز کا نام  </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="text-sm-end"> <strong>{{ $invoice->bilti_number }}</strong> :  بلٹی نمبر   </div>
+                <div class="col-sm-12 text-sm-center">
+                    <h4 class="d-none d-sm-inline-block text-body" style="font-size: 24px;"> 
+                     دکاندار کا نام  : {{ $invoice->customer->name }}
+                    </h4>
                 </div>
             </div>
             <div class="table-responsive border rounded" dir="rtl">
@@ -131,7 +133,7 @@
                                 <td width="35%"><div class="fw-bold">{{ $item->saleItem->name }}</div></td>
                                 <td width="15%">
                                     <span class="fw-semibold">
-                                        {{ number_format($item->rate) }}
+                                        {{ $item->rate }}
                                     </span>
                                 </td>
                                 <td width="15%">
@@ -145,7 +147,7 @@
                             @endforeach
                         @else
                             @php($count = count($invoice->purchaseItems))
-                            @foreach($invoice->purchaseItems as $item)
+                            @foreach($invoice->purchaseItems as $key => $item)
                             <tr>
                                 <td width="5%">{{ ++$key }}</td>
                                 <td width="15%"><div class="fw-bold">{{ $item->bundle_quantity }}</div></td>
@@ -157,7 +159,7 @@
                                 <td width="35%"><div class="fw-bold">{{ $item->purchaseStock->name }}</div></td>
                                 <td width="15%">
                                     <span class="fw-semibold">
-                                        {{ number_format($item->rate) }}
+                                        {{ $item->rate }}
                                     </span>
                                 </td>
                                 <td width="15%">

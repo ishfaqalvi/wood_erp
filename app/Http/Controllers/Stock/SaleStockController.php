@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Stock;
 use App\Http\Controllers\Controller;
 
 use App\Models\SaleStock;
+use App\Models\WarehouseDetail;
 use Illuminate\Http\Request;
 
 /**
@@ -63,6 +64,7 @@ class SaleStockController extends Controller
         }else{
             $purchaseStock = SaleStock::create($request->all());
         }
+        WarehouseDetail::create($request->all());
         return redirect()->route('sale-stocks.index')
             ->with('success', 'SaleStock item added successfully.');
     }
