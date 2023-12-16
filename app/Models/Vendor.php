@@ -51,7 +51,10 @@ class Vendor extends Model implements Auditable
     public function setImageAttribute($image)
     {
         if ($image) {
-            $this->attributes['image'] = uploadFile($image, 'vendor', '550', '550');
+            $name = date('YmdHis').'_'.$image->getClientOriginalName();
+            $image->move('images/vendor/', $name);
+            $this->attributes['image'] = 'images/vendor/'.$name;
+            // $this->attributes['image'] = uploadFile($image, 'vendor', '550', '550');
         } else {
             unset($this->attributes['image']);
         }

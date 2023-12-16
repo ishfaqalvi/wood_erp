@@ -18,6 +18,7 @@ function uploadFile($file, $path, $width, $height)
     $folder = 'images/'.$path;
     $finalPath = $folder.'/'.$name;
     $file->move($folder, $name);
+    dd(public_path($finalPath));
     Image::load(public_path($finalPath))->fit(Manipulations::FIT_CROP, $width, $height)->save();
     return $finalPath;
 }

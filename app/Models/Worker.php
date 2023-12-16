@@ -47,7 +47,10 @@ class Worker extends Model implements Auditable
     public function setImageAttribute($image)
     {
         if ($image) {
-            $this->attributes['image'] = uploadFile($image, 'worker', '550', '550');
+            $name = date('YmdHis').'_'.$image->getClientOriginalName();
+            $image->move('images/worker/', $name);
+            $this->attributes['image'] = 'images/worker/'.$name;
+            // $this->attributes['image'] = uploadFile($image, 'worker', '550', '550');
         } else {
             unset($this->attributes['image']);
         }
