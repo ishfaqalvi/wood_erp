@@ -32,7 +32,7 @@
                         </div>
                         <div class="form-group col-lg-6">
                             {{ Form::label('تعداد  ') }}
-                            {{ Form::number('quantity', null, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => 'تعداد '، 'required', 'min'=> '1']) }}
+                            {{ Form::number('quantity', null, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => 'تعداد ', 'required', 'min'=> '1']) }}
                             {!! $errors->first('quantity', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                         <div class="form-group col-lg-6">
