@@ -7,7 +7,7 @@ use OwenIt\Auditing\Contracts\Auditable;
 use Wildside\Userstamps\Userstamps;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\StockTransactions;
-
+use App\Models\CustomerDetail;
 /**
  * Class Invoice
  *
