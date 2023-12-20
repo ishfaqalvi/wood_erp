@@ -45,6 +45,7 @@
     $(function(){
         $(".select").select2();
         var type = $('select[name=type]');
+        var onlineType = $('select[name=online_type]');
         $('.validate').validate({
             errorClass: 'validation-invalid-label',
             successClass: 'validation-valid-label',
@@ -72,7 +73,8 @@
                 }
             },
             rules: {        
-                bank:        {required: function(){if (type.val() !='Cash') {return true}}},
+                bank_id:     {required: function(){if (type.val() !='Cash') {return true}}},
+                account_id:  {required: function(){if (type.val() !='Cash') {return true}}},
                 slip_number: {required: function(){if (type.val() =='Online') {return true}}},
                 check_number:{required: function(){if (type.val() =='Check') {return true}}}
             },
@@ -92,23 +94,28 @@
             $(this).find("option:selected").each(function(){
                 var optionValue = $(this).attr("value");
                 if(optionValue =='Online'){
+                    $('div.onlineType').show('slow');
                     $('div.bank').show('slow');
+                    $('div.account').show('slow');
                     $('div.slipNumber').show('slow');
                     $("div.checkNumber").hide('slow');
                     $("div.attachment").show('slow');
                 }else if(optionValue =='Check'){
-                    $('div.bank').show('slow');
+                    $('div.onlineType').hide('slow');
+                    $('div.account').show('slow');
                     $('div.slipNumber').hide('slow');
                     $("div.checkNumber").show('slow');
                     $("div.attachment").show('slow');
                 }else{
+                    $('div.onlineType').hide('slow');
+                    $('div.account').hide('slow');
                     $('div.bank').hide('slow');
                     $("div.slipNumber").hide('slow');
                     $("div.checkNumber").hide('slow');
                     $("div.attachment").hide('slow');
                 }
             });
-        }).change();
+        });
     });
 </script>
 @endsection

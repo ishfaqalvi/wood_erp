@@ -55,16 +55,16 @@ function getMeasurement($item , $qty)
     return $result * 35.3147 * $qty * 12;
 }
 
-/**
- * Get the last balance of customer.
- *
- * @return \Illuminate\Http\Response
- */
-function getCustomerLastBalance($customer)
-{
-    $curentRecord = $customer->details()->orderBy('id','DESC')->first();
-    if ($curentRecord) {
-        $lastBalnce = $customer->details()->where('id','!=',$curentRecord->id)->orderBy('id','DESC')->first();    
-    }
-    return $lastBalnce ? $lastBalnce->balance : 0;
-}
+// /**
+//  * Get the last balance of customer.
+//  *
+//  * @return \Illuminate\Http\Response
+//  */
+// function getCustomerLastBalance($customer)
+// {
+//     $record = $customer->details()->orderBy('id','DESC')->first(); 
+//     if ($curentRecord) {
+//         $lastBalnce = $customer->details()->where('id','!=',$curentRecord->id)->orderBy('id','DESC')->first();    
+//     }
+//     return $lastBalnce ? $lastBalnce->balance : 0;
+// }

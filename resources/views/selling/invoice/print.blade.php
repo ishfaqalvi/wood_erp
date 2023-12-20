@@ -196,7 +196,7 @@
                             </td>
                         </tr>
                         <tr>
-                            @php($previous = getCustomerLastBalance($invoice->customer))
+                            @php($previous = $invoice->getCustomerLastBalance())
                             <td>{{ number_format(-($previous)) }}</td>
                             <td>سابقہ رقم  </td>
                         </tr>
