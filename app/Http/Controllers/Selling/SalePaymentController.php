@@ -124,7 +124,7 @@ class SalePaymentController extends Controller
                     return redirect()->back()->with('warning', 'آپ نے بینک اکاؤنٹ شامل نہیں کیا ہے۔.');
                 }
             }else{
-                $account = $payment->bank;
+                $account = $payment->account_id;
             }
             $transaction= $payment->updateBalance($account, $payment->amount, $type, $category);
             $payment->customer->details()->create([

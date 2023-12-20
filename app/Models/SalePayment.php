@@ -35,7 +35,8 @@ class SalePayment extends Model implements Auditable
     protected $fillable = [
         'customer_id',
         'type',
-        'bank',
+        'bank_id',
+        'account_id',
         'slip_number',
         'check_number',
         'attachment',
@@ -85,5 +86,21 @@ class SalePayment extends Model implements Auditable
     public function customer()
     {
         return $this->hasOne('App\Models\Customer', 'id', 'customer_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function bank()
+    {
+        return $this->hasOne('App\Models\Bank', 'id', 'bank_id');
+    } 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function account()
+    {
+        return $this->hasOne('App\Models\Account', 'id', 'account_id');
     } 
 }

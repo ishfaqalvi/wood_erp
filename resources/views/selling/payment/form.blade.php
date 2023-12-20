@@ -11,8 +11,13 @@
     </div>
     <div class="form-group col-lg-6 mb-3 bank" style="display: none;">
         {{ Form::label('بینک  ') }}
-        {{ Form::select('bank', otherAccounts(), $salePayment->bank, ['class' => 'form-control form-select' . ($errors->has('bank') ? ' is-invalid' : ''), 'placeholder' => '--منتخب کریں۔--']) }}
-        {!! $errors->first('bank', '<div class="invalid-feedback">:message</div>') !!}
+        {{ Form::select('bank_id', banks(), $salePayment->bank_id, ['class' => 'form-control form-select' . ($errors->has('bank_id') ? ' is-invalid' : ''), 'placeholder' => '--منتخب کریں۔--']) }}
+        {!! $errors->first('bank_id', '<div class="invalid-feedback">:message</div>') !!}
+    </div>
+    <div class="form-group col-lg-6 mb-3 account" style="display: none;">
+        {{ Form::label('اکاؤنٹ  ') }}
+        {{ Form::select('account_id', otherAccounts(), $salePayment->account_id, ['class' => 'form-control form-select' . ($errors->has('account_id') ? ' is-invalid' : ''), 'placeholder' => '--منتخب کریں۔--']) }}
+        {!! $errors->first('account_id', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <div class="form-group col-lg-6 mb-3 slipNumber" style="display: none;">
         {{ Form::label('سلپ  نمبر') }}

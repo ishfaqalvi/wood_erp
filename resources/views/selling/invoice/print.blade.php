@@ -71,10 +71,10 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-sm-3">
-                    <img src="{{ asset('assets/images/logo.png')}}">
+                <div class="col-sm-2">
+                    
                 </div>
-                <div class="col-sm-5">
+                <div class="col-sm-6">
                     <div class="text-sm-end">
                         <div class="d-inline-flex align-items-center">
                             <h3 class="d-none d-sm-inline-block text-body mb-0 ms-2" style="font-size: 43px;">
@@ -106,7 +106,7 @@
             </div>
             <div class="table-responsive border rounded">
                 <table class="table-xs table-bordered text-sm-center" width="100%" align="center">
-                    <thead class="bg-dark text-white">
+                    <thead>
                         <tr>
                             <th>رقم</th>
                             <th>ریٹ  </th>
@@ -161,7 +161,7 @@
                                         {{ $item->rate }}
                                     </span>
                                 </td>
-                                <td width="35%"><div class="fw-bold">{{ $item->purchaseStock->name }}</div></td>
+                                <td width="35%"><div class="fw-bold">{{ $item->description }}</div></td>
                                 <td width="15%">
                                     <span class="fw-semibold">
                                         {{ number_format($item->quantity) }}
@@ -187,7 +187,7 @@
                     <tfoot>
                         <tr>
                             <td>{{ number_format($total) }}</td>
-                            <td class="bg-dark text-white">مال  ٹوٹل رقم  </td>
+                            <td>مال  ٹوٹل رقم  </td>
                             <td colspan="4" rowspan="3">
                                 <div class="text-sm-center">
                                     <div class="mb-3">دستخط  </div>
@@ -198,11 +198,11 @@
                         <tr>
                             @php($previous = getCustomerLastBalance($invoice->customer))
                             <td>{{ number_format(-($previous)) }}</td>
-                            <td class="bg-dark text-white">سابقہ رقم  </td>
+                            <td>سابقہ رقم  </td>
                         </tr>
                         <tr>
                             <td> {{ number_format($total -($previous)) }} </td>
-                            <td class="bg-dark text-white">میزان  </td>
+                            <td>میزان  </td>
                         </tr>
                     </tfoot>
                 </table>

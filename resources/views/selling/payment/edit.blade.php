@@ -71,7 +71,13 @@
                 }else {
                     error.insertAfter(element);
                 }
-            }
+            },
+            rules: {        
+                bank_id:     {required: function(){if (type.val() !='Check') {return true}}},
+                account_id:  {required: function(){if (type.val() !='Cash') {return true}}},
+                slip_number: {required: function(){if (type.val() =='Online') {return true}}},
+                check_number:{required: function(){if (type.val() =='Check') {return true}}}
+            },
         });
         const dpAutoHideElement = document.querySelector('.date');
         if(dpAutoHideElement) {
@@ -88,17 +94,19 @@
             $(this).find("option:selected").each(function(){
                 var optionValue = $(this).attr("value");
                 if(optionValue =='Online'){
-                    $('div.bank').show('slow');
+                    $('div.account').show('slow');
                     $('div.slipNumber').show('slow');
                     $("div.checkNumber").hide('slow');
                     $("div.attachment").show('slow');
                 }else if(optionValue =='Check'){
                     $('div.bank').show('slow');
+                    $('div.account').show('slow');
                     $('div.slipNumber').hide('slow');
                     $("div.checkNumber").show('slow');
                     $("div.attachment").show('slow');
                 }else{
                     $('div.bank').hide('slow');
+                    $('div.account').show('slow');
                     $("div.slipNumber").hide('slow');
                     $("div.checkNumber").hide('slow');
                     $("div.attachment").hide('slow');

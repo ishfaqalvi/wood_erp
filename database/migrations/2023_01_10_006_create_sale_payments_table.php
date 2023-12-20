@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('customer_id')->references('id')->on('customers')->cascadeOnDelete();
             $table->enum('type',['Cash','Online','Check','Concession']);
-            $table->integer('bank')->nullable();
+            $table->integer('bank_id')->nullable();
+            $table->integer('account_id')->nullable();
             $table->string('slip_number')->nullable();
             $table->string('check_number')->nullable();
             $table->string('attachment')->nullable();
