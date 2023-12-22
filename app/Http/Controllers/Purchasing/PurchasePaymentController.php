@@ -114,19 +114,25 @@ class PurchasePaymentController extends Controller
      */
     public function approve(Request $request, PurchasePayment $payment)
     {
-        $status = DB::transaction(function () use ($payment) {
-            $category   = $payment->type == 'Concession' ? 'Concession' : 'Purchasing';
-            $type       = $payment->type == 'Concession' ? 'Incoming' : 'Outgoing';
-            $detail     = $payment->type == 'Concession' ? 'Received' : 'Payment Paid';
-            if ($payment->type == 'Cash' || $payment->type == 'Concession') {
-                $account = Account::whereNotNull('default')->first()->id;
-                if (empty($account)) {
-                    return redirect()->back()->with('warning', 'آپ نے بینک اکاؤنٹ شامل نہیں کیا ہے۔.');
-                }
-            }else{
-                $account = $payment->bank;
+        $category   = $payment->type == 'Concession' ? 'Concession' : 'Purchasing';
+        $type       = $payment->type == 'Concession' ? 'Incoming' : 'Outgoing';
+        $detail     = $payment->type == 'Concession' ? 'Received' : 'Payment Paid';
+        $account = Account::whereNotNull('default')->first();
+        if ($payment->type == 'Cash' || $payment->type == 'Concession' ) {
+            if (empty($account)) {
+                return redirect()->back()->with('warning', 'آپ نے بینک اکاؤنٹ شامل نہیں کیا ہے۔.');
             }
-            $transaction= $payment->updateBalance($account, $payment->amount, $type, $category);
+            $accountId = $account->id;
+        }elseif($payment->type == 'Online' && $payment->online_type == 'Bank'){
+            if (empty($account) ) {
+                return redirect()->back()->with('warning', 'آپ نے بینک اکاؤنٹ شامل نہیں کیا ہے۔.');
+            }
+            $accountId = $account->id;
+        }else{
+            $accountId = $payment->account_id;
+        }
+        DB::transaction(function () use ($payment,$accountId, $type, $category,$detail) {
+            $transaction = $payment->updateBalance($accountId, $payment->amount, $type, $category,$payment->vendor->name);
             $payment->vendor->details()->create([
                 'reference' => $transaction->transaction_id,
                 'detail'    => $detail,

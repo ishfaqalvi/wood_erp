@@ -75,9 +75,9 @@
                 <thead>
                     <tr>
                         <th>آئٹم</th>
-                        <th>لمبائی(MM)</th>
-                        <th>چوڑائی(MM)</th>
                         <th>موٹائی(MM)</th>
+                        <th>چوڑائی(MM)</th>
+                        <th>لمبائی(MM)</th>
                         <th>مقدار</th>
                         <th>ریٹ/فی فٹ</th>
                         <th>رقم</th>
@@ -93,9 +93,9 @@
                     @foreach($bill->billItems as $item)
                     <tr>
                         <td>{{ $item->name }}</td>
-                        <td><span class="text-muted">{{ $item->length }}</span></td>
-                        <td><span class="text-muted">{{ $item->width }}</span></td>
                         <td><span class="text-muted">{{ $item->thikness }}</span></td>
+                        <td><span class="text-muted">{{ $item->width }}</span></td>
+                        <td><span class="text-muted">{{ $item->length }}</span></td>
                         <td>{{ $item->quantity }}</td>
                         <td><span class="text-success">{{ $item->rate }}</span></td>
                         <td>

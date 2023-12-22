@@ -77,9 +77,9 @@
                 <thead>
                     <tr>
                         <th>آئٹم</th>
-                        <th>لمبائی(MM)</th>
-                        <th>چوڑائی(MM)</th>
                         <th>موٹائی(MM)</th>
+                        <th>چوڑائی(MM)</th>
+                        <th>لمبائی(MM)</th>
                         <th>مقدار</th>
                         @if($issueOrder->status =='Pending')
                         <th class="text-center" style="width: 20px;">
@@ -93,9 +93,9 @@
                     @foreach($issueOrder->items as $item)
                     <tr>
                         <td>{{ $item->purchaseStock->name }}</td>
-                        <td><span class="text-muted">{{ $item->purchaseStock->length }}</span></td>
-                        <td><span class="text-muted">{{ $item->purchaseStock->width }}</span></td>
                         <td><span class="text-muted">{{ $item->purchaseStock->thikness }}</span></td>
+                        <td><span class="text-muted">{{ $item->purchaseStock->width }}</span></td>
+                        <td><span class="text-muted">{{ $item->purchaseStock->length }}</span></td>
                         <td>
                             <h6 class="mb-0">{{ number_format($item->quantity) }}</h6>
                             @php($total += $item->quantity)

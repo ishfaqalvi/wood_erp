@@ -35,7 +35,9 @@ class PurchasePayment extends Model implements Auditable
     protected $fillable = [
         'vendor_id',
         'type',
-        'bank',
+        'online_type',
+        'bank_id',
+        'account_id',
         'slip_number',
         'check_number',
         'attachment',

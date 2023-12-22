@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row"> 
     <div class="form-group col-lg-6 mb-3">
         {{ Form::label('فروش') }}
         {{ Form::select('vendor_id', vendors(), $purchasePayment->vendor_id, ['class' => 'form-control select' . ($errors->has('vendor_id') ? ' is-invalid' : ''), 'placeholder' => '--منتخب کریں۔--','required']) }}
@@ -16,7 +16,7 @@
     </div>
     <div class="form-group col-lg-6 mb-3 bank" style="display: none;">
         {{ Form::label('بینک  ') }}
-        {{ Form::select('bank_id', banks(), $purchasePayment->bank, ['class' => 'form-control form-select' . ($errors->has('bank') ? ' is-invalid' : ''), 'placeholder' => '--منتخب کریں۔--']) }}
+        {{ Form::select('bank_id', banks(), $purchasePayment->bank_id, ['class' => 'form-control form-select' . ($errors->has('bank') ? ' is-invalid' : ''), 'placeholder' => '--منتخب کریں۔--']) }}
         {!! $errors->first('bank', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <div class="form-group col-lg-6 mb-3 account" style="display: none;">

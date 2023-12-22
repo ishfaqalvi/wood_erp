@@ -43,7 +43,7 @@ class Transaction extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['transaction_id','date','type','category','account_id','amount'];
+    protected $fillable = ['transaction_id','date','type','category','person','account_id','amount'];
 
     /**
      * Attributes that should auto genereted.

@@ -114,16 +114,17 @@ class ProductionPaymentController extends Controller
      */
     public function approve(Request $request, ProductionPayment $payment)
     {
-        DB::transaction(function () use ($payment) {
-            if ($payment->type == 'Cash') {
-                $account = Account::whereNotNull('default')->first()->id;
-                if (empty($account)) {
-                    return redirect()->back()->with('warning', 'آپ نے بینک اکاؤنٹ شامل نہیں کیا ہے۔.');
-                }
-            }else{
-                $account = $payment->bank;
+        if ($payment->type == 'Cash') {
+            $account = Account::whereNotNull('default')->first();
+            if (empty($account)) {
+                return redirect()->back()->with('warning', 'آپ نے بینک اکاؤنٹ شامل نہیں کیا ہے۔.');
             }
-            $transaction = $payment->updateBalance($account, $payment->amount, 'Outgoing', 'Production');
+            $accountId = $account->id;
+        }else{
+            $accountId = $payment->bank;
+        }
+        DB::transaction(function () use ($payment,$accountId) {
+            $transaction = $payment->updateBalance($accountId, $payment->amount, 'Outgoing', 'Production',$payment->worker->name);
             $payment->worker->details()->create([
                 'reference' => $transaction->transaction_id,
                 'detail'    => 'Payment Paid',

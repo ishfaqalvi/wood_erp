@@ -37,10 +37,10 @@
                 <tr>
                     <th>نمبر</th>
     				<th>آئٹم</th>
-                    <th>لمبائی(MM)</th>
-                    <th>چوڑائی(MM)</th>
                     <th>موٹائی(MM)</th>
-    				<th>مقدار</th>
+                    <th>چوڑائی(MM)</th>
+    				<th>لمبائی(MM)</th>
+                    <th>مقدار</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,9 +48,9 @@
                 <tr>
                     <td>{{ ++$key }}</td>
 					<td>{{ $purchaseStock->name }}</td>
-                    <td>{{ $purchaseStock->length }}</td>
-                    <td>{{ $purchaseStock->width }}</td>
                     <td>{{ $purchaseStock->thikness }}</td>
+                    <td>{{ $purchaseStock->width }}</td>
+                    <td>{{ $purchaseStock->length }}</td>
 					<td>{{ number_format($purchaseStock->quantity) }}</td>
                 </tr>
             @endforeach

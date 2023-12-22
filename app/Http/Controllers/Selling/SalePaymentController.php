@@ -114,19 +114,20 @@ class SalePaymentController extends Controller
      */
     public function approve(Request $request, SalePayment $payment)
     {
-        DB::transaction(function () use ($payment) {
-            $category   = $payment->type == 'Concession' ? 'Concession' : 'Sale';
-            $type       = $payment->type == 'Concession' ? 'Outgoing' : 'Incoming';
-            $detail     = $payment->type == 'Concession' ? 'Concession Added' : 'Payment Paid';
-            if ($payment->type == 'Cash' || $payment->type == 'Concession') {
-                $account = Account::whereNotNull('default')->first()->id;
-                if (empty($account)) {
-                    return redirect()->back()->with('warning', 'آپ نے بینک اکاؤنٹ شامل نہیں کیا ہے۔.');
-                }
-            }else{
-                $account = $payment->account_id;
+        $category   = $payment->type == 'Concession' ? 'Concession' : 'Sale';
+        $type       = $payment->type == 'Concession' ? 'Outgoing' : 'Incoming';
+        $detail     = $payment->type == 'Concession' ? 'Concession Added' : 'Payment Paid';
+        if ($payment->type == 'Cash' || $payment->type == 'Concession') {
+            $account = Account::whereNotNull('default')->first();
+            if (empty($account)) {
+                return redirect()->back()->with('warning', 'آپ نے بینک اکاؤنٹ شامل نہیں کیا ہے۔.');
             }
-            $transaction= $payment->updateBalance($account, $payment->amount, $type, $category);
+            $accountId = $account->id;
+        }else{
+            $accountId = $payment->account_id;
+        }
+        DB::transaction(function () use ($payment, $accountId, $type, $category, $detail) {
+            $transaction= $payment->updateBalance($accountId, $payment->amount, $type, $category,$payment->customer->name);
             $payment->customer->details()->create([
                 'reference' => $transaction->transaction_id,
                 'detail'    => $detail,

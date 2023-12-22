@@ -37,9 +37,9 @@
                 <tr>
                     <th>نمبر</th>
 					<th>نام  </th>
-					<th>لمبائی  (MM)</th>
+                    <th>موٹائی  (MM)</th>
 					<th>چوڑائی  (MM)</th>
-					<th>موٹائی  (MM)</th>
+                    <th>لمبائی  (MM)</th>
                     <th>پیدا کیا</th>
                     <th class="text-center">اعمال</th>
                 </tr>

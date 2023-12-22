@@ -35,11 +35,12 @@
         <table class="table datatable-basic">
             <thead class="thead">
                 <tr>
-					<th>نمبر</th>
-					<th>تاریخ</th>
-					<th>Type</th>
-					<th>Category</th>
-					<th>Account</th>
+					<th>نمبر  </th>
+					<th>تاریخ  </th>
+					<th>قسم  </th>
+					<th>کیٹیگری  </th>
+                    <th>شخص  </th>
+					<th>اکاؤنٹ   </th>
 					<th>رقم</th>
 					<th>پیدا کیا</th>
                     <th class="text-center">اعمال</th>
@@ -56,6 +57,7 @@
                         </span>
                     </td>
 					<td>{{ $transaction->category }}</td>
+                    <td>{{ $transaction->person }}</td>
 					<td>{{ $transaction->account->title }}</td>
 					<td>{{ number_format($transaction->amount) }}</td>
 					<td>{{ $transaction->creator->name }}</td>

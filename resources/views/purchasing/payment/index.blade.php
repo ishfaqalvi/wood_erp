@@ -41,7 +41,6 @@
 					<th>تاریخ</th>
 					<th>رقم</th>
                     <th>پیدا کیا</th>
-                    <th>ترمیم</th>
                     <th>حالت</th>
                     <th class="text-center">اعمال</th>
                 </tr>
@@ -51,11 +50,16 @@
                 <tr>
                     <td>{{ ++$key }}</td>
 					<td>{{ $purchasePayment->vendor->name }}</td>
-                    <td>{{ $purchasePayment->type }}</td>
+                    <td>
+                        @if($purchasePayment->type == 'Online')
+                            {{ $purchasePayment->type.'('.$purchasePayment->online_type .')' }}
+                        @else
+                            {{ $purchasePayment->type }}
+                        @endif
+                    </td>
 					<td>{{ date('d-m-Y',$purchasePayment->date) }}</td>
 					<td>{{ number_format($purchasePayment->amount) }}</td>
                     <td>{{ $purchasePayment->creator?->name }}</td>
-                    <td>{{ $purchasePayment->editor?->name }}</td>
                     <td>
                         <span class="badge {{ $purchasePayment->status == 'Pending' ? 'bg-secondary' : 'bg-success'}}">{{ $purchasePayment->status }}</span>
                     </td>

@@ -46,6 +46,7 @@
     $(function(){
         $(".select").select2();
         var type = $('select[name=type]');
+        var onlineType = $('select[name=online_type]');
         $('.validate').validate({
             errorClass: 'validation-invalid-label',
             successClass: 'validation-valid-label',
@@ -71,6 +72,13 @@
                 }else {
                     error.insertAfter(element);
                 }
+            },
+            rules: {        
+                bank_id:     {required: function(){if (type.val() =='Online' && onlineType.val() == 'Bank') {return true}}},
+                account_id:  {required: function(){if (type.val() !='Cash') {return true}}},
+                online_type: {required: function(){if (type.val() =='Online') {return true}}},
+                slip_number: {required: function(){if (type.val() =='Online') {return true}}},
+                check_number:{required: function(){if (type.val() =='Check') {return true}}}
             }
         });
         const dpAutoHideElement = document.querySelector('.date');
@@ -84,27 +92,51 @@
             });
         }
         $('.dropify').dropify();
+        onlineTypeSelect();
         $("select[name=type]").change(function(){
             $(this).find("option:selected").each(function(){
                 var optionValue = $(this).attr("value");
                 if(optionValue =='Online'){
-                    $('div.bank').show('slow');
+                    $('div.onlineType').show('slow');
                     $('div.slipNumber').show('slow');
                     $("div.checkNumber").hide('slow');
                     $("div.attachment").show('slow');
+                    onlineTypeSelect();
                 }else if(optionValue =='Check'){
-                    $('div.bank').show('slow');
+                    $('div.onlineType').hide('slow');
                     $('div.slipNumber').hide('slow');
                     $("div.checkNumber").show('slow');
                     $("div.attachment").show('slow');
+                    $('div.account').show('slow');
                 }else{
-                    $('div.bank').hide('slow');
+                    $('div.onlineType').hide('slow');
                     $("div.slipNumber").hide('slow');
                     $("div.checkNumber").hide('slow');
                     $("div.attachment").hide('slow');
+                    $('div.account').hide('slow');
+                    $('div.bank').hide('slow');
                 }
             });
         }).trigger('change');
+        function onlineTypeSelect(){
+            $("select[name=online_type]").change(function(){
+                if($(this).val() == 'Bank'){
+                    $('div.bank').show('slow');
+                    $('div.account').hide('slow');
+                }else if($(this).val() == 'Account') {
+                    $('div.bank').hide('slow');
+                    $('div.account').show('slow');
+                }else{
+                    $('div.account').hide('slow');
+                    $('div.bank').hide('slow');
+                }
+            });
+        }
+        setTimeout(
+            function() {
+                $("select[name=online_type]").trigger('change');
+            }, 1000
+        );
     });
 </script>
 @endsection

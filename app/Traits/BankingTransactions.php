@@ -14,12 +14,13 @@ trait BankingTransactions {
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function updateBalance($account, $amount, $transactionType, $category)
+    public function updateBalance($account, $amount, $transactionType, $category, $person)
     {
     	$transaction = Transaction::create([
     		'date' 		=> Carbon::now(),
     		'type' 		=> $transactionType,
     		'category' 	=> $category,
+            'person'    => $person,
     		'account_id'=> $account,
     		'amount' 	=> $amount
     	]);
