@@ -84,10 +84,17 @@ class InvoiceController extends Controller
         }else{
             $view = 'selling.invoice.purchase-item.index';
             $ids = InvoicePurchaseItem::where('invoice_id',$id)->pluck('purchase_stock_id')->toArray();
-            $items = PurchaseStock::whereNotIn('id',$ids)->where('quantity','>',0)->get()->mapWithKeys(function ($item, $key) {
-                $string = "{$item->name} ( L={$item->length} W={$item->width} T={$item->thikness} )";
-                return [$item->id => $string];
-            })->toArray(); 
+            if ($invoice->return == 'Yes') {
+                $items = PurchaseStock::whereNotIn('id',$ids)->get()->mapWithKeys(function ($item, $key) {
+                    $string = "{$item->name} ( L={$item->length} W={$item->width} T={$item->thikness} )";
+                    return [$item->id => $string];
+                })->toArray();
+            }else{
+                $items = PurchaseStock::whereNotIn('id',$ids)->where('quantity','>',0)->get()->mapWithKeys(function ($item, $key) {
+                    $string = "{$item->name} ( L={$item->length} W={$item->width} T={$item->thikness} )";
+                    return [$item->id => $string];
+                })->toArray();
+            } 
         }
         return view($view, compact('invoice','items'));
     }
@@ -142,14 +149,25 @@ class InvoiceController extends Controller
     public function publish(Request $request, Invoice $invoice)
     {
         DB::transaction(function () use ($invoice) {
-            $invoice->customer->details()->create([
-                'reference' => $invoice->invoice_number,
-                'detail'    => "Invoice Posted",
-                'date'      => date('Y-m-d', $invoice->invoice_date),
-                'type'      => "Paid",
-                'amount'    => $invoice->calculateTotalAmount()
-            ]);
-            $invoice->type == 'Fancy'?$invoice->saleStockOut($invoice):$invoice->purchaseStockRemove($invoice);
+            if ($invoice->return == 'Yes') {
+                $invoice->customer->details()->create([
+                    'reference' => $invoice->invoice_number,
+                    'detail'    => "Return Invoice Posted",
+                    'date'      => date('Y-m-d', $invoice->invoice_date),
+                    'type'      => "Received",
+                    'amount'    => $invoice->calculateTotalAmount()
+                ]);
+                $invoice->type == 'Fancy'?$invoice->returnSaleStockIn():$invoice->purchaseStockReturn($invoice);
+            }else{
+                $invoice->customer->details()->create([
+                    'reference' => $invoice->invoice_number,
+                    'detail'    => "Invoice Posted",
+                    'date'      => date('Y-m-d', $invoice->invoice_date),
+                    'type'      => "Paid",
+                    'amount'    => $invoice->calculateTotalAmount()
+                ]);
+                $invoice->type == 'Fancy'?$invoice->saleStockOut($invoice):$invoice->purchaseStockRemove($invoice);
+            }
             $invoice->update(['status' => 'Posted']);
         });
 

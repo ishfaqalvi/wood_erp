@@ -43,6 +43,7 @@ class Invoice extends Model implements Auditable
         'customer_id',
         'invoice_number',
         'type',
+        'return',
         'invoice_date',
         'bilti_number',
         'goods_name',

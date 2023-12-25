@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('customer_id')->references('id')->on('customers')->cascadeOnDelete();
             $table->string('invoice_number')->nullable();
             $table->enum('type',['Fancy','Raw']);
+            $table->string('return')->nullable();
             $table->bigInteger('invoice_date');
             $table->string('bilti_number')->nullable();
             $table->string('goods_name')->nullable();

@@ -97,6 +97,43 @@ trait StockTransactions {
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
+    public function returnSaleStockIn()
+    {
+        foreach($this->saleItems as $item)
+        {
+            SaleDetail::create([
+                'sale_item_id'=> $item->sale_item_id,
+                'type'        => 'In',
+                'date'        => date('Y-m-d', $this->date),         
+                'quantity'    => $item->quantity
+            ]);
+            $checkItem = SaleStock::where('sale_item_id', $item->sale_item_id)->first();
+            if ($checkItem) {
+                $checkItem->increment('quantity',$item->quantity);
+            }else{
+                SaleStock::create([
+                    'sale_item_id' => $item->sale_item_id, 'quantity' => $item->quantity
+                ]);
+            }
+            $checkWarehouseItem = WarehouseDetail::where([['warehouse_id',$item->warehouse_id],['sale_item_id',$item->sale_item_id]])->first();
+            if ($checkWarehouseItem) {
+                $checkWarehouseItem->increment('quantity',$item->quantity);
+            }else{
+                WarehouseDetail::create([
+                    'warehouse_id' => $item->warehouse_id,
+                    'sale_item_id' => $item->sale_item_id,
+                    'quantity'    => $item->quantity
+                ]);
+            }
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function saleStockOut($invoice)
     {
         foreach($invoice->saleItems as $item)
@@ -133,6 +170,20 @@ trait StockTransactions {
         foreach($invoice->purchaseItems as $item)
         {
             PurchaseStock::find($item->purchase_stock_id)->decrement('quantity',$item->quantity);
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function purchaseStockReturn($invoice)
+    {
+        foreach($invoice->purchaseItems as $item)
+        {
+            PurchaseStock::find($item->purchase_stock_id)->increment('quantity',$item->quantity);
         }
     }
 }

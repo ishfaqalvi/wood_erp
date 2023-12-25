@@ -80,6 +80,10 @@ class InvoiceItemController extends Controller
         }else{
             $item = WarehouseDetail::where([['warehouse_id',$request->warehouse_id],['sale_item_id',$request->item_id]])->first();
         }
-        if ($item && $item->quantity >= $request->quantity) { echo "true"; }else{ echo "false"; }
+        if ($request->returnType == 'Yes') {
+            echo "true";
+        }else{
+            if ($item && $item->quantity >= $request->quantity) { echo "true"; }else{ echo "false"; }
+        }
     }
-}
+} 

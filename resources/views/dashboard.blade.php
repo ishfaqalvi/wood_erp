@@ -16,5 +16,105 @@
 @endsection
 
 @section('content')
-
+<div class="row">
+    <div class="col-4">
+        <div class="card card-body bg-primary text-white">
+            <div class="d-flex align-items-center">
+                <i class="ph-users-three ph-2x opacity-75 me-3"></i>
+                <div class="flex-fill text-end">
+                    <h4 class="mb-0">{{ number_format($data['vendors']) }}</h4>
+                    Total Vendors
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card card-body bg-primary text-white">
+            <div class="d-flex align-items-center">
+                <i class="ph-users-three ph-2x opacity-75 me-3"></i>
+                <div class="flex-fill text-end">
+                    <h4 class="mb-0">{{ number_format($data['workers']) }}</h4>
+                    Total Worker
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card card-body bg-primary text-white">
+            <div class="d-flex align-items-center">
+                <i class="ph-users-three ph-2x opacity-75 me-3"></i>
+                <div class="flex-fill text-end">
+                    <h4 class="mb-0">{{ number_format($data['customers']) }}</h4>
+                    Total Customer
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card card-body bg-success text-white">
+            <div class="d-flex align-items-center">
+                <i class="ph-currency-dollar ph-2x opacity-75 me-3"></i>
+                <div class="flex-fill text-end">
+                    <h4 class="mb-0">{{ number_format($data['vendorBalance']) }}</h4>
+                    Vendor Balance
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card card-body bg-success text-white">
+            <div class="d-flex align-items-center">
+                <i class="ph-currency-dollar ph-2x opacity-75 me-3"></i>
+                <div class="flex-fill text-end">
+                    <h4 class="mb-0">{{ number_format($data['workerBalance']) }}</h4>
+                    Worker Balance
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card card-body bg-success text-white">
+            <div class="d-flex align-items-center">
+                <i class="ph-currency-dollar ph-2x opacity-75 me-3"></i>
+                <div class="flex-fill text-end">
+                    <h4 class="mb-0">{{ number_format($data['customerBalance']) }}</h4>
+                    Customer Balance
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card card-body bg-indigo text-white">
+            <div class="d-flex align-items-center">
+                <i class="ph-bank ph-2x opacity-75 me-3"></i>
+                <div class="flex-fill text-end">
+                    <h4 class="mb-0">{{ $data['accounts'] }}</h4>
+                    Total Bank Accounts
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card card-body bg-indigo text-white">
+            <div class="d-flex align-items-center">
+                <i class="ph-bank ph-2x opacity-75 me-3"></i>
+                <div class="flex-fill text-end">
+                    <h4 class="mb-0">{{ $data['accountBalance'] }}</h4>
+                    All Account Balance
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card card-body bg-indigo text-white">
+            <div class="d-flex align-items-center">
+                <i class="ph-bank ph-2x opacity-75 me-3"></i>
+                <div class="flex-fill text-end">
+                    <h4 class="mb-0">{{ $data['defaultAccountBalance'] }}</h4>
+                    Default Account Balance
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

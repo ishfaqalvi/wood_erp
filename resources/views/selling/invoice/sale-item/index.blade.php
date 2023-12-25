@@ -147,6 +147,7 @@
     $(function(){
         $(".select").select2({ dropdownParent: $("#addItem") });
         var _token = $("input[name='_token']").val();
+        var returnType = "<?php echo $invoice->return ?>";
         $('.validate').validate({
             errorClass: 'validation-invalid-label',
             successClass: 'validation-valid-label',
@@ -183,6 +184,7 @@
                         data: {
                             _token: _token,
                             type: 'Sale',
+                            returnType : returnType,
                             quantity: function() {
                                 return $("#quantity").val();
                             },
