@@ -87,5 +87,21 @@ class PurchasePayment extends Model implements Auditable
     public function vendor()
     {
         return $this->hasOne('App\Models\Vendor', 'id', 'vendor_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function bank()
+    {
+        return $this->hasOne('App\Models\Bank', 'id', 'bank_id');
+    } 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function account()
+    {
+        return $this->hasOne('App\Models\Account', 'id', 'account_id');
     } 
 }

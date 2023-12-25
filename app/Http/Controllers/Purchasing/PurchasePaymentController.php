@@ -116,7 +116,7 @@ class PurchasePaymentController extends Controller
     {
         $category   = $payment->type == 'Concession' ? 'Concession' : 'Purchasing';
         $type       = $payment->type == 'Concession' ? 'Incoming' : 'Outgoing';
-        $detail     = $payment->type == 'Concession' ? 'Received' : 'Payment Paid';
+        $detail     = $payment->type == 'Concession' ? 'Received' : 'Payment Paid ('.$payment->type .')';
         $account = Account::whereNotNull('default')->first();
         if ($payment->type == 'Cash' || $payment->type == 'Concession' ) {
             if (empty($account)) {

@@ -33,9 +33,9 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::orderBy('id','DESC')->get();
+        $data = Transaction::all()->reverse();
 
-        return view('banking.transaction.index', compact('transactions'));
+        return view('banking.transaction.index', compact('data'));
     }
 
     /**

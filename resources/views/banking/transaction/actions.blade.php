@@ -5,16 +5,16 @@
             <i class="ph-list"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-end">
-            <form action="{{ route('transactions.destroy',$transaction->id) }}" method="POST">
+            <form action="{{ route('transactions.destroy',$row->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 @can('transactions-view')
-                    <a href="{{ route('transactions.show',$transaction->id) }}" class="dropdown-item">
+                    <a href="{{ route('transactions.show',$row->id) }}" class="dropdown-item">
                         <i class="ph-eye me-2"></i>{{ __('دکھائیں۔') }}
                     </a>
                 @endcan
                 @can('transactions-edit')
-                    <a href="{{ route('transactions.edit',$transaction->id) }}" class="dropdown-item">
+                    <a href="{{ route('transactions.edit',$row->id) }}" class="dropdown-item">
                         <i class="ph-note-pencil me-2"></i>{{ __('ترمیم') }}
                     </a>
                 @endcan

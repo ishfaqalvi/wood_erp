@@ -42,7 +42,11 @@
             @if($salePayment->type == 'Check')
             <div class="form-group mb-3">
                 <strong>بینک   :</strong>
-                {{ $salePayment->bank }}
+                {{ $salePayment->bank->title }}
+            </div>
+            <div class="form-group mb-3">
+                <strong>اکاؤنٹ    :</strong>
+                {{ $salePayment->account->title }}
             </div>
             <div class="form-group mb-3">
                 <strong>چیک نمبر  :</strong>
@@ -51,8 +55,8 @@
             @endif
             @if($salePayment->type == 'Online')
             <div class="form-group mb-3">
-                <strong>بینک   :</strong>
-                {{ $salePayment->bank }}
+                <strong>اکاؤنٹ    :</strong>
+                {{ $salePayment->account->title }}
             </div>
             <div class="form-group mb-3">
                 <strong>سلپ  نمبر :</strong>

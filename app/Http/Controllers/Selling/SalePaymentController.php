@@ -116,7 +116,7 @@ class SalePaymentController extends Controller
     {
         $category   = $payment->type == 'Concession' ? 'Concession' : 'Sale';
         $type       = $payment->type == 'Concession' ? 'Outgoing' : 'Incoming';
-        $detail     = $payment->type == 'Concession' ? 'Concession Added' : 'Payment Paid';
+        $detail     = $payment->type == 'Concession' ? 'Concession Added' : 'Payment Paid ('.$payment->type .')';
         if ($payment->type == 'Cash' || $payment->type == 'Concession') {
             $account = Account::whereNotNull('default')->first();
             if (empty($account)) {

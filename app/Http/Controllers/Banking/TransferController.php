@@ -58,8 +58,8 @@ class TransferController extends Controller
     public function store(Request $request)
     {
         $transfer = Transfer::create($request->all());
-        $transfer->updateBalance($request->from_account, $request->amount, 'Outgoing', 'Transfer');
-        $transfer->updateBalance($request->to_account, $request->amount, 'Incoming', 'Transfer');
+        $transfer->updateBalance($request->from_account, $request->amount, 'Outgoing', 'Transfer', auth()->user()->name);
+        $transfer->updateBalance($request->to_account, $request->amount, 'Incoming', 'Transfer', auth()->user()->name);
         return redirect()->route('transfers.index')
             ->with('success', 'Transfer created successfully.');
     }
@@ -102,13 +102,13 @@ class TransferController extends Controller
         if ($transfer->amount != $request->amount) {
             if ($request->amount > $transfer->amount) {
                 $extra = $request->amount - $transfer->amount;
-                $transfer->updateBalance($transfer->from_account, $extra, 'Outgoing', 'Transfer');
-                $transfer->updateBalance($transfer->to_account, $extra, 'Incoming', 'Transfer');
+                $transfer->updateBalance($transfer->from_account, $extra, 'Outgoing', 'Transfer',auth()->user()->name);
+                $transfer->updateBalance($transfer->to_account, $extra, 'Incoming', 'Transfer',auth()->user()->name);
             }
             if ($request->amount < $transfer->amount) {
                 $less = $request->amount - $transfer->amount;
-                $transfer->updateBalance($transfer->from_account, $less, 'Incoming', 'Transfer');
-                $transfer->updateBalance($transfer->to_account, $less, 'Outgoing', 'Transfer');
+                $transfer->updateBalance($transfer->from_account, $less, 'Incoming', 'Transfer',auth()->user()->name);
+                $transfer->updateBalance($transfer->to_account, $less, 'Outgoing', 'Transfer',auth()->user()->name);
             }
         }
         $transfer->update($request->all());

@@ -105,7 +105,7 @@
                     $("div.attachment").show('slow');
                 }else{
                     $('div.bank').hide('slow');
-                    $('div.account').show('slow');
+                    $('div.account').hide('slow');
                     $("div.slipNumber").hide('slow');
                     $("div.checkNumber").hide('slow');
                     $("div.attachment").hide('slow');

@@ -37,12 +37,16 @@
             </div>
             <div class="form-group mb-3">
                 <strong> قسم :</strong>
-                {{ $purchasePayment->type }}
+                @if($purchasePayment->type == 'Online')
+                    {{ $purchasePayment->type.'('.$purchasePayment->online_type .')' }}
+                @else
+                    {{ $purchasePayment->type }}
+                @endif
             </div>
             @if($purchasePayment->type == 'Check')
             <div class="form-group mb-3">
-                <strong>بینک   :</strong>
-                {{ $purchasePayment->bank }}
+                <strong>اکاؤنٹ    :</strong>
+                {{ $purchasePayment->account->title }}
             </div>
             <div class="form-group mb-3">
                 <strong>چیک نمبر  :</strong>
@@ -50,10 +54,17 @@
             </div>
             @endif
             @if($purchasePayment->type == 'Online')
-            <div class="form-group mb-3">
-                <strong>بینک   :</strong>
-                {{ $purchasePayment->bank }}
-            </div>
+                @if($purchasePayment->online_type == 'Bank')
+                <div class="form-group mb-3">
+                    <strong>بینک   :</strong>
+                    {{ $purchasePayment->bank->title }}
+                </div>
+                @else
+                <div class="form-group mb-3">
+                    <strong>اکاؤنٹ    :</strong>
+                    {{ $purchasePayment->account->title }}
+                </div>
+                @endif
             <div class="form-group mb-3">
                 <strong>سلپ  نمبر :</strong>
                 {{ $purchasePayment->slip_number }}

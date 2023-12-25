@@ -127,7 +127,7 @@ class ProductionPaymentController extends Controller
             $transaction = $payment->updateBalance($accountId, $payment->amount, 'Outgoing', 'Production',$payment->worker->name);
             $payment->worker->details()->create([
                 'reference' => $transaction->transaction_id,
-                'detail'    => 'Payment Paid',
+                'detail'    => 'Payment Paid ('.$payment->type .')',
                 'date'      => date('Y-m-d', $payment->date),
                 'type'      => 'Paid',
                 'amount'    => $payment->amount

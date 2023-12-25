@@ -35,7 +35,7 @@
         <table class="table datatable-basic">
             <thead class="thead">
                 <tr>
-					<th>نمبر  </th>
+                    <th>نمبر  </th>
 					<th>تاریخ  </th>
 					<th>قسم  </th>
 					<th>کیٹیگری  </th>
@@ -47,20 +47,20 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach ($transactions as $key => $transaction)
+            @foreach ($data as $key => $row)
                 <tr>
-					<td>{{ $transaction->transaction_id }}</td>
-					<td>{{ date('Y-m-d', $transaction->date) }}</td>
+                    <td>{{ $row->transaction_id }}</td>
+					<td>{{ date('Y-m-d', $row->date) }}</td>
 					<td>
-                        <span class="badge {{$transaction->type == 'Incoming' ? 'bg-success': 'bg-info' }} rounded-pill">
-                            {{ $transaction->type }}
+                        <span class="badge {{$row->type == 'Incoming' ? 'bg-success': 'bg-info' }} rounded-pill">
+                            {{ $row->type }}
                         </span>
                     </td>
-					<td>{{ $transaction->category }}</td>
-                    <td>{{ $transaction->person }}</td>
-					<td>{{ $transaction->account->title }}</td>
-					<td>{{ number_format($transaction->amount) }}</td>
-					<td>{{ $transaction->creator->name }}</td>
+					<td>{{ $row->category }}</td>
+                    <td>{{ $row->person }}</td>
+					<td>{{ $row->account->title }}</td>
+					<td>{{ number_format($row->amount) }}</td>
+					<td>{{ $row->creator->name }}</td>
                     <td class="text-center">@include('banking.transaction.actions')</td>
                 </tr>
             @endforeach
