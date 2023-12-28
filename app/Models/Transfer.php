@@ -40,7 +40,7 @@ class Transfer extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['from_account','to_account','date','amount','description'];
+    protected $fillable = ['from_transaction_id','to_transaction_id','from_account','to_account','date','amount','description'];
 
     /**
      * Interact with the date.

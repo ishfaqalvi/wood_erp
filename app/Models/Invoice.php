@@ -88,7 +88,12 @@ class Invoice extends Model implements Auditable
     function getCustomerLastBalance()
     {
         $record = CustomerDetail::whereCustomerId($this->customer_id)->whereReference($this->invoice_number)->first();
-        return $record->balance + $record->amount;
+        if ($this->return == 'Yes') {
+            $balance = $record->balance - $record->amount;
+        }else{
+            $balance = $record->balance + $record->amount;
+        }
+        return $balance;
     }
 
     /**

@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('production_payments', function (Blueprint $table) {
             $table->id();
+            $table->string('transaction_id')->nullable();
             $table->foreignId('worker_id')->references('id')->on('workers')->cascadeOnDelete();
             $table->enum('type',['Cash','Online','Check']);
             $table->integer('bank')->nullable();

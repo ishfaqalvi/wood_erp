@@ -33,6 +33,7 @@ class ProductionPayment extends Model implements Auditable
      * @var array
      */
     protected $fillable = [
+        'transaction_id',
         'worker_id',
         'type',
         'bank',

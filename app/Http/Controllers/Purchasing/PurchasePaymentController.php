@@ -116,7 +116,7 @@ class PurchasePaymentController extends Controller
     {
         $category   = $payment->type == 'Concession' ? 'Concession' : 'Purchasing';
         $type       = $payment->type == 'Concession' ? 'Incoming' : 'Outgoing';
-        $detail     = $payment->type == 'Concession' ? 'Received' : 'Payment Paid ('.$payment->type .')';
+        $detail     = $payment->type == 'Concession' ? 'Concession' : 'Payment Paid ('.$payment->type .')';
         $account = Account::whereNotNull('default')->first();
         if ($payment->type == 'Cash' || $payment->type == 'Concession' ) {
             if (empty($account)) {
@@ -140,7 +140,7 @@ class PurchasePaymentController extends Controller
                 'type'      => 'Paid',
                 'amount'    => $payment->amount
             ]);
-            $payment->update(['status' => 'Approved']);
+            $payment->update(['transaction_id' => $transaction->transaction_id,'status' => 'Approved']);
         });
         return redirect()->route('purchase-payments.index')
             ->with('success', 'Purchase Payment approved successfully.');

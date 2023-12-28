@@ -35,7 +35,7 @@
         <table class="table datatable-basic">
             <thead class="thead">
                 <tr>
-                    <th>نمبر</th>
+                    <th>ٹرانزکشن  </th>
 					<th>فروش</th>
                     <th>قسم</th> 
 					<th>تاریخ</th>
@@ -48,7 +48,7 @@
             <tbody>
             @foreach ($purchasePayments as $key => $purchasePayment)
                 <tr>
-                    <td>{{ ++$key }}</td>
+                    <td>{{ $purchasePayment->transaction_id }}</td>
 					<td>{{ $purchasePayment->vendor->name }}</td>
                     <td>
                         @if($purchasePayment->type == 'Online')

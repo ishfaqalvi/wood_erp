@@ -58,8 +58,12 @@ class TransferController extends Controller
     public function store(Request $request)
     {
         $transfer = Transfer::create($request->all());
-        $transfer->updateBalance($request->from_account, $request->amount, 'Outgoing', 'Transfer', auth()->user()->name);
-        $transfer->updateBalance($request->to_account, $request->amount, 'Incoming', 'Transfer', auth()->user()->name);
+        $transactionFrom = $transfer->updateBalance($request->from_account, $request->amount, 'Outgoing', 'Transfer', auth()->user()->name);
+        $transactionTo = $transfer->updateBalance($request->to_account, $request->amount, 'Incoming', 'Transfer', auth()->user()->name);
+        $transfer->update([
+            'from_transaction_id' => $transactionFrom->transaction_id,
+            'to_transaction_id' => $transactionTo->transaction_id
+        ]);
         return redirect()->route('transfers.index')
             ->with('success', 'Transfer created successfully.');
     }

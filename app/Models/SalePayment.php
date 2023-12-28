@@ -33,6 +33,7 @@ class SalePayment extends Model implements Auditable
      * @var array
      */
     protected $fillable = [
+        'transaction_id',
         'customer_id',
         'type',
         'bank_id',

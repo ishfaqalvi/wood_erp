@@ -135,7 +135,7 @@ class SalePaymentController extends Controller
                 'type'      => 'Received',
                 'amount'    => $payment->amount
             ]);
-            $payment->update(['status' => 'Approved']);
+            $payment->update(['transaction_id' => $transaction->transaction_id,'status' => 'Approved']);
         });
         return redirect()->route('sale-payments.index')
             ->with('success', 'Sale Payment approved successfully.');

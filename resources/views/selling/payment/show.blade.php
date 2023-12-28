@@ -32,6 +32,10 @@
         </div>
         <div class="card-body">
             <div class="form-group mb-3">
+                <strong> ٹرانزکشن:</strong>
+                {{ $salePayment->transaction_id }}
+            </div>
+            <div class="form-group mb-3">
                 <strong>فروش:</strong>
                 {{ $salePayment->customer->name }}
             </div>

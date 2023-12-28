@@ -47,7 +47,9 @@
             @foreach ($transfers as $key => $transfer)
                 <tr>
                     <td>{{ ++$key }}</td>
-					<td>{{ $transfer->fromAccount->title .' => '. $transfer->toAccount->title }}</td>
+					<td>
+                        {{ $transfer->fromAccount->title.'('.$transfer->from_transaction_id .') => '. $transfer->toAccount->title.'('.$transfer->to_transaction_id .')' }}
+                    </td>
 					<td>{{ date('Y-m-d', $transfer->date) }}</td>
 					<td>{{ number_format($transfer->amount) }}</td>
 					<td>{{ $transfer->creator->name }}</td>

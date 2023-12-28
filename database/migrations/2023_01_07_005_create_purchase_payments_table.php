@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('purchase_payments', function (Blueprint $table) {
             $table->id();
+            $table->string('transaction_id')->nullable();
             $table->foreignId('vendor_id')->references('id')->on('vendors')->cascadeOnDelete();
             $table->enum('type',['Cash','Online','Check','Concession']);
             $table->string('online_type')->nullable();

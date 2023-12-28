@@ -35,7 +35,7 @@
         <table class="table datatable-basic">
             <thead class="thead">
                 <tr>
-                    <th>نمبر</th>
+                    <th>ٹرانزکشن  </th>
                     <th>ورکر</th>
                     <th>قسم</th>
                     <th>تاریخ</th>
@@ -49,7 +49,7 @@
             <tbody>
             @foreach ($productionPayments as $key => $productionPayment)
                 <tr>
-                    <td>{{ ++$key }}</td>
+                    <td>{{ $productionPayment->transaction_id }}</td>
                     <td>{{ $productionPayment->worker->name }}</td>
                     <td>{{ $productionPayment->type }}</td>
                     <td>{{ date('d-m-Y',$productionPayment->date) }}</td>

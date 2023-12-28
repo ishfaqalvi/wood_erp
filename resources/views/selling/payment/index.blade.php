@@ -35,7 +35,7 @@
         <table class="table datatable-basic">
             <thead class="thead">
                 <tr>
-                    <th>نمبر</th>
+                    <th>ٹرانزکشن  </th>
                     <th>فروش</th>
                     <th>قسم</th>
                     <th>تاریخ</th>
@@ -49,7 +49,7 @@
             <tbody>
             @foreach ($salePayments as $key => $salePayment)
                 <tr>
-                    <td>{{ ++$key }}</td>
+                    <td>{{ $salePayment->transaction_id }}</td>
                     <td>{{ $salePayment->customer->name }}</td>
                     <td>{{ $salePayment->type }}</td>
                     <td>{{ date('d-m-Y',$salePayment->date) }}</td>

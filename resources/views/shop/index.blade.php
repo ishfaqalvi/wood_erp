@@ -37,8 +37,6 @@
                 <tr>
                     <th>نمبر</th>
 					<th>نام</th>
-					<th>مالک کا نام</th>
-					<th>فون نمبر</th>
 					<th>پیدا کیا</th>
                     <th class="text-center">اعمال</th>
                 </tr>
@@ -48,8 +46,6 @@
                 <tr>
                     <td>{{ ++$key }}</td>
 					<td>{{ $shop->name }}</td>
-					<td>{{ $shop->owner_name }}</td>
-					<td>{{ $shop->mobile_number }}</td>
 					<td>{{ $shop->creator?->name }}</td>
                     <td class="text-center">@include('shop.actions')</td>
                 </tr>

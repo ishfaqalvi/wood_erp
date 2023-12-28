@@ -33,6 +33,7 @@ class PurchasePayment extends Model implements Auditable
      * @var array
      */
     protected $fillable = [
+        'transaction_id',
         'vendor_id',
         'type',
         'online_type',

@@ -19,9 +19,6 @@ class ShopSeeder extends Seeder
         for ($i = 1; $i <= 5; $i++) {
             $shops[] = [
                 'name'          => "Shop Name $i",
-                'owner_name'    => "Owner Name $i",
-                'mobile_number' => "0300676544 $i",
-                'address'       => "Shop Address $i",
                 'created_by'    => 1,
                 'updated_by'    => 1,
                 'created_at'    => Carbon::now(),

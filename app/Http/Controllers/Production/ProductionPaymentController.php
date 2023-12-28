@@ -132,7 +132,7 @@ class ProductionPaymentController extends Controller
                 'type'      => 'Paid',
                 'amount'    => $payment->amount
             ]);
-            $payment->update(['status' => 'Approved']);
+            $payment->update(['transaction_id' => $transaction->transaction_id,'status' => 'Approved']);
         });
         return redirect()->route('production-payments.index')
             ->with('success', 'Production Payment approved successfully.');
