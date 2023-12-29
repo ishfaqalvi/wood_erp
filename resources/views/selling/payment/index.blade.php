@@ -41,7 +41,6 @@
                     <th>تاریخ</th>
                     <th>رقم</th>
                     <th>پیدا کیا</th>
-                    <th>ترمیم</th>
                     <th>حالت</th>
                     <th class="text-center">اعمال</th>
                 </tr>
@@ -55,7 +54,6 @@
                     <td>{{ date('d-m-Y',$salePayment->date) }}</td>
                     <td>{{ number_format($salePayment->amount) }}</td>
                     <td>{{ $salePayment->creator?->name }}</td>
-                    <td>{{ $salePayment->editor?->name }}</td>
                     <td>
                         <span class="badge {{ $salePayment->status == 'Pending' ? 'bg-secondary' : 'bg-success'}}">{{ $salePayment->status }}</span>
                     </td>

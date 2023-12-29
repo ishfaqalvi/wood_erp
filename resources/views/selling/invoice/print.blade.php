@@ -186,8 +186,12 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td>{{ number_format($total) }}</td>
-                            <td>مال  ٹوٹل رقم  </td>
+                            <td>
+                                {{ number_format($total) }}
+                            </td>
+                            <td>@if($invoice->return  == 'Yes')
+                                واپسی
+                                @endifمال  ٹوٹل رقم  </td>
                             <td colspan="4" rowspan="3">
                                 <div class="text-sm-center">
                                     <div class="mb-3">دستخط  </div>
@@ -201,7 +205,13 @@
                             <td>سابقہ رقم  </td>
                         </tr>
                         <tr>
-                            <td> {{ number_format($total -($previous)) }} </td>
+                            <td>
+                                @if($invoice->return  == 'Yes')
+                                {{ number_format($total + ($previous)) }}
+                                @else
+                                {{ number_format($total -($previous)) }}
+                                @endif
+                            </td>
                             <td>میزان  </td>
                         </tr>
                     </tfoot>

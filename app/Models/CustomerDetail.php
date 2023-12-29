@@ -31,7 +31,7 @@ class CustomerDetail extends Model implements Auditable
      *
      * @var array
      */
-    protected $fillable = ['customer_id','reference','detail','date','type','amount','balance'];
+    protected $fillable = ['customer_id','reference','detail','date','type','previous','amount','balance'];
 
     /**
      * Attributes that should auto genereted.
@@ -50,6 +50,7 @@ class CustomerDetail extends Model implements Auditable
             if ($model->type == 'Received') {
                 $model->balance = $lastBalance + $model->amount;
             }
+            $model->previous = $lastBalance;
         });
     }
 

@@ -41,7 +41,6 @@
                     <th>تاریخ</th>
                     <th>رقم</th>
                     <th>پیدا کیا</th>
-                    <th>ترمیم</th>
                     <th>حالت</th>
                     <th class="text-center">اعمال</th>
                 </tr>
@@ -55,7 +54,6 @@
                     <td>{{ date('d-m-Y',$productionPayment->date) }}</td>
                     <td>{{ number_format($productionPayment->amount) }}</td>
                     <td>{{ $productionPayment->creator?->name }}</td>
-                    <td>{{ $productionPayment->editor?->name }}</td>
                     <td>
                         <span class="badge {{ $productionPayment->status == 'Pending' ? 'bg-secondary' : 'bg-success'}}">{{ $productionPayment->status }}</span>
                     </td>

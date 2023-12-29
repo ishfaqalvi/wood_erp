@@ -34,7 +34,7 @@
                 @php($checked = '')
             @endif
             <input type="checkbox" class="form-check-input" name="return" id="return" value="Yes" {{ $checked }}>
-            <label class="form-check-label" for="return">واپسی    </label>
+            <label class="form-check-label" for="return">واپسی  </label>
         </div>
     </div>
 	<div class="col-md-12 d-flex justify-content-end align-items-center mt-3">

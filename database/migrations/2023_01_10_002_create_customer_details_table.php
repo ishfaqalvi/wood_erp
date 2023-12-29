@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('detail');
             $table->bigInteger('date');
             $table->enum('type',['Paid','Received']);
+            $table->decimal('previous',10,2);
             $table->decimal('amount',10,2);
             $table->decimal('balance',10,2);
             $table->timestamps();
