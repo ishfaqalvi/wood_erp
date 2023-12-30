@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use App\Models\User;
 use Auth;
+use Hash;
 use DB;
 
 class UserController extends Controller
