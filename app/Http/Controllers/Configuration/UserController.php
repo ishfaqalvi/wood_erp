@@ -176,8 +176,8 @@ class UserController extends Controller
 
         $input = $request->all();
 
-        if (empty($input['new_password'])) {
-            $input = Arr::except($input, array('password'));
+        if (!empty($input['new_password'])) { 
+            $input['password'] = $input['new_password'];
         }
         auth()->user()->update($input);
 
