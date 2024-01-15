@@ -57,7 +57,11 @@ class SaleItemController extends Controller
      */
     public function store(Request $request)
     {
-       $saleItem = SaleItem::create($request->all());
+        $checkItem = SaleItem::whereName($request->name)->first();
+        if ($checkItem) {
+            return redirect()->back()->with('warning', 'یہ نام خریداری شدہ اشیاء میں پہلے ہی موجود ہے');    
+        } 
+        $saleItem = SaleItem::create($request->all());
         return redirect()->route('sale-items.index')
             ->with('success', 'SaleItem created successfully.');
     }

@@ -64,7 +64,12 @@ class SaleStockController extends Controller
         }else{
             $purchaseStock = SaleStock::create($request->all());
         }
-        WarehouseDetail::create($request->all());
+        $checkWarehouseItem = WarehouseDetail::where([['warehouse_id',$request->warehouse_id],['sale_item_id',$request->sale_item_id]])->first();
+        if ($checkWarehouseItem) {
+            $checkWarehouseItem->increment('quantity',$request->quantity);
+        }else{
+            WarehouseDetail::create($request->all());
+        }
         return redirect()->route('sale-stocks.index')
             ->with('success', 'SaleStock item added successfully.');
     }

@@ -57,7 +57,11 @@ class PurchaseItemController extends Controller
      */
     public function store(Request $request)
     {
-       $purchaseItem = PurchaseItem::create($request->all());
+        $checkItem = PurchaseItem::whereName($request->name)->first();
+        if ($checkItem) {
+            return redirect()->back()->with('warning', 'یہ نام خریداری کی شے میں پہلے ہی موجود ہے  ');    
+        } 
+        $purchaseItem = PurchaseItem::create($request->all());
         return redirect()->route('purchase-items.index')
             ->with('success', 'PurchaseItem created successfully.');
     }
