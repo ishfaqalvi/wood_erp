@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 
-use App\Models\Warehouse;
+use App\Models\{Warehouse,WarehouseDetail};
 use Illuminate\Http\Request;
 
 /**
@@ -73,6 +73,34 @@ class WarehouseController extends Controller
         $warehouse = Warehouse::find($id);
 
         return view('warehouse.show', compact('warehouse'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function reset($id)
+    {
+        $records = WarehouseDetail::where('warehouse_id', $id)->get();
+        $dataArray = [];
+        foreach ($records as $record) {
+            $key = $record->sale_item_id;
+            
+            if (isset($dataArray[$key])) {
+                $dataArray[$key]['quantity'] += $record->quantity;
+            } else {
+                $dataArray[$key] = [
+                    'warehouse_id' => $record->warehouse_id,
+                    'sale_item_id' => $record->sale_item_id,
+                    'quantity' => $record->quantity
+                ];
+            }
+            $record->delete();
+        }
+        WarehouseDetail::insert(array_values($dataArray));
+        return redirect()->back()->with('success', 'Warehouse reset successfully!');;
     }
 
     /**

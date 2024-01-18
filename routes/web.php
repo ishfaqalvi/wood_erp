@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth'],'namespace' => 'App\Http\Controllers'], f
 	|--------------------------------------------------------------------------
 	*/
 	Route::resource('warehouses', WarehouseController::class)->names('warehouses');
+	Route::get('warehouse/{id}', 'WarehouseController@reset')->name('warehouse.reset');
 
 	/*
     |--------------------------------------------------------------------------
